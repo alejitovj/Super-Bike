@@ -1,0 +1,1251 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* =========================
+   HEADER / NAVBAR
+========================= */
+
+header{
+    background: #000000;
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.nav-links{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a{
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover{
+    color: gray;
+}
+
+/* =========================
+   DROPDOWN PREMIUM
+========================= */
+
+.dropdown{
+    position: relative;
+}
+
+.dropdown-menu{
+
+    position: absolute;
+
+    top: 50px;
+    right: 0;
+
+    min-width: 230px;
+
+    padding: 10px;
+
+    list-style: none;
+
+    border-radius: 20px;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(15px);
+
+    border:
+    1px solid rgba(255,255,255,0.1);
+
+    box-shadow:
+    0 8px 32px rgba(0,0,0,0.35);
+
+    display: none;
+
+    overflow: hidden;
+
+    animation: dropdownFade 0.3s ease;
+
+    z-index: 999;
+}
+
+.dropdown-menu li{
+    width: 100%;
+}
+
+.dropdown-menu li a{
+
+    display: block;
+
+    padding: 15px 18px;
+
+    border-radius: 12px;
+
+    color: white;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+
+    font-size: 16px;
+}
+
+.dropdown-menu li a:hover{
+
+    background:
+    rgba(255,255,255,0.12);
+
+    transform: translateX(5px);
+
+    color: #00bfff;
+}
+
+.show{
+    display: block;
+}
+
+/* ANIMACION */
+
+@keyframes dropdownFade{
+
+    from{
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   HERO PRINCIPAL
+========================= */
+
+#hero{
+    height: 90vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.5),
+    rgba(0,0,0,0.5)),
+    url("img/PortadaBike.jpeg.png");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+#hero h1{
+    font-size: 55px;
+    margin-bottom: 15px;
+    text-shadow: 0 5px 15px #cdb553;
+}
+
+#hero p{
+    font-size: 22px;
+    margin-bottom: 25px;
+    text-shadow: 0 5px 15px #cdb553;
+}
+
+.cta-btn{
+    padding: 14px 28px;
+    border: none;
+    background: #535353;
+    color: white;
+    border: 2px solid white;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.cta-btn:hover{
+    background: #000000;
+    transform: scale(1.05);
+}
+
+/* =========================
+   HERO PREMIUM
+========================= */
+
+.hero-premium{
+    min-height: 100vh;
+
+    background:
+    radial-gradient(circle at top,
+    #1f1f1f,
+    #0a0a0a);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 8%;
+
+    overflow: hidden;
+    color: white;
+    flex-wrap: wrap;
+}
+
+/* LEFT */
+
+.hero-left{
+    flex: 1;
+    min-width: 320px;
+    z-index: 2;
+}
+
+.mini-texto{
+    color: #00bfff;
+    letter-spacing: 3px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.hero-left h1{
+    font-size: 45px;
+    line-height: 1;
+    margin: 25px 0;
+    text-align: left;
+}
+
+.hero-left p{
+    font-size: 22px;
+    color: #bdbdbd;
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+/* BOTONES */
+
+.hero-buttons{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.hero-buttons a{
+    padding: 18px 35px;
+    border-radius: 14px;
+    background: #535353;
+    color: white;
+    border: 2px solid white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.hero-buttons a:hover{
+    transform: translateY(-5px);
+    background: #000000;
+}
+
+.btn-outline{
+    background: #535353;
+    color: white;
+    border: 2px solid white;
+}
+
+/* RIGHT */
+
+.hero-right{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-width: 300px;
+}
+
+/* BIKE */
+
+.bike-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glow{
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    border-radius: 50%;
+
+    background:
+    radial-gradient(circle,
+    rgba(0,191,255,0.35),
+    transparent 70%);
+
+    filter: blur(50px);
+
+    animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.floating-bike{
+    width: 700px;
+    position: relative;
+    z-index: 2;
+
+    object-fit: contain;
+
+    filter:
+    drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+
+    animation:
+    floatBike 5s ease-in-out infinite;
+}
+
+/* ANIMACIONES */
+
+@keyframes floatBike{
+
+    0%{
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(-18px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+@keyframes pulseGlow{
+
+    0%{
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    50%{
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100%{
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+/* =========================
+   CATÁLOGO HERO
+========================= */
+
+.catalogo-hero{
+    height: 90vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6)),
+    url("img/cta.png");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+}
+
+.catalogo-overlay{
+    padding: 20px;
+}
+
+.catalogo-hero h1{
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.catalogo-hero p{
+    font-size: 22px;
+    max-width: 700px;
+}
+
+/* =========================
+   CATÁLOGO
+========================= */
+
+.catalogo{
+    padding: 80px 50px;
+    background: #f5f5f5;
+}
+
+.catalogo h2{
+    text-align: center;
+    font-size: 45px;
+    margin-bottom: 50px;
+}
+
+/* GRID */
+
+.catalogo-grid{
+    display: grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(300px,1fr));
+
+    gap: 35px;
+}
+
+/* CARD */
+
+.catalogo-card{
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,0.1);
+
+    transition: 0.3s;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.catalogo-card:hover{
+    transform: translateY(-10px);
+}
+
+/* IMAGEN */
+
+.catalogo-card img{
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    background: #f5f5f5;
+}
+
+/* INFO */
+
+.catalogo-info{
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.catalogo-info h3{
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.catalogo-info p{
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    min-height: 60px;
+}
+
+/* PRECIO */
+
+.catalogo-info span{
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+/* BOTÓN */
+
+.catalogo-info button{
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background: #4b4b4b;
+    color: white;
+    font-size: 18px;
+    margin-top: auto;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.catalogo-info button:hover{
+    background: #000000;
+    transform: scale(1.03);
+}
+
+/* =========================
+   CONTACTO HERO
+========================= */
+
+.contacto-hero{
+    height: 90vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6)),
+    url("img/scott-spark-2021-rc-worldcup.png");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+}
+
+.overlay{
+    padding: 20px;
+}
+
+.contacto-hero h1{
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.contacto-hero p{
+    font-size: 22px;
+    max-width: 700px;
+}
+
+/* CONTACTO CONTENEDOR */
+
+.contacto-container{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+
+    padding: 80px 50px;
+
+    flex-wrap: wrap;
+}
+
+/* INFO */
+
+.contacto-info{
+    flex: 1;
+    min-width: 300px;
+
+    background: #a19494a4;
+    padding: 40px;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 5px 20px #ffffff;
+}
+
+.contacto-info h2{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.contacto-info p{
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.info-box{
+    margin-bottom: 25px;
+
+    padding: 20px;
+
+    border-left: 5px solid #535353;
+
+    background: #f7f7f7;
+
+    border-radius: 10px;
+}
+
+.info-box h3{
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+/* FORMULARIO */
+
+.contacto-formulario{
+    flex: 1;
+    min-width: 300px;
+
+    background: white;
+    padding: 40px;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,0.1);
+}
+
+.contacto-formulario h2{
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.contacto-formulario form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contacto-formulario input,
+.contacto-formulario textarea{
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.contacto-formulario input:focus,
+.contacto-formulario textarea:focus{
+    border-color: #535353;
+    outline: none;
+
+    box-shadow:
+    0 0 10px #535353;
+}
+
+.contacto-formulario textarea{
+    height: 180px;
+    resize: none;
+}
+
+.contacto-formulario button{
+    padding: 16px;
+    border: none;
+    background: #535353;
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contacto-formulario button:hover{
+    background: #000000;
+    transform: translateY(-3px);
+}
+
+/* =========================
+   QUIÉNES SOMOS HERO
+========================= */
+
+.about-hero{
+    height: 90vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6)),
+    url("img/specialized-turbo-tero-x-6_0-electric-bikes-specialized-bicycle-junction-10_5000x.png");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+}
+
+.about-overlay{
+    padding: 20px;
+}
+
+.about-hero h1{
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.about-hero p{
+    font-size: 22px;
+}
+
+/* ABOUT */
+
+.about-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 50px;
+
+    padding: 80px 50px;
+
+    flex-wrap: wrap;
+}
+
+.about-image{
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-image img{
+    width: 100%;
+    border-radius: 20px;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,0.2);
+}
+
+.about-text{
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-text h2{
+    font-size: 45px;
+    margin-bottom: 25px;
+    color: #111;
+}
+
+.about-text p{
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* MISIÓN Y VISIÓN */
+
+.mision-vision{
+    display: flex;
+    justify-content: center;
+
+    gap: 30px;
+
+    padding: 50px;
+
+    flex-wrap: wrap;
+
+    background: #ffffff;
+}
+
+.card{
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+    width: 400px;
+
+    box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3);
+
+    transition: 0.4s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.card:hover{
+    transform:
+    translateY(-10px)
+    scale(1.02);
+
+    box-shadow:
+    0 15px 40px #00bfff4d;
+}
+
+.card h2{
+    font-size: 35px;
+    margin-bottom: 20px;
+    color: #aa1818;
+}
+
+.card p{
+    color: #000000;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+/* VALORES */
+
+.valores{
+    padding: 80px 50px;
+    text-align: center;
+}
+
+.valores h2{
+    font-size: 45px;
+    margin-bottom: 50px;
+    color: #534e4e;
+}
+
+.valores-grid{
+    display: grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap: 30px;
+}
+
+.valor-card{
+    background: rgb(255, 255, 255);
+
+    padding: 40px 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 5px 20px #3a484da1;
+
+    transition: 0.3s;
+}
+
+.valor-card:hover{
+    transform: translateY(-10px);
+}
+
+.valor-card h3{
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #535133;
+}
+
+.valor-card p{
+    line-height: 1.7;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    font-size: 15px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    nav{
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links{
+        flex-direction: column;
+    }
+
+    #hero h1,
+    .catalogo-hero h1,
+    .contacto-hero h1,
+    .about-hero h1{
+        font-size: 40px;
+    }
+
+    #hero p,
+    .catalogo-hero p,
+    .contacto-hero p,
+    .about-hero p{
+        font-size: 18px;
+    }
+
+    .hero-premium{
+        text-align: center;
+        justify-content: center;
+        padding: 100px 20px;
+    }
+
+    .hero-left h1{
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .hero-left p{
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .hero-buttons{
+        justify-content: center;
+    }
+
+    .floating-bike{
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .catalogo{
+        padding: 50px 20px;
+    }
+
+    .catalogo h2,
+    .contacto-info h2,
+    .contacto-formulario h2,
+    .about-text h2,
+    .valores h2{
+        font-size: 30px;
+    }
+
+    .contacto-container,
+    .about-container{
+        padding: 50px 20px;
+    }
+}
+
+/* =========================
+   LOGIN / REGISTRO
+========================= */
+
+.auth-body{
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.7),
+    rgba(0,0,0,0.7)),
+    url("img/PortadaBike.jpeg.png");
+
+    background-size: cover;
+    background-position: center;
+
+    padding: 20px;
+}
+
+.auth-container{
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.auth-card{
+
+    width: 100%;
+    max-width: 430px;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(15px);
+
+    border:
+    1px solid rgba(255,255,255,0.1);
+
+    padding: 45px;
+
+    border-radius: 25px;
+
+    box-shadow:
+    0 8px 32px rgba(0,0,0,0.4);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+    animation: fadeUp 0.8s ease;
+
+    color: white;
+}
+
+.auth-card h1{
+
+    font-size: 38px;
+
+    text-align: center;
+}
+
+.auth-card p{
+
+    text-align: center;
+
+    color: #cfcfcf;
+
+    margin-bottom: 10px;
+}
+
+.auth-card input{
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+    rgba(255,255,255,0.1);
+
+    color: white;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+.auth-card input::placeholder{
+    color: #d1d1d1;
+}
+
+.auth-card input:focus{
+
+    background:
+    rgba(255,255,255,0.15);
+
+    box-shadow:
+    0 0 10px #3f3a3a
+}
+
+.auth-card button{
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #535353;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.auth-card button:hover{
+
+    background: #000000;
+
+    transform: translateY(-3px);
+}
+
+.auth-card span{
+
+    text-align: center;
+
+    font-size: 15px;
+
+    color: #ddd;
+}
+
+.auth-card span a{
+
+    color: #e41a1a;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+.auth-card span a:hover{
+    text-decoration: underline;
+}
+
+/* ANIMACION */
+
+@keyframes fadeUp{
+
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* =========================
+   MENSAJE ENVIADO
+========================= */
+
+.mensaje-box{
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.7),
+    rgba(0,0,0,0.7)),
+    url("img/PortadaBike.jpeg.png");
+
+    background-size: cover;
+    background-position: center;
+
+    padding: 20px;
+}
+
+.mensaje-card{
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(15px);
+
+    padding: 50px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    color: white;
+
+    width: 100%;
+    max-width: 600px;
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.5);
+}
+
+.mensaje-card h1{
+
+    font-size: 45px;
+
+    margin-bottom: 20px;
+
+    color: #49ce38;
+}
+
+.mensaje-card p{
+
+    font-size: 20px;
+
+    color: #ffffff;
+
+    line-height: 1.8;
+
+    margin-bottom: 35px;
+}
+
+.volver-btn{
+
+    display: inline-block;
+
+    padding: 16px 35px;
+
+    background: #535353;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 12px;
+
+    font-size: 18px;
+
+    transition: 0.3s;
+}
+
+.volver-btn:hover{
+
+    background: #000000;
+
+    transform: translateY(-5px);
+}
+
+/* =========================
+   TUTORIAL*/
+
+    .tutorial{
+        background: #535353;
+    }
+
+.cuadrado{
+    background: green;
+    width: 200px;
+    height: 200px;
+    color: white;
+}
