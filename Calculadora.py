@@ -27,6 +27,6 @@ elif opcion == "4":
         print("La division es: ", resultado)
     else:
         print("No se puede dividir entre cero ")
-
+        
 else:
     print("Opcion no válida")
