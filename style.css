@@ -1249,3 +1249,24 @@ footer{
     height: 200px;
     color: white;
 }
+.nav-links li{
+
+    display: flex;
+
+    align-items: center;
+}
+
+.nav-links li:not(:last-child)::after{
+
+    content: "";
+
+    width: 1px;
+
+    height: 20px;
+
+    background: rgba(255,255,255,0.4);
+
+    margin-left: 15px;
+
+    margin-right: 5px;
+}
