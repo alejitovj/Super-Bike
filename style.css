@@ -703,7 +703,7 @@ nav{
     background:
     linear-gradient(rgba(0,0,0,0.6),
     rgba(0,0,0,0.6)),
-    url("img/specialized-turbo-tero-x-6_0-electric-bikes-specialized-bicycle-junction-10_5000x.png");
+    url("img/Gemini_Generated_Image_kbq8lckbq8lckbq8.png");
 
     background-size: cover;
     background-position: center;
@@ -1236,19 +1236,6 @@ footer{
     transform: translateY(-5px);
 }
 
-/* =========================
-   TUTORIAL*/
-
-    .tutorial{
-        background: #535353;
-    }
-
-.cuadrado{
-    background: green;
-    width: 200px;
-    height: 200px;
-    color: white;
-}
 .nav-links li{
 
     display: flex;
