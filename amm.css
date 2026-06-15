@@ -1,0 +1,488 @@
+/* ===========================
+   FUENTES Y CONFIGURACIÓN
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:linear-gradient(135deg,#ff5f9e,#ff8fb1,#ffc2d1,#ffe0ea);
+
+    background-size:400% 400%;
+
+    animation:fondo 15s ease infinite;
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+
+}
+
+/* Fondo animado */
+
+@keyframes fondo{
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
+}
+
+/* ===========================
+CONTENEDOR PRINCIPAL
+=========================== */
+
+.contenido{
+
+width:90%;
+
+max-width:1200px;
+
+margin:auto;
+
+padding:50px 20px;
+
+text-align:center;
+
+}
+
+/* ===========================
+TÍTULOS
+=========================== */
+
+h1{
+
+font-family:'Great Vibes',cursive;
+
+font-size:85px;
+
+color:white;
+
+text-shadow:
+0 0 10px hotpink,
+0 0 20px hotpink,
+0 0 40px deeppink;
+
+animation:latido 2s infinite;
+
+}
+
+h2{
+
+margin-top:15px;
+
+font-size:30px;
+
+color:white;
+
+font-weight:300;
+
+letter-spacing:2px;
+
+}
+
+/* ===========================
+LATIDO
+=========================== */
+
+@keyframes latido{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.05);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+/* ===========================
+CONTADOR
+=========================== */
+
+.contador{
+
+margin-top:60px;
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(20px);
+
+padding:35px;
+
+border-radius:30px;
+
+box-shadow:0 0 40px rgba(255,255,255,.2);
+
+}
+
+.contador h3{
+
+font-size:35px;
+
+margin-bottom:30px;
+
+color:white;
+
+}
+
+.tiempo{
+
+display:flex;
+
+justify-content:center;
+
+gap:25px;
+
+flex-wrap:wrap;
+
+}
+
+.tiempo div{
+
+background:white;
+
+padding:25px;
+
+border-radius:20px;
+
+width:150px;
+
+transition:.5s;
+
+box-shadow:0 0 20px rgba(255,20,147,.3);
+
+}
+
+.tiempo div:hover{
+
+transform:translateY(-12px) scale(1.05);
+
+box-shadow:0 0 35px hotpink;
+
+}
+
+.tiempo span{
+
+font-size:55px;
+
+font-weight:bold;
+
+color:#ff006e;
+
+}
+
+.tiempo p{
+
+font-size:20px;
+
+margin-top:8px;
+
+}
+
+/* ===========================
+CARTA
+=========================== */
+
+.carta{
+
+margin-top:60px;
+
+background:rgba(255,255,255,.9);
+
+padding:45px;
+
+border-radius:30px;
+
+line-height:2;
+
+font-size:22px;
+
+color:#6d214f;
+
+box-shadow:0 0 30px rgba(0,0,0,.15);
+
+transition:.5s;
+
+}
+
+.carta:hover{
+
+transform:scale(1.01);
+
+}
+
+.carta h2{
+
+color:#ff006e;
+
+margin-bottom:25px;
+
+font-family:'Great Vibes',cursive;
+
+font-size:55px;
+
+}
+
+/* ===========================
+GALERÍA
+=========================== */
+
+.galeria{
+
+margin-top:60px;
+
+display:flex;
+
+justify-content:center;
+
+gap:30px;
+
+flex-wrap:wrap;
+
+}
+
+.galeria img{
+
+width:280px;
+
+height:360px;
+
+object-fit:cover;
+
+border-radius:25px;
+
+border:5px solid white;
+
+transition:.6s;
+
+box-shadow:0 0 25px rgba(0,0,0,.25);
+
+}
+
+.galeria img:hover{
+
+transform:rotate(-2deg) scale(1.08);
+
+box-shadow:0 0 35px hotpink;
+
+}
+
+/* ===========================
+BOTONES
+=========================== */
+
+button{
+
+margin:25px;
+
+padding:18px 45px;
+
+border:none;
+
+border-radius:50px;
+
+font-size:20px;
+
+cursor:pointer;
+
+color:white;
+
+background:linear-gradient(90deg,#ff006e,#ff4d94);
+
+transition:.5s;
+
+box-shadow:0 0 20px hotpink;
+
+}
+
+button:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 0 40px deeppink;
+
+}
+
+/* ===========================
+ESTRELLAS
+=========================== */
+
+#estrellas{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+pointer-events:none;
+
+background-image:
+radial-gradient(white 1px,transparent 1px);
+
+background-size:70px 70px;
+
+opacity:.35;
+
+animation:moverEstrellas 40s linear infinite;
+
+}
+
+@keyframes moverEstrellas{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(100px);
+
+}
+
+}
+
+/* ===========================
+PÉTALOS
+=========================== */
+
+.petalo{
+
+position:fixed;
+
+top:-100px;
+
+font-size:30px;
+
+animation:caer linear forwards;
+
+pointer-events:none;
+
+z-index:999;
+
+}
+
+@keyframes caer{
+
+0%{
+
+transform:translateY(-100px) rotate(0deg);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(120vh) rotate(720deg);
+
+opacity:0;
+
+}
+
+}
+
+/* ===========================
+RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+h1{
+
+font-size:60px;
+
+}
+
+h2{
+
+font-size:22px;
+
+}
+
+.carta{
+
+font-size:18px;
+
+padding:25px;
+
+}
+
+.tiempo div{
+
+width:120px;
+
+padding:15px;
+
+}
+
+.tiempo span{
+
+font-size:40px;
+
+}
+
+.galeria img{
+
+width:90%;
+
+height:auto;
+
+}
+
+button{
+
+width:90%;
+
+margin-top:15px;
+
+}
+
+}
+.frase-principal{
+
+margin-top:30px;
+
+font-size:28px;
+
+font-family:'Great Vibes',cursive;
+
+color:white;
+
+text-shadow:0 0 10px hotpink;
+
+animation:latido 3s infinite;
+
+}
