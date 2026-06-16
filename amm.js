@@ -34,7 +34,7 @@ setInterval(actualizarContador, 1000);
 // CARTA ❤️
 // ==============================
 
-const mensaje = "Dicen que hay personas que llegan para quedarse.\n\nY tú llegaste para cambiar completamente mi vida.\n\nCada día contigo es una aventura y un recuerdo hermoso.\n\nGracias por existir y por hacerme tan feliz.\n\nDesde el 5 de febrero de 2026 mi corazón encontró su lugar favorito.\n\n❤️ Te amo infinitamente ❤️";
+const mensaje = "Dicen que las personas son pasajeras.\n\nPero desde que tú llegaste mi vida cambio por completo.\n\nCada día contigo es una aventura y un recuerdo hermoso.\n\nGracias por existir y por hacerme tan feliz.\n\nDesde el 5 de febrero de 2026 mi corazón encontró su lugar favorito.\n\n🖤 Te amo infinitamente 🖤";
 
 const texto = document.getElementById("texto");
 
