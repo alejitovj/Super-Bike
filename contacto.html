@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contáctanos | Superbike</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="img/logo.png" alt="logo">
+                <span>Superbike</span>
+            </div>
+
+            <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="catalogo.html">Catálogo</a></li>
+    <li><a href="contacto.html">Contáctanos</a></li>
+    <li><a href="quienessomos.html">Quiénes somos</a></li>
+
+    <li class="dropdown">
+
+        <a href="#" id="perfil-btn">👤 Perfil</a>
+
+        <ul class="dropdown-menu">
+
+            <li>
+                <a href="login.html">
+                    Iniciar sesión
+                </a>
+            </li>
+
+            <li>
+                <a href="registro.html">
+                    Registrarse
+                </a>
+                </li>
+
+            </ul>
+
+        </li>
+    </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="contacto-hero">
+
+        <div class="overlay">
+
+            <h1>Contáctanos</h1>
+
+            <p>
+                Estamos listos para ayudarte a encontrar
+                la bicicleta perfecta para ti.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contacto-container">
+
+        <!-- INFORMACIÓN -->
+        <div class="contacto-info">
+
+            <h2>Información</h2>
+
+            <p>
+                Puedes comunicarte con nosotros por cualquiera
+                de estos medios.
+            </p>
+
+            <div class="info-box">
+                <h3>📍 Dirección</h3>
+                <p>Calle 123 #45-67</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📞 Teléfono</h3>
+                <p>+57 300 123 4567</p>
+            </div>
+
+            <div class="info-box">
+                <h3>✉ Email</h3>
+                <p>superbike@gmail.com</p>
+            </div>
+
+            <div class="info-box">
+                <h3>🕒 Horarios</h3>
+                <p>Lunes a Sábado</p>
+                <p>8:00 AM - 6:00 PM</p>
+            </div>
+
+        </div>
+
+        <!-- FORMULARIO -->
+        <div class="contacto-formulario">
+
+            <h2>Envíanos un mensaje</h2>
+
+            <form action="mensaje-enviado.html">
+
+                <input type="text" placeholder="Nombre Completo" required>
+
+                <input type="email" placeholder="Correo Electrónico" required>
+
+                <input type="text" placeholder="Asunto" required>
+
+                <textarea placeholder="Escribe tu mensaje..." required></textarea>
+
+                <button type="submit">
+                    Enviar Mensaje
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Superbike | Todos los derechos reservados</p>
+    </footer>
+<script>
+
+const perfilBtn =
+document.getElementById("perfil-btn");
+
+const menu =
+document.querySelector(".dropdown-menu");
+
+perfilBtn.addEventListener("click", function(e){
+
+    e.preventDefault();
+
+    menu.classList.toggle("show");
+
+});
+
+</script>
+</body>
+</html>
