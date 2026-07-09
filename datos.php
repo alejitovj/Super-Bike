@@ -1,16 +1,20 @@
 <?php
-// Primero traemos la conexión que ya creamos en el otro archivo
+// 1. Conectamos a la base de datos
 include("conexion.php");
 
-// Aquí recibimos los datos del formulario (de registro.html)
+// 2. Capturamos los datos del formulario (deben coincidir con el 'name' en HTML)
 $nombre = $_POST['nombre'];
 $email = $_POST['email'];
+$usuario = $_POST['usuario'];
+$password = $_POST['password'];
 
-// Aquí guardamos los datos
-$sql = "INSERT INTO usuarios (nombre, email) VALUES ('$nombre', '$email')";
+// 3. Insertamos los datos en el orden correcto
+$sql = "INSERT INTO usuarios (nombre, email, nombre_usuario, password) 
+        VALUES ('$nombre', '$email', '$usuario', '$password')";
 
+// 4. Verificamos si funcionó
 if ($conexion->query($sql) === TRUE) {
-    echo "¡Registro exitoso!";
+    echo "¡Registro exitoso! Tus datos ya están en la base de datos.";
 } else {
     echo "Error: " . $sql . "<br>" . $conexion->error;
 }
