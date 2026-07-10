@@ -1,46 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión | Superbike</title>
-
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar Sesión | Superbike</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body class="auth-body">
+<div id="mensaje-login" class="mensaje-exito">❌ Correo o contraseña incorrectos.</div>
+<div class="auth-container">
+<form id="loginForm" action="login.php" method="POST" class="auth-card">
 
-    <div class="auth-container">
+<h1>Iniciar Sesión</h1>
 
-        <form class="auth-card">
+<p>Bienvenido nuevamente a Superbike</p>
+<input type="email" name="email" placeholder="Correo electrónico" required>
+<input type="password" name="password" placeholder="Contraseña" required>
+<button type="submit">Ingresar</button>
+<span>¿No tienes cuenta? <a href="registro.html">Regístrate</a></span>
+</form>
+</div>
 
-            <h1>Iniciar Sesión</h1>
+<script>
+const login=document.getElementById("loginForm");
 
-            <p>
-                Bienvenido nuevamente a Superbike
-            </p>
+login.addEventListener("submit",function(e){
+e.preventDefault();
 
-            <input type="email"
-            placeholder="Correo electrónico"
-            required>
+const datos=new FormData(this);
 
-            <input type="password"
-            placeholder="Contraseña"
-            required>
+fetch("login.php",{
+method:"POST",
+body:datos
+})
+.then(res=>res.text())
+.then(respuesta=>{
+if(respuesta.trim()=="ok"){
+window.location.href="index.html";
+}else{
+const mensaje=document.getElementById("mensaje-login");
+mensaje.style.display="block";
 
-            <button type="submit">
-                Ingresar
-            </button>
-
-            <span>
-                ¿No tienes cuenta?
-                <a href="registro.html">
-                    Regístrate
-                </a>
-            </span>
-
-        </form>
-
-    </div>
-
+setTimeout(()=>{
+mensaje.style.display="none";
+},2500);
+}
+});
+});
+</script>
 </body>
 </html>

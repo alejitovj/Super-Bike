@@ -9,8 +9,9 @@
 <body class="auth-body">
 
     <div class="auth-container">
-        <form action="datos.php" method="POST" class="auth-card">
-            <h1>Crear Cuenta</h1>
+    <form id="registroForm" action="datos.php" method="POST" class="auth-card">
+
+        <h1>Crear Cuenta</h1>
             <p>Únete a la experiencia Superbike</p>
             
             <input type="text" name="nombre" placeholder="Nombre completo" required>
@@ -25,6 +26,52 @@
             </span>
         </form>
     </div>
+
+<div id="mensaje-exito" class="toast">
+<div class="toast-icon">✔</div>
+<div class="toast-text">
+<h4>Registro exitoso</h4>
+<p>Bienvenido a Superbike 🚲</p>
+</div>
+<div class="toast-bar"></div>
+</div>
+
+    <script>
+const formulario=document.getElementById("registroForm");
+
+formulario.addEventListener("submit",function(e){
+e.preventDefault();
+
+const datos=new FormData(this);
+
+fetch("datos.php",{
+method:"POST",
+body:datos
+})
+.then(res=>res.text())
+.then(respuesta=>{
+if(respuesta.trim()=="ok"){
+const toast=document.getElementById("mensaje-exito");
+
+toast.style.display="flex";
+
+const barra=toast.querySelector(".toast-bar");
+barra.style.animation="none";
+barra.offsetHeight;
+barra.style.animation="barra 2.5s linear forwards";
+
+formulario.reset();
+
+setTimeout(()=>{
+toast.style.display="none";
+},2500);
+
+}else{
+alert(respuesta);
+}
+});
+});
+</script>
 
 </body>
 </html>
