@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Superbike</title>
     <link rel="stylesheet" href="style.css">
-    <form action="registro.php" method="POST">
-    <input type="text" name="nombre" placeholder="Nombre completo">
-    <input type="email" name="email" placeholder="Correo electrónico">
-    <button type="submit">Registrarse</button>
-</form>
 </head>
 <body>
+
     <header>
         <nav>
             <div class="logo">
@@ -19,89 +15,44 @@
                 <span>Superbike</span>
             </div>
             <ul class="nav-links">
-    <li><a href="#">Inicio</a></li>
-    <li><a href="catalogo.html">Catálogo</a></li>
-    <li><a href="contacto.html">Contáctanos</a></li>
-    <li><a href="quienessomos.html">Quiénes somos</a></li>
-    <!-- PERFIL -->
-
-    <li class="dropdown">
-
-        <a href="#" id="perfil-btn">👤 Perfil</a>
-
-        <ul class="dropdown-menu">
-
-            <li>
-                <a href="login.html">
-                    Iniciar sesión
-                </a>
-            </li>
-
-            <li>
-                <a href="registro.html">
-                    Registrarse
-                </a>
-            </li>
-
-        </ul>
-
-    </li>
-
-</ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="contacto.html">Contáctanos</a></li>
+                <li><a href="quienessomos.html">Quiénes somos</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" id="perfil-btn">👤 Perfil</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="login.html">Iniciar sesión</a></li>
+                        <li><a href="registro.html">Registrarse</a></li>
+                    </ul>
+                </li>
+            </ul>
         </nav>
-    </header>  
+    </header>
 
-<main>
+    <main>
         <section id="hero">
             <h1>Bienvenido a Superbike</h1>
             <p>Encuentra tu bicicleta perfecta con nosotros</p>
             <button class="cta-btn">Ver Propiedades</button>
         </section>
 
-
-    <section class="hero-premium">
-
-        <div class="hero-left">
-
-            <span class="mini-texto">
-                NUEVA GENERACIÓN DE BICICLETAS
-            </span>
-
-            <h1>
-                Ruedas que inspiran, diseño que emociona.
-            </h1>
-
-            <p>
-                Bicicletas diseñadas para velocidad,
-                precisión y aventura.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="catalogo.html" class="btn-outline">
-                    Explorar catálogo
-                </a>
-
-                <a href="quienessomos.html" class="btn-outline">
-                    Saber más
-                </a>
-
+        <section class="hero-premium">
+            <div class="hero-left">
+                <span class="mini-texto">NUEVA GENERACIÓN DE BICICLETAS</span>
+                <h1>Ruedas que inspiran, diseño que emociona.</h1>
+                <p>Bicicletas diseñadas para velocidad, precisión y aventura.</p>
+                <div class="hero-buttons">
+                    <a href="catalogo.html" class="btn-outline">Explorar catálogo</a>
+                    <a href="quienessomos.html" class="btn-outline">Saber más</a>
+                </div>
             </div>
-
-        </div>
-
-        <div class="bike-container">
-
-    <div class="glow"></div>
-
-    <img src="img/95226-00_LEVO-R-4-SW-SHDWSIL-CARB-SILDST-S2--_HERO_DARK-PDP.png"
-    alt="Bike"
-    class="floating-bike">
-
-</div>
-
-    </section>
-
+            <div class="bike-container">
+                <div class="glow"></div>
+                <img src="img/95226-00_LEVO-R-4-SW-SHDWSIL-CARB-SILDST-S2--_HERO_DARK-PDP.png" alt="Bike" class="floating-bike">
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -109,21 +60,13 @@
     </footer>
 
     <script>
+        const perfilBtn = document.getElementById("perfil-btn");
+        const menu = document.querySelector(".dropdown-menu");
 
-    const perfilBtn =
-    document.getElementById("perfil-btn");
-
-    const menu =
-    document.querySelector(".dropdown-menu");
-
-    perfilBtn.addEventListener("click", function(e){
-
-        e.preventDefault();
-
-        menu.classList.toggle("show");
-
-    });
-
-</script>
+        perfilBtn.addEventListener("click", function(e){
+            e.preventDefault();
+            menu.classList.toggle("show");
+        });
+    </script>
 </body>
 </html>
