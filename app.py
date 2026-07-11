@@ -1,10 +1,10 @@
-from flask import flask
+from flask import Flask
 
-app = Flask("Alejandro")
+app = Flask(__name__)
 
 @app.route("/")
 def inicio():
-    return render_template("Hola mundo desde Flask")
+    return "Hola Mundo desde Flask"
 
 if __name__ == "__main__":
     app.run(debug=True)
