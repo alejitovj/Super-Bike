@@ -9,7 +9,7 @@
 <body class="auth-body">
 
     <div class="auth-container">
-    <form id="registroForm" action="datos.php" method="POST" class="auth-card">
+    <form id="registroForm" class="auth-card">
 
         <h1>Crear Cuenta</h1>
             <p>Únete a la experiencia Superbike</p>
@@ -44,7 +44,7 @@ e.preventDefault();
 
 const datos=new FormData(this);
 
-fetch("datos.php",{
+fetch("/registro/",{
 method:"POST",
 body:datos
 })

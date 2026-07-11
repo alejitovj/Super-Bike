@@ -1,72 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Iniciar Sesión | Superbike</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión | Superbike</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="auth-body">
-<div id="mensaje-login" class="toast error">
-<div class="toast-icon">✖</div>
-<div class="toast-text">
-<h4>Error</h4>
-<p>Correo o contraseña incorrectos.</p>
-</div>
-<div class="toast-bar"></div>
-</div><div class="auth-container">
-<form id="loginForm" action="login.php" method="POST" class="auth-card">
 
-<h1>Iniciar Sesión</h1>
+    <div id="mensaje-login" class="toast error">
+        <div class="toast-icon">✖</div>
+        <div class="toast-text">
+            <h4>Error</h4>
+            <p>Correo o contraseña incorrectos.</p>
+        </div>
+        <div class="toast-bar"></div>
+    </div>
 
-<p>Bienvenido nuevamente a Superbike</p>
-<input type="email" name="email" placeholder="Correo electrónico" required>
-<input type="password" name="password" placeholder="Contraseña" required>
-<button type="submit">Ingresar</button>
-<span>¿No tienes cuenta? <a href="registro.html">Regístrate</a></span>
-</form>
-</div>
-<script>
-const login=document.getElementById("loginForm");
+    <div class="auth-container">
+        <form id="loginForm" class="auth-card">
 
-login.addEventListener("submit",function(e){
-e.preventDefault();
+            <h1>Iniciar Sesión</h1>
+            <p>Bienvenido nuevamente a Superbike</p>
 
-const datos=new FormData(this);
+            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
 
-fetch("login.php",{
-method:"POST",
-body:datos
-})
-.then(res=>res.text())
-.then(respuesta=>{
+            <button type="submit">Ingresar</button>
 
-if(respuesta.trim()=="ok"){
+            <span>¿No tienes cuenta? <a href="registro.html">Regístrate</a></span>
 
-window.location.href="index.html";
+        </form>
+    </div>
 
-}else{
+    <script>
+        const login = document.getElementById("loginForm");
 
-const mensaje=document.getElementById("mensaje-login");
+        login.addEventListener("submit", function(e) {
+            e.preventDefault();
 
-mensaje.classList.add("error");
-mensaje.style.display="block";
+            const datos = new FormData(this);
 
-const barra=mensaje.querySelector(".toast-bar");
-barra.style.animation="none";
-barra.offsetHeight;
-barra.style.animation="barra 2.5s linear forwards";
+            fetch("", {
+                method: "POST",
+                body: datos
+            })
+            .then(res => res.text())
+            .then(respuesta => {
 
-setTimeout(()=>{
-mensaje.style.display="none";
-},2500);
+                if (respuesta.trim() == "ok") {
 
-}
+                    window.location.href = "index.html";
 
-});
+                } else {
 
-});
-</script>
+                    const mensaje = document.getElementById("mensaje-login");
+
+                    mensaje.classList.add("error");
+                    mensaje.style.display = "block";
+
+                    const barra = mensaje.querySelector(".toast-bar");
+
+                    barra.style.animation = "none";
+                    barra.offsetHeight;
+                    barra.style.animation = "barra 2.5s linear forwards";
+
+                    setTimeout(() => {
+                        mensaje.style.display = "none";
+                    }, 2500);
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>
