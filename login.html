@@ -20,72 +20,46 @@
     </div>
 
     <div class="auth-container">
-
         <form id="loginForm" class="auth-card">
-
             <h1>Iniciar Sesión</h1>
-
             <p>Bienvenido nuevamente a Superbike</p>
-
             <input type="email" name="email" placeholder="Correo electrónico" required>
-
             <input type="password" name="password" placeholder="Contraseña" required>
-
             <button type="submit">Ingresar</button>
-
             <span>
                 ¿No tienes cuenta?
                 <a href="registro.html">Regístrate</a>
             </span>
-
         </form>
-
     </div>
 
     <script>
-
         const login = document.getElementById("loginForm");
-
         login.addEventListener("submit", function (e) {
-
             e.preventDefault();
-
             const datos = new FormData(this);
-
             fetch("", {
                 method: "POST",
                 body: datos
             })
                 .then(res => res.text())
                 .then(respuesta => {
-
                     if (respuesta.trim() == "ok") {
-
                         window.location.href = "index.html";
-
                     } else {
-
                         const mensaje = document.getElementById("mensaje-login");
-
                         mensaje.classList.add("error");
                         mensaje.style.display = "block";
-
                         const barra = mensaje.querySelector(".toast-bar");
-
                         barra.style.animation = "none";
                         barra.offsetHeight;
                         barra.style.animation = "barra 2.5s linear forwards";
-
                         setTimeout(() => {
                             mensaje.style.display = "none";
                         }, 2500);
-
                     }
-
                 });
-
         });
-
     </script>
 
 </body>
