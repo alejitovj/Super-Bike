@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiénes Somos | Superbike</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <!-- HEADER -->
     <header>
         <nav>
@@ -16,160 +14,89 @@
                 <img src="img/logo.png" alt="logo">
                 <span>Superbike</span>
             </div>
-
             <ul class="nav-links">
-    <li><a href="index.html">Inicio</a></li>
-    <li><a href="catalogo.html">Catálogo</a></li>
-    <li><a href="contacto.html">Contáctanos</a></li>
-    <li><a href="quienessomos.html">Quiénes somos</a></li>
-
-    <li class="dropdown">
-
-        <a href="#" id="perfil-btn">👤 Perfil</a>
-
-        <ul class="dropdown-menu">
-
-            <li>
-                <a href="login.html">
-                    Iniciar sesión
-                </a>
-            </li>
-
-            <li>
-                <a href="registro.html">
-                    Registrarse
-                </a>
-            </li>
-
-        </ul>
-
-    </li>
-</ul>
-
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="contacto.html">Contáctanos</a></li>
+                <li><a href="quienessomos.html">Quiénes somos</a></li>
+                <li class="dropdown">
+                    <a href="#" id="perfil-btn">👤 Perfil</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="login.html">Iniciar sesión</a>
+                        </li>
+                        <li>
+                            <a href="registro.html">Registrarse</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </nav>
     </header>
 
     <!-- HERO -->
     <section class="about-hero">
-
         <div class="about-overlay">
-
             <h1>Quiénes somos</h1>
-
-            <p>
-                Pasión por las bicicletas, innovación y movilidad sostenible.
-            </p>
-
+            <p>Pasión por las bicicletas, innovación y movilidad sostenible.</p>
         </div>
-
     </section>
 
     <!-- SOBRE NOSOTROS -->
     <section class="about-container">
-
         <div class="about-image">
-
             <img src="img/evie-richards-trek-supercaliber-lenzerheide-2021.png" alt="Superbike">
-
         </div>
-
         <div class="about-text">
-
             <h2>Somos Superbike</h2>
-
-            <p>
-                Superbike es una empresa enfocada en brindar bicicletas modernas,
-                resistentes y accesibles para todas las personas apasionadas por el ciclismo.
-            </p>
-
-            <p>
-                Nuestro objetivo es impulsar una movilidad más sostenible y saludable,
-                ofreciendo productos de calidad y excelente atención.
-            </p>
-
-            <p>
-                Trabajamos constantemente en innovación, diseño y rendimiento
-                para que cada cliente viva una experiencia única.
-            </p>
-
-
+            <p>Superbike es una empresa enfocada en brindar bicicletas modernas, resistentes y accesibles para todas las personas apasionadas por el ciclismo.</p>
+            <p>Nuestro objetivo es impulsar una movilidad más sostenible y saludable, ofreciendo productos de calidad y excelente atención.</p>
+            <p>Trabajamos constantemente en innovación, diseño y rendimiento para que cada cliente viva una experiencia única.</p>
         </div>
-
     </section>
 
     <!-- MISIÓN Y VISIÓN -->
     <section class="mision-vision">
-
         <div class="card">
-
             <h2>Misión</h2>
-
-            <p>
-                Ofrecer bicicletas de alta calidad que promuevan
-                la movilidad sostenible y el deporte.
-            </p>
-
+            <p>Ofrecer bicicletas de alta calidad que promuevan la movilidad sostenible y el deporte.</p>
         </div>
-
         <div class="card">
-
             <h2>Visión</h2>
-
-            <p>
-                Ser una de las empresas líderes en bicicletas
-                urbanas y de montaña en Colombia.
-            </p>
-
+            <p>Ser una de las empresas líderes en bicicletas urbanas y de montaña en Colombia.</p>
         </div>
-
     </section>
 
     <!-- VALORES -->
     <section class="valores">
-
         <h2>Nuestros Valores</h2>
-
         <div class="valores-grid">
-
             <div class="valor-card">
                 <h3>🚴 Calidad</h3>
                 <p>Productos resistentes y modernos.</p>
             </div>
-
             <div class="valor-card">
                 <h3>🌎 Sostenibilidad</h3>
                 <p>Apoyamos el cuidado del medio ambiente.</p>
             </div>
-
             <div class="valor-card">
                 <h3>💡 Innovación</h3>
                 <p>Diseños y tecnología actual.</p>
             </div>
-
         </div>
-
     </section>
 
     <!-- FOOTER -->
     <footer>
         <p>&copy; 2025 Superbike | Todos los derechos reservados</p>
     </footer>
-<script>
-
-const perfilBtn =
-document.getElementById("perfil-btn");
-
-const menu =
-document.querySelector(".dropdown-menu");
-
-perfilBtn.addEventListener("click", function(e){
-
-    e.preventDefault();
-
-    menu.classList.toggle("show");
-
-});
-
-</script>
+    <script>
+        const perfilBtn = document.getElementById("perfil-btn");
+        const menu = document.querySelector(".dropdown-menu");
+        perfilBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            menu.classList.toggle("show");
+        });
+    </script>
 </body>
 </html>
