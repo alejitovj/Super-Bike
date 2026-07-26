@@ -1,36 +1,69 @@
-from flask import Flask, render_template
+from Flask import Flask, render_template
+from flask_mysqldb import MySQL
 
+#Crear la aplicacion Flask
 app = Flask(__name__)
 
-# Página principal
+#Configuracion de MYSQL
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = '050226'
+app.config['MYSQL_DB'] = 'super_bike'
+
+#Crear la conexion
+mysql = MySQL(app)
+
+#rutas de aplicacion
+
+#pagina principal
 @app.route("/")
-def inicio():
+def index():
     return render_template("index.html")
 
-# Página Catálogo
+#Pagina de catalogo
 @app.route("/catalogo")
 def catalogo():
     return render_template("catalogo.html")
 
-# Página Contáctanos
+#Pagina de contacto
 @app.route("/contacto")
 def contacto():
     return render_template("contacto.html")
 
-# Página Quiénes somos
-@app.route("/quienessomos")
-def quienessomos():
-    return render_template("quienessomos.html")
+#Pagina de quienes somos
+@app.route("/quienes-somos")
+def quienes_somos():
+    return render_template("quienes-somos.html")
 
-# Página Login
+#Pagina de login
 @app.route("/login")
 def login():
     return render_template("login.html")
 
-# Página Registro
+#Pagina de registro
 @app.route("/registro")
 def registro():
     return render_template("registro.html")
 
-if __name__ == "__main__":
-    app.run(debug=True)
+#ruta para comprobar la conexion a la base de datos
+@app.route("/conexion")
+def conexion():
+    try:
+        # Crear un cursor para ejecutar consultas
+        cursor = mysql.connection.cursor()
+        
+        # Ejecutar consulta a la tabla
+        cursor.execute("SELECT * FROM gestion_usuarios")
+        
+        #Obtener registros
+        datos = cursor.fetchall()
+        
+        # Cerrar el cursor
+        cursor.close()
+        
+        return {
+            "mensaje": "Conexión exitosa a la base de datos",
+            "cantidad_registros": len(datos),
+            "usuarios": datos
+            
+        }
