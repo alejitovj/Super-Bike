@@ -33,7 +33,7 @@ def contacto():
 #Pagina de quienes somos
 @app.route("/quienes-somos")
 def quienes_somos():
-    return render_template("quienes-somos.html")
+    return render_template("quienessomos.html")
 
 #Pagina de login
 @app.route("/login")
@@ -51,19 +51,24 @@ def conexion():
     try:
         # Crear un cursor para ejecutar consultas
         cursor = mysql.connection.cursor()
-        
+
         # Ejecutar consulta a la tabla
         cursor.execute("SELECT * FROM gestion_usuarios")
-        
-        #Obtener registros
+
+        # Obtener registros
         datos = cursor.fetchall()
-        
+
         # Cerrar el cursor
         cursor.close()
-        
+
         return {
             "mensaje": "Conexión exitosa a la base de datos",
             "cantidad_registros": len(datos),
             "usuarios": datos
-            
         }
+    except Exception as e:
+        return {"error": str(e)}, 500
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
