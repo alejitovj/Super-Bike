@@ -17,7 +17,7 @@ mysql = MySQL(app)
 
 #pagina principal
 @app.route("/")
-def incio():
+def inicio():
     return render_template("index.html")
 
 #Pagina de catalogo
@@ -32,7 +32,7 @@ def contacto():
 
 #Pagina de quienes somos
 @app.route("/quienes-somos")
-def quienes_somos():
+def quienessomos():
     return render_template("quienessomos.html")
 
 #Pagina de login
