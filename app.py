@@ -1,4 +1,4 @@
-from Flask import Flask, render_template
+from flask import Flask, render_template
 from flask_mysqldb import MySQL
 
 #Crear la aplicacion Flask
@@ -17,7 +17,7 @@ mysql = MySQL(app)
 
 #pagina principal
 @app.route("/")
-def index():
+def incio():
     return render_template("index.html")
 
 #Pagina de catalogo
@@ -66,9 +66,13 @@ def conexion():
             "cantidad_registros": len(datos),
             "usuarios": datos
         }
-    except Exception as e:
-        return {"error": str(e)}, 500
+    except Exception as error:
 
+        return {
+            "mensaje": "Error al conectar con la base de datos",
+            "detalle": str(error)
+        }, 500
 
+#Ejecutar la aplicacion
 if __name__ == "__main__":
     app.run(debug=True)
