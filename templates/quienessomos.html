@@ -22,12 +22,8 @@
                 <li class="dropdown">
                     <a href="#" id="perfil-btn">👤 Perfil</a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a href="login.html">Iniciar sesión</a>
-                        </li>
-                        <li>
-                            <a href="registro.html">Registrarse</a>
-                        </li>
+            <li><a href="{{ url_for('login') }}">Iniciar sesión</a></li>
+            <li><a href="{{ url_for('registro') }}">Registrarse</a></li>
                     </ul>
                 </li>
             </ul>
