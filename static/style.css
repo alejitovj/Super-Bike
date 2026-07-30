@@ -1,23 +1,17 @@
-/* =========================
-RESET
-========================= */
+/* ==================== RESET ==================== */
 *{
 margin: 0;
 padding: 0;
 box-sizing: border-box;
 }
-/* =========================
-BODY
-========================= */
+/* ==================== BODY ==================== */
 body{
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f5f5;
     color: #333;
     line-height: 1.6;
 }
-/* =========================
-HEADER / NAVBAR
-========================= */
+/* ==================== HEADER / NAVBAR ==================== */
 header{
     background: #000000;
     padding: 15px 40px;
@@ -59,9 +53,7 @@ nav{
 .nav-links a:hover{
     color: gray;
 }
-/* =========================
-DROPDOWN PREMIUM
-========================= */
+/* ==================== DROPDOWN PREMIUM ==================== */
 .dropdown{
     position: relative;
 }
@@ -106,7 +98,7 @@ DROPDOWN PREMIUM
 .show{
     display: block;
 }
-/* ANIMACION */
+/* ==================== ANIMACIÓN ==================== */
 @keyframes dropdownFade{
     from{
         opacity: 0;
@@ -117,9 +109,7 @@ DROPDOWN PREMIUM
         transform: translateY(0);
     }
 }
-/* =========================
-HERO PRINCIPAL
-========================= */
+/* ==================== HERO PRINCIPAL ==================== */
 #hero{
     height: 90vh;
     background:
@@ -163,9 +153,7 @@ HERO PRINCIPAL
     background: #000000;
     transform: scale(1.05);
 }
-/* =========================
-HERO PREMIUM
-========================= */
+/* ==================== HERO PREMIUM ==================== */
 .hero-premium{
     min-height: 100vh;
     background:
@@ -180,7 +168,7 @@ HERO PREMIUM
     color: white;
     flex-wrap: wrap;
 }
-/* LEFT */
+/* ==================== LEFT ==================== */
 .hero-left{
     flex: 1;
     min-width: 320px;
@@ -206,7 +194,7 @@ HERO PREMIUM
     margin-bottom: 40px;
     text-align: left;
 }
-/* BOTONES */
+/* ==================== BOTONES ==================== */
 .hero-buttons{
     display: flex;
     gap: 20px;
@@ -233,7 +221,7 @@ HERO PREMIUM
     color: white;
     border: 2px solid white;
 }
-/* RIGHT */
+/* ==================== RIGHT ==================== */
 .hero-right{
     flex: 1;
     display: flex;
@@ -242,7 +230,7 @@ HERO PREMIUM
     position: relative;
     min-width: 300px;
 }
-/* BIKE */
+/* ==================== BIKE ==================== */
 .bike-container{
     position: relative;
     display: flex;
@@ -271,7 +259,7 @@ HERO PREMIUM
     animation:
     floatBike 5s ease-in-out infinite;
 }
-/* ANIMACIONES */
+/* ==================== ANIMACIONES ==================== */
 @keyframes floatBike{
     0%{
         transform: translateY(0px);
@@ -297,9 +285,7 @@ HERO PREMIUM
         opacity: 0.7;
     }
 }
-/* =========================
-CATÁLOGO HERO
-========================= */
+/* ==================== CATÁLOGO HERO ==================== */
 .catalogo-hero{
     height: 90vh;
     background:
@@ -325,9 +311,7 @@ CATÁLOGO HERO
     font-size: 22px;
     max-width: 700px;
 }
-/* =========================
-CATÁLOGO
-========================= */
+/* ==================== CATÁLOGO ==================== */
 .catalogo{
     padding: 80px 50px;
     background: #f5f5f5;
@@ -337,14 +321,14 @@ CATÁLOGO
     font-size: 45px;
     margin-bottom: 50px;
 }
-/* GRID */
+/* ==================== GRID ==================== */
 .catalogo-grid{
     display: grid;
     grid-template-columns:
     repeat(auto-fit,minmax(300px,1fr));
     gap: 35px;
 }
-/* CARD */
+/* ==================== CARD ==================== */
 .catalogo-card{
     background: white;
     border-radius: 20px;
@@ -358,14 +342,14 @@ CATÁLOGO
 .catalogo-card:hover{
     transform: translateY(-10px);
 }
-/* IMAGEN */
+/* ==================== IMAGEN ==================== */
 .catalogo-card img{
     width: 100%;
     height: 250px;
     object-fit: contain;
     background: #f5f5f5;
 }
-/* INFO */
+/* ==================== INFO ==================== */
 .catalogo-info{
     padding: 25px;
     display: flex;
@@ -383,7 +367,7 @@ CATÁLOGO
     margin-bottom: 20px;
     min-height: 60px;
 }
-/* PRECIO */
+/* ==================== PRECIO ==================== */
 .catalogo-info span{
     display: block;
     font-size: 25px;
@@ -391,7 +375,7 @@ CATÁLOGO
     color: #000000;
     margin-bottom: 20px;
 }
-/* BOTÓN */
+/* ==================== BOTÓN ==================== */
 .catalogo-info button{
     width: 100%;
     padding: 15px;
@@ -408,9 +392,7 @@ CATÁLOGO
     background: #000000;
     transform: scale(1.03);
 }
-/* =========================
-CONTACTO HERO
-========================= */
+/* ==================== CONTACTO HERO ==================== */
 .contacto-hero{
     height: 90vh;
     background:
@@ -425,6 +407,7 @@ CONTACTO HERO
     text-align: center;
     color: white;
 }
+/* ==================== OVERLAY ==================== */
 .overlay{
     padding: 20px;
 }
@@ -436,7 +419,7 @@ CONTACTO HERO
     font-size: 22px;
     max-width: 700px;
 }
-/* CONTACTO CONTENEDOR */
+/* ==================== CONTACTO CONTENEDOR ==================== */
 .contacto-container{
     display: flex;
     justify-content: center;
@@ -444,7 +427,7 @@ CONTACTO HERO
     padding: 80px 50px;
     flex-wrap: wrap;
 }
-/* INFO */
+/* ==================== INFO ==================== */
 .contacto-info{
     flex: 1;
     min-width: 300px;
@@ -462,6 +445,7 @@ CONTACTO HERO
     margin-bottom: 20px;
     color: #555;
 }
+/* ==================== CAJAS DE INFORMACIÓN ==================== */
 .info-box{
     margin-bottom: 25px;
     padding: 20px;
@@ -473,7 +457,7 @@ CONTACTO HERO
     margin-bottom: 10px;
     color: #000000;
 }
-/* FORMULARIO */
+/* ==================== FORMULARIO ==================== */
 .contacto-formulario{
     flex: 1;
     min-width: 300px;
@@ -525,9 +509,7 @@ CONTACTO HERO
     background: #000000;
     transform: translateY(-3px);
 }
-/* =========================
-QUIÉNES SOMOS HERO
-========================= */
+/* ==================== QUIÉNES SOMOS HERO ==================== */
 .about-hero{
     height: 90vh;
     background:
@@ -552,7 +534,7 @@ QUIÉNES SOMOS HERO
 .about-hero p{
     font-size: 22px;
 }
-/* ABOUT */
+/* ==================== ABOUT ==================== */
 .about-container{
     display: flex;
     justify-content: center;
@@ -561,6 +543,7 @@ QUIÉNES SOMOS HERO
     padding: 80px 50px;
     flex-wrap: wrap;
 }
+/* ==================== IMAGEN SOBRE NOSOTROS ==================== */
 .about-image{
     flex: 1;
     min-width: 300px;
@@ -571,6 +554,7 @@ QUIÉNES SOMOS HERO
     box-shadow:
     0 5px 20px rgba(0,0,0,0.2);
 }
+/* ==================== TEXTO SOBRE NOSOTROS ==================== */
 .about-text{
     flex: 1;
     min-width: 300px;
@@ -586,7 +570,7 @@ QUIÉNES SOMOS HERO
     margin-bottom: 20px;
     line-height: 1.8;
 }
-/* MISIÓN Y VISIÓN */
+/* ==================== MISIÓN Y VISIÓN ==================== */
 .mision-vision{
     display: flex;
     justify-content: center;
@@ -595,6 +579,7 @@ QUIÉNES SOMOS HERO
     flex-wrap: wrap;
     background: #ffffff;
 }
+/* ==================== TARJETAS ==================== */
 .card{
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(10px);
@@ -625,7 +610,7 @@ QUIÉNES SOMOS HERO
     line-height: 1.8;
     font-size: 17px;
 }
-/* VALORES */
+/* ==================== VALORES ==================== */
 .valores{
     padding: 80px 50px;
     text-align: center;
@@ -641,6 +626,7 @@ QUIÉNES SOMOS HERO
     repeat(auto-fit,minmax(250px,1fr));
     gap: 30px;
 }
+/* ==================== TARJETAS DE VALORES ==================== */
 .valor-card{
     background: rgb(255, 255, 255);
     padding: 40px 30px;
@@ -660,9 +646,7 @@ QUIÉNES SOMOS HERO
 .valor-card p{
     line-height: 1.7;
 }
-/* =========================
-FOOTER
-========================= */
+/* ==================== FOOTER ==================== */
 footer{
     background: #111;
     color: white;
@@ -670,9 +654,7 @@ footer{
     padding: 25px;
     font-size: 15px;
 }
-/* =========================
-RESPONSIVE
-========================= */
+/* ==================== RESPONSIVE ==================== */
 @media(max-width:768px){
     nav{
         flex-direction: column;
@@ -728,9 +710,7 @@ RESPONSIVE
         padding: 50px 20px;
     }
 }
-/* =========================
-LOGIN / REGISTRO
-========================= */
+/* ==================== LOGIN / REGISTRO ==================== */
 .auth-body{
     min-height: 100vh;
     display: flex;
@@ -744,12 +724,14 @@ LOGIN / REGISTRO
     background-position: center;
     padding: 20px;
 }
+/* ==================== CONTENEDOR DE AUTENTICACIÓN ==================== */
 .auth-container{
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+/* ==================== TARJETA DE AUTENTICACIÓN ==================== */
 .auth-card{
     width: 100%;
     max-width: 430px;
@@ -824,7 +806,7 @@ LOGIN / REGISTRO
 .auth-card span a:hover{
     text-decoration: underline;
 }
-/* ANIMACION */
+/* ==================== ANIMACIÓN ==================== */
 @keyframes fadeUp{
     from{
         opacity: 0;
@@ -835,9 +817,7 @@ LOGIN / REGISTRO
         transform: translateY(0);
     }
 }
-/* =========================
-MENSAJE ENVIADO
-========================= */
+/* ==================== MENSAJE ENVIADO ==================== */
 .mensaje-box{
     min-height: 100vh;
     display: flex;
@@ -851,6 +831,7 @@ MENSAJE ENVIADO
     background-position: center;
     padding: 20px;
 }
+/* ==================== TARJETA DE MENSAJE ==================== */
 .mensaje-card{
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(15px);
@@ -874,6 +855,7 @@ MENSAJE ENVIADO
     line-height: 1.8;
     margin-bottom: 35px;
 }
+/* ==================== BOTÓN VOLVER ==================== */
 .volver-btn{
     display: inline-block;
     padding: 16px 35px;
@@ -888,6 +870,7 @@ MENSAJE ENVIADO
     background: #000000;
     transform: translateY(-5px);
 }
+/* ==================== ENLACES DE NAVEGACIÓN ==================== */
 .nav-links li{
     display: flex;
     align-items: center;
@@ -900,6 +883,7 @@ MENSAJE ENVIADO
     margin-left: 15px;
     margin-right: 5px;
 }
+/* ==================== NOTIFICACIONES TOAST ==================== */
 .toast{
     display:none;
     flex-direction: column;
@@ -955,6 +939,7 @@ MENSAJE ENVIADO
     from{width:100%;}
     to{width:0%;}
 }
+/* ==================== TOAST DUPLICADO ==================== */
 .toast{
     display:none;
     position:fixed;
