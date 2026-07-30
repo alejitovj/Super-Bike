@@ -1,13 +1,13 @@
 /* =========================
-   RESET
+RESET
 ========================= */
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 /* =========================
-   BODY
+BODY
 ========================= */
 body{
     font-family: Arial, Helvetica, sans-serif;
@@ -16,7 +16,7 @@ body{
     line-height: 1.6;
 }
 /* =========================
-   HEADER / NAVBAR
+HEADER / NAVBAR
 ========================= */
 header{
     background: #000000;
@@ -60,7 +60,7 @@ nav{
     color: gray;
 }
 /* =========================
-   DROPDOWN PREMIUM
+DROPDOWN PREMIUM
 ========================= */
 .dropdown{
     position: relative;
@@ -118,7 +118,7 @@ nav{
     }
 }
 /* =========================
-   HERO PRINCIPAL
+HERO PRINCIPAL
 ========================= */
 #hero{
     height: 90vh;
@@ -164,7 +164,7 @@ nav{
     transform: scale(1.05);
 }
 /* =========================
-   HERO PREMIUM
+HERO PREMIUM
 ========================= */
 .hero-premium{
     min-height: 100vh;
@@ -298,7 +298,7 @@ nav{
     }
 }
 /* =========================
-   CATÁLOGO HERO
+CATÁLOGO HERO
 ========================= */
 .catalogo-hero{
     height: 90vh;
@@ -326,7 +326,7 @@ nav{
     max-width: 700px;
 }
 /* =========================
-   CATÁLOGO
+CATÁLOGO
 ========================= */
 .catalogo{
     padding: 80px 50px;
@@ -409,7 +409,7 @@ nav{
     transform: scale(1.03);
 }
 /* =========================
-   CONTACTO HERO
+CONTACTO HERO
 ========================= */
 .contacto-hero{
     height: 90vh;
@@ -526,7 +526,7 @@ nav{
     transform: translateY(-3px);
 }
 /* =========================
-   QUIÉNES SOMOS HERO
+QUIÉNES SOMOS HERO
 ========================= */
 .about-hero{
     height: 90vh;
@@ -661,7 +661,7 @@ nav{
     line-height: 1.7;
 }
 /* =========================
-   FOOTER
+FOOTER
 ========================= */
 footer{
     background: #111;
@@ -671,7 +671,7 @@ footer{
     font-size: 15px;
 }
 /* =========================
-   RESPONSIVE
+RESPONSIVE
 ========================= */
 @media(max-width:768px){
     nav{
@@ -729,7 +729,7 @@ footer{
     }
 }
 /* =========================
-   LOGIN / REGISTRO
+LOGIN / REGISTRO
 ========================= */
 .auth-body{
     min-height: 100vh;
@@ -836,7 +836,7 @@ footer{
     }
 }
 /* =========================
-   MENSAJE ENVIADO
+MENSAJE ENVIADO
 ========================= */
 .mensaje-box{
     min-height: 100vh;
@@ -901,123 +901,123 @@ footer{
     margin-right: 5px;
 }
 .toast{
-display:none;
-flex-direction: column;
-position:fixed;
-top:25px;
-right:25px;
-width:360px;
-background:rgba(25,25,25,.95);
-backdrop-filter:blur(18px);
-border-radius:18px;
-overflow:hidden;
-box-shadow:0 20px 45px rgba(0,0,0,.45);
-color:#fff;
-z-index:9999;
-animation:toast .45s ease;
+    display:none;
+    flex-direction: column;
+    position:fixed;
+    top:25px;
+    right:25px;
+    width:360px;
+    background:rgba(25,25,25,.95);
+    backdrop-filter:blur(18px);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 20px 45px rgba(0,0,0,.45);
+    color:#fff;
+    z-index:9999;
+    animation:toast .45s ease;
 }
 .toast-icon{
-width:55px;
-height:55px;
-margin:18px;
-background:#22c55e;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:24px;
-font-weight:bold;
-float:left;
+    width:55px;
+    height:55px;
+    margin:18px;
+    background:#22c55e;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    font-weight:bold;
+    float:left;
 }
 .toast-text{
-padding:18px 20px 18px 0;
-overflow:hidden;
+    padding:18px 20px 18px 0;
+    overflow:hidden;
 }
 .toast-text h4{
-margin:0;
-font-size:18px;
+    margin:0;
+    font-size:18px;
 }
 .toast-text p{
-margin:6px 0 0;
-font-size:14px;
-color:#cfcfcf;
+    margin:6px 0 0;
+    font-size:14px;
+    color:#cfcfcf;
 }
 .toast-bar{
-height:4px;
-background:#22c55e;
-animation:barra 2.5s linear forwards;
+    height:4px;
+    background:#22c55e;
+    animation:barra 2.5s linear forwards;
 }
 @keyframes toast{
-from{opacity:0;transform:translateX(100%);}
-to{opacity:1;transform:translateX(0);}
+    from{opacity:0;transform:translateX(100%);}
+    to{opacity:1;transform:translateX(0);}
 }
 @keyframes barra{
-from{width:100%;}
-to{width:0%;}
+    from{width:100%;}
+    to{width:0%;}
 }
 .toast{
-display:none;
-position:fixed;
-top:25px;
-right:25px;
-width:360px;
-background:rgba(25,25,25,.95);
-backdrop-filter:blur(18px);
-border-radius:18px;
-overflow:hidden;
-box-shadow:0 20px 45px rgba(0,0,0,.45);
-color:#fff;
-z-index:9999;
-animation:toast .45s ease;
+    display:none;
+    position:fixed;
+    top:25px;
+    right:25px;
+    width:360px;
+    background:rgba(25,25,25,.95);
+    backdrop-filter:blur(18px);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 20px 45px rgba(0,0,0,.45);
+    color:#fff;
+    z-index:9999;
+    animation:toast .45s ease;
 }
 .toast-icon{
-width:55px;
-height:55px;
-margin:18px;
-background:#22c55e;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:24px;
-font-weight:bold;
-float:left;
+    width:55px;
+    height:55px;
+    margin:18px;
+    background:#22c55e;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    font-weight:bold;
+    float:left;
 }
 .toast-text{
-padding:18px 20px 18px 0;
-overflow:hidden;
+    padding:18px 20px 18px 0;
+    overflow:hidden;
 }
 .toast-text h4{
-margin:0;
-font-size:18px;
+    margin:0;
+    font-size:18px;
 }
 .toast-text p{
-margin:6px 0 0;
-font-size:14px;
-color:#cfcfcf;
+    margin:6px 0 0;
+    font-size:14px;
+    color:#cfcfcf;
 }
 .toast-bar{
-height:4px;
-background:#22c55e;
-animation:barra 2.5s linear forwards;
+    height:4px;
+    background:#22c55e;
+    animation:barra 2.5s linear forwards;
 }
 @keyframes toast{
-from{
-opacity:0;
-transform:translateX(100%);
-}
-to{
-opacity:1;
-transform:translateX(0);
-}
+    from{
+        opacity:0;
+        transform:translateX(100%);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
 }
 @keyframes barra{
-from{width:100%;}
-to{width:0;}
+    from{width:100%;}
+    to{width:0;}
 }
 .toast.error .toast-icon{
-background:#ef4444;
+    background:#ef4444;
 }
 .toast.error .toast-bar{
-background:#ef4444;
+    background:#ef4444;
 }
