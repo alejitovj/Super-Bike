@@ -40,11 +40,6 @@ def quienessomos():
 def login():
     return render_template("login.html")
 
-#Pagina de registro
-@app.route("/registro")
-def registro():
-    return render_template("registro.html")
-
 #ruta para comprobar la conexion a la base de datos
 @app.route("/conexion")
 def conexion():
@@ -76,3 +71,66 @@ def conexion():
 #Ejecutar la aplicacion
 if __name__ == "__main__":
     app.run(debug=True)
+
+#Pagina de registro
+@app.route("/registro", methods=["GET", "POST"])
+def registro():
+
+    if request.method == "POST":
+
+        nombre = request.form["nombre"]
+        correo = request.form["correo"]
+        telefono = request.form["telefono"]
+        nombre_usuario = request.form["usuario"]
+        contraseña = request.form["password"]
+
+# Encriptar contraseña
+    contraseña_encriptada = generate_password_hash(contraseña)
+
+    cursor = mysql.connection.cursor()
+
+    sql = """
+    INSERT INTO gestion_usuarios 
+    (nombre, correo, telefono, nombre_usuario, contraseña)
+    VALUES (%s, %s, %s, %s, %s)
+    """
+
+    datos = (
+        nombre,
+        correo,
+        telefono,
+        nombre_usuario,
+        contraseña_encriptada
+    )
+
+    cursor.execute(sql, datos)
+    mysql.connection.commit()
+    cursor.close()
+
+    return """
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <script>
+        Swal.fire({
+            title: '¡Usuario registrado!',
+            text: 'Tu cuenta fue creada correctamente.',
+            icon: 'success',
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#b71c1c',
+            background: '#fff8f8',
+            color: '#7f0000',
+            iconColor: '#c62828'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/login';
+            }
+        });
+    </script>
+</body>
+</html>
+"""

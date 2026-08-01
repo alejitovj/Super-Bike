@@ -9,14 +9,30 @@
 
 <body class="auth-body">
     <div class="auth-container">
-        <form id="registroForm" class="auth-card">
+        <form class="registro-form" method="post" action="{{url_for('registro')}}">
 
             <h1>Crear Cuenta</h1>
             <p>Únete a la experiencia Superbike</p>
-            <input type="text" name="nombre" placeholder="Nombre completo" required>
-            <input type="email" name="email" placeholder="Correo electrónico" required>
-            <input type="text" name="usuario" placeholder="Nombre de usuario" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
+            
+            <label>Nombre Completo</label>
+            <input type="text" name="Nombre" placeholder="Alejandro Velandia" required>
+
+
+            <label>Correo Electronico</label>
+            <input type="email" name="Correo" placeholder="alejitovj@gmail.com" required>
+
+
+            <label>Telefono</label>
+            <input type="tel" name="Telefono" placeholder="3018154687" required>
+
+
+            <label>Nombre de usuario</label>
+            <input type="text" name="Nombre" placeholder="Juan Montoya" required>
+
+            
+            <label>Contraseña</label>
+            <input type="password" name="password" placeholder="Crear una contraseña" required>
+
 
             <button type="submit">Registrarse</button>
 
