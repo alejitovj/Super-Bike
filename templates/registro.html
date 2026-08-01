@@ -9,8 +9,8 @@
 
 <body class="auth-body">
     <div class="auth-container">
-        <!-- 1. Agregado el id="registroForm" -->
-        <form id="registroForm" class="registro-form" method="post" action="{{url_for('registro')}}">
+        <!-- Cambiado de registro-form a auth-card para que use la misma tarjeta del login -->
+        <form id="registroForm" class="auth-card" method="post" action="{{url_for('registro')}}">
 
             <h1>Crear Cuenta</h1>
             <p>Únete a la experiencia Superbike</p>
@@ -24,7 +24,6 @@
             <label>Telefono</label>
             <input type="tel" name="telefono" placeholder="3018154687" required>
 
-            <!-- 2. Corregido el name para que sea único -->
             <label>Nombre de usuario</label>
             <input type="text" name="nombre_usuario" placeholder="Juan Montoya" required>
             
@@ -47,7 +46,6 @@
             e.preventDefault();
             const datos = new FormData(this);
             
-            // 3. Quitada la barra final para que coincida con /registro
             fetch("/registro", {
                 method: "POST",
                 body: datos
@@ -73,4 +71,3 @@
     </script>
 </body>
 </html>
-

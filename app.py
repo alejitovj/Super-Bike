@@ -60,7 +60,7 @@ def conexion():
             "detalle": str(error)
         }, 500
 
-# Página de registro (¡Colocada ANTES de app.run()!)
+# Página de registro
 @app.route("/registro", methods=["GET", "POST"])
 def registro():
     if request.method == "POST":
@@ -70,58 +70,24 @@ def registro():
         nombre_usuario = request.form["nombre_usuario"]
         contraseña = request.form["password"]
 
-        # Encriptar contraseña
         contraseña_encriptada = generate_password_hash(contraseña)
 
         cursor = mysql.connection.cursor()
-
         sql = """
         INSERT INTO gestion_usuarios 
         (nombre, correo, telefono, nombre_usuario, contraseña)
         VALUES (%s, %s, %s, %s, %s)
         """
-
-        datos = (
-            nombre,
-            correo,
-            telefono,
-            nombre_usuario,
-            contraseña_encriptada
-        )
+        datos = (nombre, correo, telefono, nombre_usuario, contraseña_encriptada)
         
         cursor.execute(sql, datos)
         mysql.connection.commit()
         cursor.close()
 
-        return """
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-            <meta charset="UTF-8">
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        </head>
-        <body>
-            <script>
-                Swal.fire({
-                    title: '¡Usuario registrado!',
-                    text: 'Tu cuenta fue creada correctamente.',
-                    icon: 'success',
-                    confirmButtonText: 'Continuar',
-                    confirmButtonColor: '#b71c1c',
-                    background: '#fff8f8',
-                    color: '#7f0000',
-                    iconColor: '#c62828'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = '/login';
-                    }
-                });
-            </script>
-        </body>
-        </html>
-        """
+        # Devuelve "ok" para que el fetch de JavaScript active la alerta de SweetAlert2
+        return "ok"
     
-    # Si es una petición GET, puedes retornar el template de registro
+    # Si es una petición GET, carga la vista del formulario
     return render_template("registro.html")
 
 # Ejecutar la aplicacion (Siempre va al final del todo)
