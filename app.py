@@ -102,7 +102,7 @@ def registro():
         nombre_usuario,
         contraseña_encriptada
     )
-
+    
     cursor.execute(sql, datos)
     mysql.connection.commit()
     cursor.close()
