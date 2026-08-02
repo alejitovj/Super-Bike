@@ -15,8 +15,8 @@ body {
 
 /* ==================== HEADER / NAVBAR ==================== */
 header {
-    background: #000000;
-    padding: 15px 40px;
+    background: #000000ea;
+    padding: 10px 40px;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -67,7 +67,7 @@ nav {
     color: gray;
 }
 
-.nav-links li:not(:last-child)::after {
+.nav-links > li:not(:last-child):not(.dropdown):after {
     content: "";
     width: 1px;
     height: 20px;
@@ -84,9 +84,10 @@ nav {
 .dropdown-menu {
     position: absolute;
     top: 50px;
-    right: 0;
+    right: -30px;
+    left: auto;
     width: fit-content;
-    min-width: 230px;
+    min-width: 160px;
     padding: 10px;
     list-style: none;
     border-radius: 20px;
@@ -137,7 +138,7 @@ nav {
 }
 
 .dropdown-menu a:hover {
-    background: rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0) !important;
 }
 
 .show {
@@ -1093,3 +1094,4 @@ footer {
     font-size: 0.78rem;
     margin: 2px 0 0 0;
 }
+
