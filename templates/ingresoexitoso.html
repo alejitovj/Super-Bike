@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Registro Exitoso! | Superbike</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="auth-body">
+
+    <div class="auth-container">
+        <div class="auth-card success-card" style="text-align: center; padding: 40px 30px;">
+            
+            <!-- Icono de check animado o elegante -->
+            <div style="font-size: 60px; color: #4BB543; margin-bottom: 20px;">
+                ✓
+            </div>
+
+            <h1 style="color: #fff; margin-bottom: 10px; font-size: 26px;">¡Registro Exitoso!</h1>
+            <p style="color: #aaa; margin-bottom: 30px;">Tu cuenta ha sido creada correctamente en Superbike. Ya puedes iniciar sesión para disfrutar de la plataforma.</p>
+
+            <!-- Botón para ir al Login -->
+            <a href="/login" style="display: inline-block; width: 100%; padding: 12px; background-color: #fff; color: #000; text-decoration: none; border-radius: 8px; font-weight: bold; transition: background 0.3s;">
+                Iniciar Sesión
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>

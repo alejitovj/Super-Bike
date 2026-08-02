@@ -8,12 +8,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="auth-body">
-
-
-    
-
-
-    
     <div id="mensaje-login" class="toast error">
         <div class="toast-icon">✖</div>
         <div class="toast-text">
@@ -27,7 +21,7 @@
         <form id="loginForm" class="auth-card">
             <h1>Iniciar Sesión</h1>
             <p>Bienvenido nuevamente a Superbike</p>
-            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <input type="email" name="correo" placeholder="Ingresa tu correo electronico" required>
             <input type="password" name="password" placeholder="Contraseña" required>
             <button type="submit">Ingresar</button>
             <span>
@@ -57,7 +51,7 @@
                         const barra = mensaje.querySelector(".toast-bar");
                         barra.style.animation = "none";
                         barra.offsetHeight;
-                        barra.style.animation = "barra 2.5s linear forwards";
+                        barra.style.animation = "barra 2.4s linear forwards";
                         setTimeout(() => {
                             mensaje.style.display = "none";
                         }, 2500);

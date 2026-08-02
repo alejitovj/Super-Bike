@@ -980,3 +980,8 @@ footer{
     from { width: 100%; }
     to { width: 0%; }
 }
+
+.auth-card a:hover {
+    background-color: #e0e0e0 !important;
+    transform: translateY(-2px);
+}

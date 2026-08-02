@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Crear la aplicacion Flask
 app = Flask(__name__)
+app.secret_key = '030726'
 
 # Configuracion de MYSQL
 app.config['MYSQL_HOST'] = 'localhost'
@@ -36,11 +37,6 @@ def contacto():
 def quienessomos():
     return render_template("quienessomos.html")
 
-# Página de login
-@app.route("/login")
-def login():
-    return render_template("login.html")
-
 # Ruta para comprobar la conexion a la base de datos
 @app.route("/conexion")
 def conexion():
@@ -71,18 +67,70 @@ def registro():
 
         contraseña_encriptada = generate_password_hash(contraseña)
 
-        cursor = mysql.connection.cursor()
-        sql = "INSERT INTO gestion_usuarios (nombre_usuario, correo, contraseña, telefono) VALUES (%s, %s, %s, %s)"
-        datos = (nombre_usuario, correo, contraseña_encriptada, telefono)
+        try:
+            cursor = mysql.connection.cursor()
+            sql = "INSERT INTO gestion_usuarios (nombre_usuario, correo, contraseña, telefono) VALUES (%s, %s, %s, %s)"
+            datos = (nombre_usuario, correo, contraseña_encriptada, telefono)
 
-        cursor.execute(sql, datos)
-        mysql.connection.commit()
+            cursor.execute(sql, datos)
+            mysql.connection.commit()
+            cursor.close()
+
+            # REDIRECCIÓN: En vez de render_template directo, redirigimos a una ruta GET
+            return redirect(url_for('registro_exitoso'))
+            
+        except Exception as e:
+            return f"Hubo un error (correo duplicado o similar): {e}"
+
+    return render_template("registro.html")
+
+# Página de inicio de sesión
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        correo = request.form["correo"]
+        contraseña = request.form["contraseña"]
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT * FROM gestion_usuarios WHERE correo = %s", (correo,))
+        usuario = cursor.fetchone()
         cursor.close()
 
-        return "ok"
-    
-    # Si es una petición GET, carga la vista del formulario
-    return render_template("registro.html")
+        if usuario:
+            # Índice 3 corresponde a la contraseña encriptada en tu tabla
+            contraseña_hash = usuario[3] 
+
+            if check_password_hash(contraseña_hash, contraseña):
+                session['logueado'] = True
+                session['nombre_usuario'] = usuario[1] 
+                session['correo'] = usuario[2]
+                
+                return redirect(url_for('panel_inicio'))
+            else:
+                return "Contraseña incorrecta"
+        else:
+            return "El correo no está registrado"
+
+    return render_template("login.html")
+
+# Ruta principal de bienvenida (protegida)
+@app.route("/inicio")
+def panel_incio():
+    if 'logueado' in session:
+        return render_template("index.html", usuario=session['nombre_usuario'])
+    else:
+        return redirect(url_for('login'))
+
+# Ruta para cerrar sesión
+@app.route("/logout")
+def logout():
+    session.clear() # Borra todos los datos y la sesión activa
+    return redirect(url_for('login')) # Lo regresa al login
+
+
+# NUEVA RUTA SOLO PARA MOSTRAR EL ÉXITO (GET)
+@app.route("/exito")
+def registro_exitoso():
+    return render_template("ingresoexitoso.html")
 
 # Ejecutar la aplicacion (Siempre va al final del todo)
 if __name__ == "__main__":
