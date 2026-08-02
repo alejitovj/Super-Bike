@@ -64,27 +64,21 @@ def conexion():
 @app.route("/registro", methods=["GET", "POST"])
 def registro():
     if request.method == "POST":
-        nombre = request.form["nombre"]
+        nombre_usuario = request.form["nombre_usuario"]
         correo = request.form["correo"]
         telefono = request.form["telefono"]
-        nombre_usuario = request.form["nombre_usuario"]
         contraseña = request.form["password"]
 
         contraseña_encriptada = generate_password_hash(contraseña)
 
         cursor = mysql.connection.cursor()
-        sql = """
-        INSERT INTO gestion_usuarios 
-        (nombre, correo, telefono, nombre_usuario, contraseña)
-        VALUES (%s, %s, %s, %s, %s)
-        """
-        datos = (nombre, correo, telefono, nombre_usuario, contraseña_encriptada)
-        
+        sql = "INSERT INTO gestion_usuarios (nombre_usuario, correo, contraseña, telefono) VALUES (%s, %s, %s, %s)"
+        datos = (nombre_usuario, correo, contraseña_encriptada, telefono)
+
         cursor.execute(sql, datos)
         mysql.connection.commit()
         cursor.close()
 
-        # Devuelve "ok" para que el fetch de JavaScript active la alerta de SweetAlert2
         return "ok"
     
     # Si es una petición GET, carga la vista del formulario
