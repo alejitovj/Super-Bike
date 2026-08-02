@@ -63,25 +63,24 @@ def registro():
         nombre_usuario = request.form["nombre_usuario"]
         correo = request.form["correo"]
         telefono = request.form["telefono"]
-        contraseña = request.form["password"]
+        contraseña = request.form["password"]  # Aquí capturamos la contraseña
 
+        # Encriptamos la variable correcta
         contraseña_encriptada = generate_password_hash(contraseña)
 
         try:
             cursor = mysql.connection.cursor()
             sql = "INSERT INTO gestion_usuarios (nombre_usuario, correo, contraseña, telefono) VALUES (%s, %s, %s, %s)"
             datos = (nombre_usuario, correo, contraseña_encriptada, telefono)
-
+            
             cursor.execute(sql, datos)
             mysql.connection.commit()
             cursor.close()
 
-            # REDIRECCIÓN: En vez de render_template directo, redirigimos a una ruta GET
-            return redirect(url_for('registro_exitoso'))
+            return redirect(url_for("ingreso_exitoso"))
+        except Exception as error:
+            return f"Error al registrar: {error}"
             
-        except Exception as e:
-            return f"Hubo un error (correo duplicado o similar): {e}"
-
     return render_template("registro.html")
 
 # Página de inicio de sesión
@@ -89,34 +88,40 @@ def registro():
 def login():
     if request.method == "POST":
         correo = request.form["correo"]
-        contraseña = request.form["contraseña"]
+        contraseña = request.form["password"] # Ojo si en tu input HTML se llama "password" o "contraseña"
+
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * FROM gestion_usuarios WHERE correo = %s", (correo,))
         usuario = cursor.fetchone()
         cursor.close()
 
-        if usuario:
-            # Índice 3 corresponde a la contraseña encriptada en tu tabla
-            contraseña_hash = usuario[3] 
+        # AQUÍ IMPRIMIMOS PARA VER EN LA TERMINAL:
+        print("--- INTENTO DE LOGIN ---")
+        print("Correo ingresado:", correo)
+        print("Usuario encontrado en BD:", usuario)
 
+        if usuario:
+            contraseña_hash = usuario[3]
+            print("¿Coincide la contraseña?", check_password_hash(contraseña_hash, contraseña))
+            
             if check_password_hash(contraseña_hash, contraseña):
                 session['logueado'] = True
-                session['nombre_usuario'] = usuario[1] 
+                session['nombre_usuario'] = usuario[1]
                 session['correo'] = usuario[2]
-                
                 return redirect(url_for('panel_inicio'))
             else:
-                return "Contraseña incorrecta"
+                print("Error: La contraseña es incorrecta (el hash no coincide).")
         else:
-            return "El correo no está registrado"
+            print("Error: No existe ningún usuario con ese correo en la BD.")
 
     return render_template("login.html")
 
 # Ruta principal de bienvenida (protegida)
 @app.route("/inicio")
-def panel_incio():
-    if 'logueado' in session:
-        return render_template("index.html", usuario=session['nombre_usuario'])
+def panel_inicio():
+    # Verificamos si la clave 'logueado' existe en la sesión
+    if session.get('logueado') == True:
+        return render_template("index.html", usuario=session.get('nombre_usuario'))
     else:
         return redirect(url_for('login'))
 
@@ -129,8 +134,8 @@ def logout():
 
 # NUEVA RUTA SOLO PARA MOSTRAR EL ÉXITO (GET)
 @app.route("/exito")
-def registro_exitoso():
-    return render_template("ingresoexitoso.html")
+def ingreso_exitoso():
+    return render_template("ingreso_exitoso.html")
 
 # Ejecutar la aplicacion (Siempre va al final del todo)
 if __name__ == "__main__":
