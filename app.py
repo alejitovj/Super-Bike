@@ -88,31 +88,27 @@ def registro():
 def login():
     if request.method == "POST":
         correo = request.form["correo"]
-        contraseña = request.form["password"] # Ojo si en tu input HTML se llama "password" o "contraseña"
+        contraseña = request.form["password"]
 
         cursor = mysql.connection.cursor()
         cursor.execute("SELECT * FROM gestion_usuarios WHERE correo = %s", (correo,))
         usuario = cursor.fetchone()
         cursor.close()
 
-        # AQUÍ IMPRIMIMOS PARA VER EN LA TERMINAL:
-        print("--- INTENTO DE LOGIN ---")
-        print("Correo ingresado:", correo)
-        print("Usuario encontrado en BD:", usuario)
-
         if usuario:
             contraseña_hash = usuario[3]
-            print("¿Coincide la contraseña?", check_password_hash(contraseña_hash, contraseña))
-            
+
             if check_password_hash(contraseña_hash, contraseña):
                 session['logueado'] = True
                 session['nombre_usuario'] = usuario[1]
                 session['correo'] = usuario[2]
                 return redirect(url_for('panel_inicio'))
             else:
-                print("Error: La contraseña es incorrecta (el hash no coincide).")
+                # Contraseña incorrecta
+                return render_template("login.html", error="Contraseña incorrecta")
         else:
-            print("Error: No existe ningún usuario con ese correo en la BD.")
+            # Correo no registrado
+            return render_template("login.html", error="El correo no está registrado")
 
     return render_template("login.html")
 
