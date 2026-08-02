@@ -20,22 +20,30 @@
     <li><a href="{{ url_for('quienessomos') }}">Quiénes somos</a></li>
 
     <li class="dropdown">
-                <a href="#" id="perfil-btn">👤 Perfil</a>
-                <ul class="dropdown-menu">
-                    {% if session.get('logueado') %}
-                        <!-- Si ya inició sesión, mostramos su nombre y el botón de salir -->
-                        <li style="padding: 10px; color: #333; font-weight: bold; text-align: center;">{{ session.get('nombre_usuario') }}</li>
-                        <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
-                    {% else %}
-                        <!-- Si NO ha iniciado sesión, mostramos las opciones normales -->
-                        <li><a href="{{ url_for('login') }}">Iniciar sesión</a></li>
-                        <li><a href="{{ url_for('registro') }}">Registrarse</a></li>
-                    {% endif %}
-                </ul>
-            </li>
+    <a href="#" id="perfil-btn">👤 Perfil</a>
+    <ul class="dropdown-menu">
+        {% if session.get('logueado') %}
+            <li class="user-name-item">{{ session.get('nombre_usuario') }}</li>
+            <li class="menu-item"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+        {% else %}
+            <li class="menu-item"><a href="{{ url_for('login') }}">Iniciar sesión</a></li>
+            <li class="menu-item"><a href="{{ url_for('registro') }}">Registrarse</a></li>
+        {% endif %}
+    </ul>
+</li>
 </ul>
         </nav>
     </header>
+
+    {% if session.get('logueado') %}
+<div id="welcome-toast" class="toast-notification">
+    <div class="toast-indicator"></div>
+    <div class="toast-content">
+        <p class="toast-title">¡Bienvenido, <strong>{{ session.get('nombre_usuario') }}</strong>!</p>
+        <p class="toast-subtext">Sesión iniciada correctamente</p>
+    </div>
+</div>
+{% endif %}
 
     <main>
         <section id="hero">
@@ -66,12 +74,37 @@
     </footer>
 
     <script>
+        // Lógica del menú desplegable
         const perfilBtn = document.getElementById("perfil-btn");
         const menu = document.querySelector(".dropdown-menu");
 
-        perfilBtn.addEventListener("click", function(e){
-            e.preventDefault();
-            menu.classList.toggle("show");
+        if (perfilBtn) {
+            perfilBtn.addEventListener("click", function(e){
+                e.preventDefault();
+                menu.classList.toggle("show");
+            });
+        }
+
+        // Lógica de la notificación flotante (Toast)
+        document.addEventListener('DOMContentLoaded', function() {
+            const toast = document.getElementById('welcome-toast');
+
+            if (toast) {
+                setTimeout(() => {
+                    toast.classList.add('show');
+                }, 300);
+
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    toast.classList.add('hide');
+                }, 3800);
+
+                toast.addEventListener('transitionend', function() {
+                    if (toast.classList.contains('hide')) {
+                        toast.remove();
+                    }
+                });
+            }
         });
     </script>
 </body>

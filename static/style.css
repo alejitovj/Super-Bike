@@ -985,3 +985,83 @@ footer{
     background-color: #e0e0e0 !important;
     transform: translateY(-2px);
 }
+/* --- Toast Minimalista & Premium --- */
+.toast-notification {
+    position: fixed;
+    top: 90px;
+    right: 25px;
+    background: rgba(18, 18, 18, 0.85); /* Oscuro elegante con transparencia */
+    backdrop-filter: blur(10px); /* Efecto cristal desenfocado */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+    border-left: 4px solid #10b981; /* Detalle verde esmeralda profesional */
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 9999;
+    
+    /* Animación fluida */
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-notification.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.toast-notification.hide {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+}
+
+/* Indicador de estado (punto verde brilloso) */
+.toast-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+}
+
+.toast-title {
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+.toast-title strong {
+    color: #10b981; /* Destaca el nombre en verde */
+    font-weight: 600;
+}
+
+.toast-subtext {
+    color: #a1a1aa; /* Gris claro sutil */
+    font-size: 0.78rem;
+    margin: 2px 0 0 0;
+}
+.dropdown-menu li,
+.dropdown-menu li a {
+    border-right: none !important; /* Borra la línea vertical molesta */
+    border-left: none !important;
+    margin: 0 !important;
+}
+.dropdown-menu a, 
+.user-name-item {
+    color: #1a1414 !important; /* Negro bien legible sobre el cristal */
+    font-weight: 600 !important;
+    padding: 8px 16px !important;
+    display: block !important;
+    text-align: left !important;
+    text-decoration: none !important;
+}
+
+/* 4. Hover suave */
+.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
