@@ -20,11 +20,19 @@
     <li><a href="{{ url_for('quienessomos') }}">Quiénes somos</a></li>
 
     <li class="dropdown">
-    <a href="#" id="perfil-btn">👤 Perfil</a>
+    <a href="#" id="perfil-btn">
+    👤
+    {% if session.get('logueado') %}
+        {{ session.get('nombre_usuario') }}
+    {% else %}
+        Perfil
+    {% endif %}
+    </a> 
     <ul class="dropdown-menu">
         {% if session.get('logueado') %}
-            <li class="user-name-item">{{ session.get('nombre_usuario') }}</li>
-            <li class="menu-item"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+            <li class="menu-item">
+    <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+    </li>
         {% else %}
             <li class="menu-item"><a href="{{ url_for('login') }}">Iniciar sesión</a></li>
             <li class="menu-item"><a href="{{ url_for('registro') }}">Registrarse</a></li>

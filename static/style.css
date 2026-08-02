@@ -1,30 +1,34 @@
-/* ==================== RESET ==================== */
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+﻿/* ==================== RESET ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-/* ==================== BODY ==================== */
-body{
+
+/* ==================== BASE ==================== */
+body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f5f5;
     color: #333;
     line-height: 1.6;
 }
+
 /* ==================== HEADER / NAVBAR ==================== */
-header{
+header {
     background: #000000;
     padding: 15px 40px;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
-nav{
+
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.logo{
+
+.logo {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -32,55 +36,75 @@ nav{
     font-size: 28px;
     font-weight: bold;
 }
-.logo img{
+
+.logo img {
     width: 45px;
     height: 45px;
     object-fit: cover;
     border-radius: 10px;
 }
-.nav-links{
+
+.nav-links {
     list-style: none;
     display: flex;
     align-items: center;
     gap: 20px;
 }
-.nav-links a{
+
+.nav-links li {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
     color: white;
     text-decoration: none;
     font-size: 18px;
     transition: 0.3s;
 }
-.nav-links a:hover{
+
+.nav-links a:hover {
     color: gray;
 }
-/* ==================== DROPDOWN PREMIUM ==================== */
-.dropdown{
+
+.nav-links li:not(:last-child)::after {
+    content: "";
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+/* ==================== DROPDOWN ==================== */
+.dropdown {
     position: relative;
 }
-.dropdown-menu{
+
+.dropdown-menu {
     position: absolute;
     top: 50px;
     right: 0;
+    width: fit-content;
     min-width: 230px;
     padding: 10px;
     list-style: none;
     border-radius: 20px;
-    background:
-    rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.08);
     backdrop-filter: blur(15px);
-    border:
-    1px solid rgba(255,255,255,0.1);
-    box-shadow:
-    0 8px 32px rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
     display: none;
     overflow: hidden;
     animation: dropdownFade 0.3s ease;
     z-index: 999;
 }
-.dropdown-menu li{
+
+.dropdown-menu li {
     width: 100%;
 }
-.dropdown-menu li a{
+
+.dropdown-menu li a {
     display: block;
     padding: 15px 18px;
     border-radius: 12px;
@@ -89,33 +113,107 @@ nav{
     transition: 0.3s;
     font-size: 16px;
 }
-.dropdown-menu li a:hover{
-    background:
-    rgba(255,255,255,0.12);
+
+.dropdown-menu li a:hover {
+    background: rgba(255,255,255,0.12);
     transform: translateX(5px);
     color: #00bfff;
 }
-.show{
+
+.dropdown-menu li,
+.dropdown-menu li a {
+    border-right: none !important;
+    border-left: none !important;
+    margin: 0 !important;
+}
+
+.dropdown-menu a {
+    color: #1a1414 !important;
+    font-weight: 600 !important;
+    padding: 8px 16px !important;
+    display: block !important;
+    text-align: left !important;
+    text-decoration: none !important;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.show {
     display: block;
 }
-/* ==================== ANIMACIÓN ==================== */
-@keyframes dropdownFade{
-    from{
+
+/* ==================== ANIMACIONES ==================== */
+@keyframes dropdownFade {
+    from {
         opacity: 0;
         transform: translateY(-10px);
     }
-    to{
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
+
+@keyframes floatBike {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-18px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes pulseGlow {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes toast {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes barra {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
 /* ==================== HERO PRINCIPAL ==================== */
-#hero{
+#hero {
     height: 90vh;
-    background:
-    linear-gradient(rgba(0,0,0,0.5),
-    rgba(0,0,0,0.5)),
-    url("img/PortadaBike.jpeg.png");
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("img/PortadaBike.jpeg.png");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -126,17 +224,20 @@ nav{
     color: white;
     padding: 20px;
 }
-#hero h1{
+
+#hero h1 {
     font-size: 55px;
     margin-bottom: 15px;
     text-shadow: 0 5px 15px #cdb553;
 }
-#hero p{
+
+#hero p {
     font-size: 22px;
     margin-bottom: 25px;
     text-shadow: 0 5px 15px #cdb553;
 }
-.cta-btn{
+
+.cta-btn {
     padding: 14px 28px;
     border: none;
     background: #535353;
@@ -149,17 +250,16 @@ nav{
     text-decoration: none;
     display: inline-block;
 }
-.cta-btn:hover{
+
+.cta-btn:hover {
     background: #000000;
     transform: scale(1.05);
 }
+
 /* ==================== HERO PREMIUM ==================== */
-.hero-premium{
+.hero-premium {
     min-height: 100vh;
-    background:
-    radial-gradient(circle at top,
-    #1f1f1f,
-    #0a0a0a);
+    background: radial-gradient(circle at top, #1f1f1f, #0a0a0a);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -168,25 +268,28 @@ nav{
     color: white;
     flex-wrap: wrap;
 }
-/* ==================== LEFT ==================== */
-.hero-left{
+
+.hero-left {
     flex: 1;
     min-width: 320px;
     z-index: 2;
 }
-.mini-texto{
+
+.mini-texto {
     color: #00bfff;
     letter-spacing: 3px;
     font-size: 14px;
     font-weight: bold;
 }
-.hero-left h1{
+
+.hero-left h1 {
     font-size: 45px;
     line-height: 1;
     margin: 25px 0;
     text-align: left;
 }
-.hero-left p{
+
+.hero-left p {
     font-size: 22px;
     color: #bdbdbd;
     max-width: 600px;
@@ -194,13 +297,14 @@ nav{
     margin-bottom: 40px;
     text-align: left;
 }
-/* ==================== BOTONES ==================== */
-.hero-buttons{
+
+.hero-buttons {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
 }
-.hero-buttons a{
+
+.hero-buttons a {
     padding: 18px 35px;
     border-radius: 14px;
     background: #535353;
@@ -212,86 +316,48 @@ nav{
     text-decoration: none;
     display: inline-block;
 }
-.hero-buttons a:hover{
+
+.hero-buttons a:hover {
     transform: translateY(-5px);
     background: #000000;
 }
-.btn-outline{
+
+.btn-outline {
     background: #535353;
     color: white;
     border: 2px solid white;
 }
-/* ==================== RIGHT ==================== */
-.hero-right{
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    min-width: 300px;
-}
-/* ==================== BIKE ==================== */
-.bike-container{
+
+.bike-container {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.glow{
+
+.glow {
     position: absolute;
     width: 450px;
     height: 450px;
     border-radius: 50%;
-    background:
-    radial-gradient(circle,
-    rgba(0,191,255,0.35),
-    transparent 70%);
+    background: radial-gradient(circle, rgba(0,191,255,0.35), transparent 70%);
     filter: blur(50px);
     animation: pulseGlow 4s ease-in-out infinite;
 }
-.floating-bike{
+
+.floating-bike {
     width: 700px;
     position: relative;
     z-index: 2;
     object-fit: contain;
-    filter:
-    drop-shadow(0 10px 30px rgba(0,0,0,0.5));
-    animation:
-    floatBike 5s ease-in-out infinite;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+    animation: floatBike 5s ease-in-out infinite;
 }
-/* ==================== ANIMACIONES ==================== */
-@keyframes floatBike{
-    0%{
-        transform: translateY(0px);
-    }
-    50%{
-        transform: translateY(-18px);
-    }
-    100%{
-        transform: translateY(0px);
-    }
-}
-@keyframes pulseGlow{
-    0%{
-        transform: scale(1);
-        opacity: 0.7;
-    }
-    50%{
-        transform: scale(1.1);
-        opacity: 1;
-    }
-    100%{
-        transform: scale(1);
-        opacity: 0.7;
-    }
-}
-/* ==================== CATÁLOGO HERO ==================== */
-.catalogo-hero{
+
+/* ==================== CATÁLOGO ==================== */
+.catalogo-hero {
     height: 90vh;
-    background:
-    linear-gradient(rgba(0,0,0,0.6),
-    rgba(0,0,0,0.6)),
-    url("img/cta.png");
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("img/cta.png");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -300,83 +366,88 @@ nav{
     text-align: center;
     color: white;
 }
-.catalogo-overlay{
+
+.catalogo-overlay {
     padding: 20px;
 }
-.catalogo-hero h1{
+
+.catalogo-hero h1 {
     font-size: 60px;
     margin-bottom: 20px;
 }
-.catalogo-hero p{
+
+.catalogo-hero p {
     font-size: 22px;
     max-width: 700px;
 }
-/* ==================== CATÁLOGO ==================== */
-.catalogo{
+
+.catalogo {
     padding: 80px 50px;
     background: #f5f5f5;
 }
-.catalogo h2{
+
+.catalogo h2 {
     text-align: center;
     font-size: 45px;
     margin-bottom: 50px;
 }
-/* ==================== GRID ==================== */
-.catalogo-grid{
+
+.catalogo-grid {
     display: grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 35px;
 }
-/* ==================== CARD ==================== */
-.catalogo-card{
+
+.catalogo-card {
     background: white;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow:
-    0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     transition: 0.3s;
     display: flex;
     flex-direction: column;
 }
-.catalogo-card:hover{
+
+.catalogo-card:hover {
     transform: translateY(-10px);
 }
-/* ==================== IMAGEN ==================== */
-.catalogo-card img{
+
+.catalogo-card img {
     width: 100%;
     height: 250px;
     object-fit: contain;
     background: #f5f5f5;
 }
-/* ==================== INFO ==================== */
-.catalogo-info{
+
+.catalogo-info {
     padding: 25px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
-.catalogo-info h3{
+
+.catalogo-info h3 {
     font-size: 28px;
     margin-bottom: 15px;
     color: #111;
 }
-.catalogo-info p{
+
+.catalogo-info p {
     color: #555;
     line-height: 1.7;
     margin-bottom: 20px;
     min-height: 60px;
 }
-/* ==================== PRECIO ==================== */
-.catalogo-info span{
+
+.catalogo-info span {
     display: block;
     font-size: 25px;
     font-weight: bold;
     color: #000000;
     margin-bottom: 20px;
 }
-/* ==================== BOTÓN ==================== */
-.catalogo-info button{
+
+.catalogo-info button {
     width: 100%;
     padding: 15px;
     border: none;
@@ -388,17 +459,16 @@ nav{
     cursor: pointer;
     transition: 0.3s;
 }
-.catalogo-info button:hover{
+
+.catalogo-info button:hover {
     background: #000000;
     transform: scale(1.03);
 }
-/* ==================== CONTACTO HERO ==================== */
-.contacto-hero{
+
+/* ==================== CONTACTO ==================== */
+.contacto-hero {
     height: 90vh;
-    background:
-    linear-gradient(rgba(0,0,0,0.6),
-    rgba(0,0,0,0.6)),
-    url("img/scott-spark-2021-rc-worldcup.png");
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("img/scott-spark-2021-rc-worldcup.png");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -407,95 +477,103 @@ nav{
     text-align: center;
     color: white;
 }
-/* ==================== OVERLAY ==================== */
-.overlay{
+
+.overlay {
     padding: 20px;
 }
-.contacto-hero h1{
+
+.contacto-hero h1 {
     font-size: 60px;
     margin-bottom: 20px;
 }
-.contacto-hero p{
+
+.contacto-hero p {
     font-size: 22px;
     max-width: 700px;
 }
-/* ==================== CONTACTO CONTENEDOR ==================== */
-.contacto-container{
+
+.contacto-container {
     display: flex;
     justify-content: center;
     gap: 40px;
     padding: 80px 50px;
     flex-wrap: wrap;
 }
-/* ==================== INFO ==================== */
-.contacto-info{
+
+.contacto-info {
     flex: 1;
     min-width: 300px;
     background: #a19494a4;
     padding: 40px;
     border-radius: 20px;
-    box-shadow:
-    0 5px 20px #ffffff;
+    box-shadow: 0 5px 20px #ffffff;
 }
-.contacto-info h2{
+
+.contacto-info h2 {
     font-size: 40px;
     margin-bottom: 20px;
 }
-.contacto-info p{
+
+.contacto-info p {
     margin-bottom: 20px;
     color: #555;
 }
-/* ==================== CAJAS DE INFORMACIÓN ==================== */
-.info-box{
+
+.info-box {
     margin-bottom: 25px;
     padding: 20px;
     border-left: 5px solid #535353;
     background: #f7f7f7;
     border-radius: 10px;
 }
-.info-box h3{
+
+.info-box h3 {
     margin-bottom: 10px;
     color: #000000;
 }
-/* ==================== FORMULARIO ==================== */
-.contacto-formulario{
+
+.contacto-formulario {
     flex: 1;
     min-width: 300px;
     background: white;
     padding: 40px;
     border-radius: 20px;
-    box-shadow:
-    0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
-.contacto-formulario h2{
+
+.contacto-formulario h2 {
     font-size: 40px;
     margin-bottom: 30px;
 }
-.contacto-formulario form{
+
+.contacto-formulario form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+
 .contacto-formulario input,
-.contacto-formulario textarea{
+.contacto-formulario textarea {
     padding: 16px;
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 16px;
     transition: 0.3s;
 }
+
 .contacto-formulario input:focus,
-.contacto-formulario textarea:focus{
+.contacto-formulario textarea:focus {
     border-color: #535353;
     outline: none;
-    box-shadow:
-    0 0 10px #535353;
+    box-shadow: 0 0 10px #535353;
 }
-.contacto-formulario textarea{
+
+.contacto-formulario textarea {
     height: 180px;
     resize: none;
 }
-.contacto-formulario button{
+
+.contacto-formulario button {
     padding: 16px;
     border: none;
     background: #535353;
@@ -505,17 +583,16 @@ nav{
     cursor: pointer;
     transition: 0.3s;
 }
-.contacto-formulario button:hover{
+
+.contacto-formulario button:hover {
     background: #000000;
     transform: translateY(-3px);
 }
-/* ==================== QUIÉNES SOMOS HERO ==================== */
-.about-hero{
+
+/* ==================== QUIÉNES SOMOS ==================== */
+.about-hero {
     height: 90vh;
-    background:
-    linear-gradient(rgba(0,0,0,0.6),
-    rgba(0,0,0,0.6)),
-    url("img/Gemini_Generated_Image_q6pwy3q6pwy3q6pw.png");
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("img/Gemini_Generated_Image_q6pwy3q6pwy3q6pw.png");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -524,18 +601,21 @@ nav{
     text-align: center;
     color: white;
 }
-.about-overlay{
+
+.about-overlay {
     padding: 20px;
 }
-.about-hero h1{
+
+.about-hero h1 {
     font-size: 60px;
     margin-bottom: 20px;
 }
-.about-hero p{
+
+.about-hero p {
     font-size: 22px;
 }
-/* ==================== ABOUT ==================== */
-.about-container{
+
+.about-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -543,35 +623,37 @@ nav{
     padding: 80px 50px;
     flex-wrap: wrap;
 }
-/* ==================== IMAGEN SOBRE NOSOTROS ==================== */
-.about-image{
+
+.about-image {
     flex: 1;
     min-width: 300px;
 }
-.about-image img{
+
+.about-image img {
     width: 100%;
     border-radius: 20px;
-    box-shadow:
-    0 5px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
-/* ==================== TEXTO SOBRE NOSOTROS ==================== */
-.about-text{
+
+.about-text {
     flex: 1;
     min-width: 300px;
 }
-.about-text h2{
+
+.about-text h2 {
     font-size: 45px;
     margin-bottom: 25px;
     color: #111;
 }
-.about-text p{
+
+.about-text p {
     font-size: 18px;
     color: #555;
     margin-bottom: 20px;
     line-height: 1.8;
 }
-/* ==================== MISIÓN Y VISIÓN ==================== */
-.mision-vision{
+
+.mision-vision {
     display: flex;
     justify-content: center;
     gap: 30px;
@@ -579,137 +661,153 @@ nav{
     flex-wrap: wrap;
     background: #ffffff;
 }
-/* ==================== TARJETAS ==================== */
-.card{
+
+.card {
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.1);
     padding: 40px;
     border-radius: 25px;
     width: 400px;
-    box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: 0.4s;
     position: relative;
     overflow: hidden;
 }
-.card:hover{
-    transform:
-    translateY(-10px)
-    scale(1.02);
-    box-shadow:
-    0 15px 40px #00bfff4d;
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 40px #00bfff4d;
 }
-.card h2{
+
+.card h2 {
     font-size: 35px;
     margin-bottom: 20px;
     color: #aa1818;
 }
-.card p{
+
+.card p {
     color: #000000;
     line-height: 1.8;
     font-size: 17px;
 }
-/* ==================== VALORES ==================== */
-.valores{
+
+.valores {
     padding: 80px 50px;
     text-align: center;
 }
-.valores h2{
+
+.valores h2 {
     font-size: 45px;
     margin-bottom: 50px;
     color: #534e4e;
 }
-.valores-grid{
+
+.valores-grid {
     display: grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
 }
-/* ==================== TARJETAS DE VALORES ==================== */
-.valor-card{
+
+.valor-card {
     background: rgb(255, 255, 255);
     padding: 40px 30px;
     border-radius: 20px;
-    box-shadow:
-    0 5px 20px #3a484da1;
+    box-shadow: 0 5px 20px #3a484da1;
     transition: 0.3s;
 }
-.valor-card:hover{
+
+.valor-card:hover {
     transform: translateY(-10px);
 }
-.valor-card h3{
+
+.valor-card h3 {
     font-size: 28px;
     margin-bottom: 20px;
     color: #535133;
 }
-.valor-card p{
+
+.valor-card p {
     line-height: 1.7;
 }
+
 /* ==================== FOOTER ==================== */
-footer{
+footer {
     background: #111;
     color: white;
     text-align: center;
     padding: 25px;
     font-size: 15px;
 }
+
 /* ==================== RESPONSIVE ==================== */
-@media(max-width:768px){
-    nav{
+@media (max-width: 768px) {
+    nav {
         flex-direction: column;
         gap: 15px;
     }
-    .nav-links{
+
+    .nav-links {
         flex-direction: column;
     }
+
     #hero h1,
     .catalogo-hero h1,
     .contacto-hero h1,
-    .about-hero h1{
+    .about-hero h1 {
         font-size: 40px;
     }
+
     #hero p,
     .catalogo-hero p,
     .contacto-hero p,
-    .about-hero p{
+    .about-hero p {
         font-size: 18px;
     }
-    .hero-premium{
+
+    .hero-premium {
         text-align: center;
         justify-content: center;
         padding: 100px 20px;
     }
-    .hero-left h1{
+
+    .hero-left h1 {
         font-size: 40px;
         text-align: center;
     }
-    .hero-left p{
+
+    .hero-left p {
         font-size: 18px;
         text-align: center;
     }
-    .hero-buttons{
+
+    .hero-buttons {
         justify-content: center;
     }
-    .floating-bike{
+
+    .floating-bike {
         width: 100%;
         max-width: 450px;
     }
-    .catalogo{
+
+    .catalogo {
         padding: 50px 20px;
     }
+
     .catalogo h2,
     .contacto-info h2,
     .contacto-formulario h2,
     .about-text h2,
-    .valores h2{
+    .valores h2 {
         font-size: 30px;
     }
+
     .contacto-container,
-    .about-container{
+    .about-container {
         padding: 50px 20px;
     }
 }
+
 /* ==================== LOGIN / REGISTRO ==================== */
 .auth-body {
     min-height: 100vh;
@@ -723,7 +821,6 @@ footer{
     font-family: Arial, sans-serif;
 }
 
-/* ==================== CONTENEDOR DE AUTENTICACIÓN ==================== */
 .auth-container {
     width: 100%;
     display: flex;
@@ -731,7 +828,6 @@ footer{
     align-items: center;
 }
 
-/* ==================== TARJETA DE AUTENTICACIÓN ==================== */
 .auth-card {
     width: 100%;
     max-width: 430px;
@@ -821,16 +917,9 @@ footer{
     text-decoration: underline;
 }
 
-/* ==================== ANIMACIÓN ==================== */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.auth-card a:hover {
+    background-color: #e0e0e0 !important;
+    transform: translateY(-2px);
 }
 
 /* ==================== MENSAJE ENVIADO ==================== */
@@ -845,7 +934,6 @@ footer{
     padding: 20px;
 }
 
-/* ==================== TARJETA DE MENSAJE ==================== */
 .mensaje-card {
     background: rgba(255,255,255,0.08);
     backdrop-filter: blur(15px);
@@ -871,7 +959,6 @@ footer{
     margin-bottom: 35px;
 }
 
-/* ==================== BOTÓN VOLVER ==================== */
 .volver-btn {
     display: inline-block;
     padding: 16px 35px;
@@ -888,22 +975,7 @@ footer{
     transform: translateY(-5px);
 }
 
-/* ==================== ENLACES DE NAVEGACIÓN ==================== */
-.nav-links li {
-    display: flex;
-    align-items: center;
-}
-
-.nav-links li:not(:last-child)::after {
-    content: "";
-    width: 1px;
-    height: 20px;
-    background: rgba(255,255,255,0.4);
-    margin-left: 15px;
-    margin-right: 5px;
-}
-
-/* ==================== NOTIFICACIONES TOAST ==================== */
+/* ==================== TOAST ==================== */
 .toast {
     display: none;
     flex-direction: column;
@@ -965,36 +1037,15 @@ footer{
     background: #ef4444;
 }
 
-@keyframes toast {
-    from {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes barra {
-    from { width: 100%; }
-    to { width: 0%; }
-}
-
-.auth-card a:hover {
-    background-color: #e0e0e0 !important;
-    transform: translateY(-2px);
-}
-/* --- Toast Minimalista & Premium --- */
 .toast-notification {
     position: fixed;
     top: 90px;
     right: 25px;
-    background: rgba(18, 18, 18, 0.85); /* Oscuro elegante con transparencia */
-    backdrop-filter: blur(10px); /* Efecto cristal desenfocado */
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
-    border-left: 4px solid #10b981; /* Detalle verde esmeralda profesional */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid #10b981;
     padding: 12px 20px;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -1002,8 +1053,6 @@ footer{
     align-items: center;
     gap: 12px;
     z-index: 9999;
-    
-    /* Animación fluida */
     opacity: 0;
     transform: translateY(-10px) scale(0.95);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1019,7 +1068,6 @@ footer{
     transform: translateY(-10px) scale(0.95);
 }
 
-/* Indicador de estado (punto verde brilloso) */
 .toast-indicator {
     width: 8px;
     height: 8px;
@@ -1036,32 +1084,12 @@ footer{
 }
 
 .toast-title strong {
-    color: #10b981; /* Destaca el nombre en verde */
+    color: #10b981;
     font-weight: 600;
 }
 
 .toast-subtext {
-    color: #a1a1aa; /* Gris claro sutil */
+    color: #a1a1aa;
     font-size: 0.78rem;
     margin: 2px 0 0 0;
-}
-.dropdown-menu li,
-.dropdown-menu li a {
-    border-right: none !important; /* Borra la línea vertical molesta */
-    border-left: none !important;
-    margin: 0 !important;
-}
-.dropdown-menu a, 
-.user-name-item {
-    color: #1a1414 !important; /* Negro bien legible sobre el cristal */
-    font-weight: 600 !important;
-    padding: 8px 16px !important;
-    display: block !important;
-    text-align: left !important;
-    text-decoration: none !important;
-}
-
-/* 4. Hover suave */
-.dropdown-menu a:hover {
-    background: rgba(255, 255, 255, 0.3) !important;
 }
