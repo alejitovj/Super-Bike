@@ -20,25 +20,31 @@
     <li><a href="{{ url_for('quienessomos') }}">Quiénes somos</a></li>
 
     <li class="dropdown">
-    <a href="#" id="perfil-btn">
-    👤
-    {% if session.get('logueado') %}
-        {{ session.get('nombre_usuario') }}
-    {% else %}
-        Perfil
-    {% endif %}
-    </a> 
-    <ul class="dropdown-menu">
-        {% if session.get('logueado') %}
-            <li class="menu-item">
-    <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+        <a href="#" id="userToggle" class="user-toggle">
+            <!-- Icono de usuario -->
+            <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 4px;">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            
+            {% if session.get('logueado') %}
+                <span>Hola, {{ session.get('user_name') }}</span>
+            {% else %}
+                <span>Perfil</span>
+            {% endif %}
+            <span class="arrow-down" style="font-size: 10px; margin-left: 4px;">&#9660;</span>
+        </a>
+
+        <!-- Menú desplegable -->
+        <ul class="dropdown-menu" id="dropdownMenu">
+            {% if session.get('logueado') %}
+                <li class="menu-item"><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
+            {% else %}
+                <li class="menu-item"><a href="{{ url_for('login') }}">Iniciar sesión</a></li>
+                <li class="menu-item"><a href="{{ url_for('registro') }}">Registrarse</a></li>
+            {% endif %}
+        </ul>
     </li>
-        {% else %}
-            <li class="menu-item"><a href="{{ url_for('login') }}">Iniciar sesión</a></li>
-            <li class="menu-item"><a href="{{ url_for('registro') }}">Registrarse</a></li>
-        {% endif %}
-    </ul>
-</li>
 </ul>
         </nav>
     </header>
@@ -47,7 +53,7 @@
 <div id="welcome-toast" class="toast-notification">
     <div class="toast-indicator"></div>
     <div class="toast-content">
-        <p class="toast-title">¡Bienvenido, <strong>{{ session.get('nombre_usuario') }}</strong>!</p>
+        <p class="toast-title">¡Bienvenido, <strong>{{ session.get('user_name') }}</strong>!</p>
         <p class="toast-subtext">Sesión iniciada correctamente</p>
     </div>
 </div>
@@ -83,7 +89,7 @@
 
     <script>
         // Lógica del menú desplegable
-        const perfilBtn = document.getElementById("perfil-btn");
+        const perfilBtn = document.getElementById("userToggle");
         const menu = document.querySelector(".dropdown-menu");
 
         if (perfilBtn) {

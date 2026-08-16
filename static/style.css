@@ -1094,4 +1094,13 @@ footer {
     font-size: 0.78rem;
     margin: 2px 0 0 0;
 }
+/* Color azulito para el icono de perfil */
+#perfil-btn svg {
+    stroke: #007bff !important;
+    fill: none;
+}
 
+/* Si también quieres que el texto "Perfil" o "Hola, [Nombre]" tome ese tono azul */
+#perfil-btn {
+    color: #007bff !important;
+}

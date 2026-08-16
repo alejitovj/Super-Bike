@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, session, redirect, url_for
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -100,7 +100,7 @@ def login():
 
             if check_password_hash(contraseña_hash, contraseña):
                 session['logueado'] = True
-                session['nombre_usuario'] = usuario[1]
+                session['user_name'] = usuario[1]
                 session['correo'] = usuario[2]
                 return redirect(url_for('panel_inicio'))
             else:
