@@ -24,7 +24,7 @@
     <nav class="menu-principal">
         <ul>
             <li>
-            <a href="{{url_for('panel_usuario')}}">
+            <a href="{{url_for('panel_inicio')}}">
                 Inicio
             </a>
             </li>
@@ -33,6 +33,12 @@
                 <a href="{{url_for('consultar_usuarios')}}">
                     Consultar Usuarios
                 </a>
+            </li>
+
+            <li>
+            <a href="{{ url_for('eliminar_usuarios') }}">
+                Eliminar Usuarios
+            </a>
             </li>
 
             <li>

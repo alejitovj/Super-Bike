@@ -18,6 +18,36 @@
             <h1>Bienvenidos a nuestra página de bicicletas</h1>
         </header>
 
+        <nav class="menu-principal">
+    <ul>
+
+        <li>
+            <a href="{{ url_for('panel_inicio') }}">
+                Inicio
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('consultar_usuarios') }}">
+                Consultar Usuarios
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('eliminar_usuarios') }}">
+                Eliminar Usuarios
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('logout') }}">
+                Cerrar Sesión
+            </a>
+        </li>
+
+    </ul>
+</nav>
+
         <main class="usuarios-container">
 
             <h2>Usuarios Registrados</h2>
