@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
+import MySQLdb
 
 # Crear la aplicacion Flask
 app = Flask(__name__)
@@ -133,39 +134,26 @@ def logout():
 def ingreso_exitoso():
     return render_template("ingreso_exitoso.html")
 
-# Ejecutar la aplicacion (Siempre va al final del todo)
-if __name__ == "__main__":
-    app.run(debug=True)
-
-# Consultar Usuarios #
+# Consultar Usuarios
 
 @app.route("/consultar_usuarios")
 def consultar_usuarios():
 
-    if"id_usuario" not in session:
-
+    if not session.get("logueado"):
         return redirect(url_for("login"))
 
-    cursor = mysql.connection.cursor(
-        MySQLdb.cursors.DictCursor
-    )
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 
-    cursor.execute(
-        """
+    cursor.execute("""
         SELECT
-
-        id_usuario,
-        nombre,
-        correo,
-        telefono,
-        nombre_usuario,
-        rol
-        
+            id,
+            nombre,
+            correo,
+            telefono,
+            nombre_usuario,
+            rol
         FROM gestion_usuarios
-
-        """
-        
-    )
+    """)
 
     usuarios = cursor.fetchall()
 
@@ -175,3 +163,133 @@ def consultar_usuarios():
         "consultar_usuarios.html",
         usuarios=usuarios
     )
+
+
+# =================
+# Editar Usuario
+# =================
+
+@app.route("/editar_usuario/<int:id>", methods=["GET", "POST"])
+def editar_usuario(id):
+
+    if not session.get("logueado"):
+        return redirect(url_for("login"))
+
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
+    if request.method == "POST":
+
+        nombre = request.form["nombre"]
+        correo = request.form["correo"]
+        telefono = request.form["telefono"]
+        nombre_usuario = request.form["nombre_usuario"]
+        rol = request.form["rol"]
+
+        cursor.execute("""
+            UPDATE gestion_usuarios
+            SET
+                nombre = %s,
+                correo = %s,
+                telefono = %s,
+                nombre_usuario = %s,
+                rol = %s
+            WHERE id = %s
+        """, (
+            nombre,
+            correo,
+            telefono,
+            nombre_usuario,
+            rol,
+            id
+        ))
+
+        mysql.connection.commit()
+        cursor.close()
+
+        return redirect(url_for("consultar_usuarios"))
+
+    cursor.execute("""
+        SELECT *
+        FROM gestion_usuarios
+        WHERE id = %s
+    """, (id,))
+
+    usuario = cursor.fetchone()
+
+    cursor.close()
+
+    return render_template(
+        "editar_usuario.html",
+        usuario=usuario
+    )
+
+# ======================================
+# Eliminar usuarios
+# ======================================
+
+@app.route("/eliminar_usuarios")
+def eliminar_usuarios():
+
+    if not session.get("logueado"):
+        return redirect(url_for("login"))
+
+    cursor = mysql.connection.cursor(
+        MySQLdb.cursors.DictCursor
+    )
+
+    cursor.execute(
+        """
+        SELECT
+            id,
+            nombre,
+            correo,
+            telefono,
+            nombre_usuario,
+            rol
+        FROM gestion_usuarios
+        """
+    )
+
+    usuarios = cursor.fetchall()
+
+    cursor.close()
+
+    return render_template(
+        "eliminar_usuarios.html",
+        usuarios=usuarios
+    )
+
+
+# ======================================
+# Eliminar usuario seleccionado
+# ======================================
+
+@app.route("/eliminar_usuario/<int:id>", methods=["POST"])
+def eliminar_usuario(id):
+
+    if not session.get("logueado"):
+        return redirect(url_for("login"))
+
+    cursor = mysql.connection.cursor()
+
+    cursor.execute(
+        """
+        DELETE FROM gestion_usuarios
+        WHERE id = %s
+        """,
+        (id,)
+    )
+
+    mysql.connection.commit()
+
+    cursor.close()
+
+    return redirect(
+        url_for("eliminar_usuarios")
+    )
+
+
+# Ejecutar la aplicación
+
+if __name__ == "__main__":
+    app.run(debug=True)

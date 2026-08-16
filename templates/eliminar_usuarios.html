@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Usuarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <header class="encabezado">
+
+        <div class="logo-titulo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo.png">
+
+            <h1>
+                SuperBike
+            </h1>
+        </div>
+    </header>
+
+
+
+    <nav class="menu-principal">
+        <ul>
+            <li>
+            <a href="{{url_for('panel_usuario')}}">
+                Inicio
+            </a>
+            </li>
+
+            <li>
+                <a href="{{url_for('consultar_usuarios')}}">
+                    Consultar Usuarios
+                </a>
+            </li>
+
+            <li>
+                <a href="{{url_for('logout')}}">
+                    Cerrar Sesion
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <section class="login-container">
+
+    <div class="login-form">
+
+        <h2>
+            Eliminar Usuarios Registrados
+        </h2>
+
+        <table class="tabla-usuarios">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Usuario</th>
+                    <th>Rol</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td>{{usuario.id}}</td>
+
+                    <td>{{usuario.nombre}}</td>
+
+                    <td>{{usuario.correo}}</td>
+
+                    <td>{{usuario.telefono}}</td>
+
+                    <td>{{usuario.nombre_usuario}}</td>
+
+                    <td>{{usuario.rol}}</td>
+
+                        <td>
+                            <form method="POST" action="{{url_for('eliminar_usuario', id=usuario.id)}}">
+
+                                <button type="submit" onclick="return confirm('¿Desea eliminar este usuario?')">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+
+            <br>
+            <div class="text-center mt-4">
+                <a href="{{url_for('panel_inicio')}}" class="boton-regresar">
+                    ← Volver al inicio
+                </a>
+            </div>
+        </div>
+        </section>
+
+        <footer>
+            <p>
+                SuperBIke
+            </p>
+
+            <p>
+                LUIS ALEJANDRO VELANDIA JURADO
+            </p>
+
+            <p>
+            2026 - CEET - COLEGIO GABRIEL BETANCOUR MEJÍA
+            </p>
+        </footer>
+        
+</body>
+</html>

@@ -1095,35 +1095,27 @@ footer {
     margin: 2px 0 0 0;
 }
 /* ========================================
-   SUPERBIKE - USUARIOS
+   SUPERBIKE - CONSULTAR USUARIOS
 ======================================== */
-
-/* RESET */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 
 /* ========================================
-   CUERPO
+   CONTENEDOR GENERAL
 ======================================== */
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
+.usuarios-page {
+    min-height: 100vh;
     background: #0d0f12;
     color: #ffffff;
-    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
 /* ========================================
-   HEADER
+   HEADER DE USUARIOS
 ======================================== */
 
-header {
+.usuarios-page .usuarios-header {
     width: 100%;
     min-height: 90px;
     padding: 15px 50px;
@@ -1138,7 +1130,7 @@ header {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
 }
 
-header img {
+.usuarios-page .usuarios-header img {
     width: 65px;
     height: 65px;
     object-fit: contain;
@@ -1146,13 +1138,16 @@ header img {
     transition: transform 0.3s ease;
 }
 
-header img:hover {
+.usuarios-page .usuarios-header img:hover {
     transform: scale(1.08);
 }
 
-header h1 {
+.usuarios-page .usuarios-header h1 {
+    margin: 0;
+
     font-size: 26px;
     font-weight: 700;
+
     color: #ffffff;
 }
 
@@ -1161,7 +1156,7 @@ header h1 {
    CONTENEDOR
 ======================================== */
 
-.container {
+.usuarios-page .usuarios-container {
     max-width: 1200px;
     margin: 50px auto;
     padding: 0 20px;
@@ -1172,12 +1167,12 @@ header h1 {
    TITULO
 ======================================== */
 
-.container h2 {
+.usuarios-page .usuarios-container h2 {
     position: relative;
 
     display: inline-block;
 
-    margin-bottom: 25px;
+    margin: 0 0 25px 0;
 
     font-size: 28px;
     font-weight: 700;
@@ -1185,7 +1180,7 @@ header h1 {
     color: #ffffff;
 }
 
-.container h2::after {
+.usuarios-page .usuarios-container h2::after {
     content: "";
 
     display: block;
@@ -1201,32 +1196,48 @@ header h1 {
 
 
 /* ========================================
-   TABLA
+   CONTENEDOR DE TABLA
 ======================================== */
 
-.table {
+.usuarios-page .usuarios-tabla-contenedor {
     width: 100%;
-    overflow: hidden;
+
+    overflow-x: auto;
+    overflow-y: hidden;
 
     background: #16191e;
 
+    border: 1px solid #292e35;
     border-radius: 12px;
 
-    color: #ffffff;
-
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-
-    border: 1px solid #292e35;
 }
 
 
-/* ENCABEZADO DE LA TABLA */
+/* ========================================
+   TABLA
+======================================== */
 
-.table thead {
+.usuarios-page .usuarios-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #16191e;
+
+    color: #ffffff;
+}
+
+
+/* ========================================
+   ENCABEZADO DE TABLA
+======================================== */
+
+.usuarios-page .usuarios-table thead {
     background: #00c853;
 }
 
-.table thead th {
+.usuarios-page .usuarios-table thead th {
     padding: 17px 15px;
 
     color: #06140b;
@@ -1234,43 +1245,46 @@ header h1 {
     font-size: 14px;
     font-weight: 700;
 
+    text-align: left;
     text-transform: uppercase;
 
     border: none;
+
+    white-space: nowrap;
 }
 
 
-/* CELDAS */
+/* ========================================
+   CELDAS
+======================================== */
 
-.table tbody td {
+.usuarios-page .usuarios-table tbody td {
     padding: 15px;
 
     background: #16191e;
 
     color: #d8dce2;
 
-    border-color: #292e35;
+    font-size: 15px;
+
+    border-top: 1px solid #292e35;
 
     vertical-align: middle;
 }
 
 
 /* ========================================
-   EFECTO HOVER
+   HOVER DE FILAS
 ======================================== */
 
-.table tbody tr {
-    transition: all 0.2s ease;
+.usuarios-page .usuarios-table tbody tr {
+    transition: background 0.2s ease;
 }
 
-.table tbody tr:hover td {
+.usuarios-page .usuarios-table tbody tr:hover td {
     background: #20252c;
 
     color: #ffffff;
-}
-
-.table tbody tr:hover {
-    transform: scale(1.005);
 }
 
 
@@ -1278,7 +1292,7 @@ header h1 {
    ID
 ======================================== */
 
-.table tbody td:first-child {
+.usuarios-page .usuarios-table tbody td:first-child {
     color: #00e676;
     font-weight: bold;
 }
@@ -1288,22 +1302,24 @@ header h1 {
    ROL
 ======================================== */
 
-.table tbody td:last-child {
+.usuarios-page .usuarios-table tbody td:last-child {
     color: #00e676;
     font-weight: 600;
 }
 
 
 /* ========================================
-   MENSAJE SIN USUARIOS
+   SIN USUARIOS
 ======================================== */
 
-.text-center {
-    padding: 30px !important;
+.usuarios-page .usuarios-table .usuarios-vacio {
+    padding: 30px;
 
-    color: #8c939d !important;
+    color: #8c939d;
 
     font-size: 15px;
+
+    text-align: center;
 }
 
 
@@ -1311,7 +1327,7 @@ header h1 {
    FOOTER
 ======================================== */
 
-footer {
+.usuarios-page .usuarios-footer {
     width: 100%;
 
     margin-top: 80px;
@@ -1326,13 +1342,13 @@ footer {
     color: #858c96;
 }
 
-footer p {
+.usuarios-page .usuarios-footer p {
     margin: 6px 0;
 
     font-size: 14px;
 }
 
-footer p:first-child {
+.usuarios-page .usuarios-footer p:first-child {
     color: #00e676;
 
     font-size: 21px;
@@ -1341,31 +1357,27 @@ footer p:first-child {
 
 
 /* ========================================
-   RESPONSIVE
+   TABLET
 ======================================== */
 
 @media (max-width: 800px) {
 
-    header {
+    .usuarios-page .usuarios-header {
         padding: 15px 25px;
     }
 
-    header h1 {
+    .usuarios-page .usuarios-header h1 {
         font-size: 21px;
     }
 
-    .container {
+    .usuarios-page .usuarios-container {
         width: 95%;
         margin: 35px auto;
         padding: 0;
     }
 
-    .table {
+    .usuarios-page .usuarios-table {
         min-width: 750px;
-    }
-
-    .container {
-        overflow-x: auto;
     }
 }
 
@@ -1376,7 +1388,7 @@ footer p:first-child {
 
 @media (max-width: 500px) {
 
-    header {
+    .usuarios-page .usuarios-header {
         flex-direction: column;
 
         padding: 25px 15px;
@@ -1384,24 +1396,24 @@ footer p:first-child {
         text-align: center;
     }
 
-    header img {
+    .usuarios-page .usuarios-header img {
         width: 60px;
         height: 60px;
     }
 
-    header h1 {
+    .usuarios-page .usuarios-header h1 {
         font-size: 18px;
     }
 
-    .container h2 {
+    .usuarios-page .usuarios-container h2 {
         font-size: 23px;
     }
 
-    footer {
+    .usuarios-page .usuarios-footer {
         margin-top: 50px;
     }
 
-    footer p {
+    .usuarios-page .usuarios-footer p {
         font-size: 12px;
     }
 }

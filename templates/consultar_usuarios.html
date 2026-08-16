@@ -4,71 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios - SuperBike</title>
-    <link rel="icon" href="img/logo.png">
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <header>
-        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo SuperBike">
+    <div class="usuarios-page">
 
-        <h1>Bienvenidos a nuestra página de bicicletas</h1>
-    </header>
+        <header class="usuarios-header">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo SuperBike">
 
-    <div class="container mt-5">
+            <h1>Bienvenidos a nuestra página de bicicletas</h1>
+        </header>
 
-        <h2 class="mb-4"> Usuarios Registrados</h2>
+        <main class="usuarios-container">
 
-        <table class="table table-bordered table-hover shadow">
+            <h2>Usuarios Registrados</h2>
 
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Teléfono</th>
-                    <th>Usuario</th>
-                    <th>Rol</th>
-                </tr>
-            </thead>
+            <div class="usuarios-tabla-contenedor">
 
-            <tbody>
+                <table class="usuarios-table">
 
-                {% if usuarios %}
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Usuario</th>
+                            <th>Rol</th>
+                        </tr>
+                    </thead>
 
-                    {% for usuario in usuarios %}
-                    <tr>
-                        <td>{{ usuario.id_usuario }}</td>
-                        <td>{{ usuario.nombre }}</td>
-                        <td>{{ usuario.correo }}</td>
-                        <td>{{ usuario.telefono }}</td>
-                        <td>{{ usuario.nombre_usuario }}</td>
-                        <td>{{ usuario.rol }}</td>
-                    </tr>
-                    {% endfor %}
+                    <tbody>
 
-                {% else %}
+                        {% if usuarios %}
 
-                    <tr>
-                        <td colspan="6" class="text-center">
-                            No hay usuarios registrados.
-                        </td>
-                    </tr>
+                            {% for usuario in usuarios %}
+                            <tr>
+                                <td>{{ usuario.id }}</td>
+                                <td>{{ usuario.nombre }}</td>
+                                <td>{{ usuario.correo }}</td>
+                                <td>{{ usuario.telefono }}</td>
+                                <td>{{ usuario.nombre_usuario }}</td>
+                                <td>{{ usuario.rol }}</td>
+                            </tr>
+                            {% endfor %}
 
-                {% endif %}
+                        {% else %}
 
-            </tbody>
+                            <tr>
+                                <td colspan="6" class="usuarios-vacio">
+                                    No hay usuarios registrados.
+                                </td>
+                            </tr>
 
-        </table>
+                        {% endif %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </main>
+
+        <footer class="usuarios-footer">
+            <p>SuperBike</p>
+            <p>Luis Alejandro Velandia Jurado</p>
+            <p>2026 - CEET - COLEGIO GABRIEL BETANCOUR MEJÍA</p>
+        </footer>
 
     </div>
-
-    <footer>
-        <p>SuperBike</p>
-        <p>Luis Alejandro Velandia Jurado</p>
-        <p>2026 - CEET - COLEGIO GABRIEL BETANCOUR MEJÍA</p>
-    </footer>
 
 </body>
 </html>
