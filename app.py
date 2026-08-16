@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 # Crear la aplicacion Flask
 app = Flask(__name__)
-app.secret_key = '030726'
+app.secret_key = 'SuperBike'
 
 # Configuracion de MYSQL
 app.config['MYSQL_HOST'] = 'localhost'
@@ -136,3 +136,42 @@ def ingreso_exitoso():
 # Ejecutar la aplicacion (Siempre va al final del todo)
 if __name__ == "__main__":
     app.run(debug=True)
+
+# Consultar Usuarios #
+
+@app.route("/consultar_usuarios")
+def consultar_usuarios():
+
+    if"id_usuario" not in session:
+
+        return redirect(url_for("login"))
+
+    cursor = mysql.connection.cursor(
+        MySQLdb.cursors.DictCursor
+    )
+
+    cursor.execute(
+        """
+        SELECT
+
+        id_usuario,
+        nombre,
+        correo,
+        telefono,
+        nombre_usuario,
+        rol
+        
+        FROM gestion_usuarios
+
+        """
+        
+    )
+
+    usuarios = cursor.fetchall()
+
+    cursor.close()
+
+    return render_template(
+        "consultar_usuarios.html",
+        usuarios=usuarios
+    )

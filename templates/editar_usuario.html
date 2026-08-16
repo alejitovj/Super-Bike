@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <header class="encabezado">
+
+        <div class="logo-titulo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo.png">
+            <h1>SuperBike</h1>
+        </div>
+
+            <div class="usuario">
+                <span>Usuario</span>
+                <strong>{{ usuario.nombre }}</strong>
+            </div>
+    </header>
+
+    <section class="login-container">
+
+        <div class="login-form">
+            <h2>Editar Usuario</h2>
+
+            <form method="post">
+            
+            <label>Nombre</label>
+
+            <input type="text" name="nombre" value="{{usuario.nombre}}" required>
+
+            <label>Correo</label>
+
+            <input type="email" name="correo" value="{{usuario.correo}}" required>
+
+            <label>Telefono</label>
+
+            <input type="text" name="telefono" value="{{usuario.telefono}}" required>
+
+            <label>Usuario</label>
+
+            <input type="text" name="nombre_usuario" value="{{usuario.usuario_usuario}}" required>
+
+            <label>Rol</label>
+
+            <select name="rol">
+
+                <option value="Administrador">
+                    Administrador
+                </option>
+
+                <option value="Cliente">
+                    Cliente
+                </option>
+
+                <option value="Empleado">
+                    Empleado
+                </option>
+
+                </select>
+
+                <button type="submit">
+                    Guardar cambios
+                </button>
+
+                <a href="{{url_for('consultar_usuarios')}}">
+                    Cancelar
+                </a>
+
+                </form>
+                </div>
+
+    </section>
+
+    <footer>
+        <p>SuperBike</p>
+        <p>LUIS ALEJANDRO VELANDIA JURADO</p>
+        <p>2026 - CEET - COLEGIO GABRIEL BETANCOUR MEJÍA</p>
+        
+    </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios - SuperBike</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo SuperBike">
+
+        <h1>Bienvenidos a nuestra página de bicicletas</h1>
+    </header>
+
+    <div class="container mt-5">
+
+        <h2 class="mb-4"> Usuarios Registrados</h2>
+
+        <table class="table table-bordered table-hover shadow">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Usuario</th>
+                    <th>Rol</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% if usuarios %}
+
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario.id_usuario }}</td>
+                        <td>{{ usuario.nombre }}</td>
+                        <td>{{ usuario.correo }}</td>
+                        <td>{{ usuario.telefono }}</td>
+                        <td>{{ usuario.nombre_usuario }}</td>
+                        <td>{{ usuario.rol }}</td>
+                    </tr>
+                    {% endfor %}
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            No hay usuarios registrados.
+                        </td>
+                    </tr>
+
+                {% endif %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <footer>
+        <p>SuperBike</p>
+        <p>Luis Alejandro Velandia Jurado</p>
+        <p>2026 - CEET - COLEGIO GABRIEL BETANCOUR MEJÍA</p>
+    </footer>
+
+</body>
+</html>
