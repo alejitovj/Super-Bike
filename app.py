@@ -107,6 +107,7 @@ def login():
                 session['logueado'] = True
                 session['user_name'] = usuario[1]
                 session['correo'] = usuario[2]
+                session['id_usuario'] = usuario[0]
                 return redirect(url_for('panel_inicio'))
             else:
                 # Contraseña incorrecta
