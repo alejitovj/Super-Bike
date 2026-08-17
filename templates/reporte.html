@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Reservas - Super Bike</title>
+    <title>Reporte de Usuarios - Super Bike</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
@@ -13,116 +13,54 @@
 <div class="contenedor">
 
     <div class="encabezado">
-        <h1>Reporte de Reservas</h1>
-        <p>Consulta y exportación de reservas de Super Bike</p>
+        <h1>Reporte de Usuarios</h1>
+        <p>Consulta y exportación de usuarios registrados en Super Bike</p>
     </div>
 
-    <form method="GET" action="{{ url_for('reporte') }}" class="filtros">
+    <div class="filtros">
+        <a href="{{ url_for('reporte') }}" class="boton limpiar">🔄 Actualizar</a>
 
-        <div class="campo">
-            <label for="fecha">Filtrar por fecha</label>
-
-            <input
-                type="date"
-                id="fecha"
-                name="fecha"
-                value="{{ fecha or '' }}"
-            >
-        </div>
-
-        <button type="submit" class="boton buscar">
-            🔎 Buscar
-        </button>
-
-        <a href="{{ url_for('reporte') }}"
-            class="boton limpiar">
-            Limpiar
-        </a>
-
-        <a href="{{ url_for('reporte_excel', fecha=fecha) if fecha else url_for('reporte_excel') }}"
-            class="boton excel">
+        <a href="{{ url_for('reporte_excel') }}" class="boton excel">
             📊 Exportar a Excel
         </a>
-
-    </form>
+    </div>
 
     <div class="tabla-contenedor">
-
         <table>
-
             <thead>
                 <tr>
-                    <th>ID Reserva</th>
                     <th>ID Usuario</th>
                     <th>Nombre</th>
                     <th>Correo</th>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>Personas</th>
-                    <th>Estado</th>
-                    <th>Observaciones</th>
+                    <th>Teléfono</th>
+                    <th>Usuario</th>
+                    <th>Rol</th>
                 </tr>
             </thead>
 
             <tbody>
-
-                {% if reservas %}
-
-                    {% for reserva in reservas %}
-
+                {% if usuarios %}
+                    {% for usuario in usuarios %}
                     <tr>
-                        <td>{{ reserva.id_reserva }}</td>
-                        <td>{{ reserva.id_usuario }}</td>
-                        <td>{{ reserva.nombre }}</td>
-                        <td>{{ reserva.correo }}</td>
-                        <td>{{ reserva.fecha_reserva }}</td>
-                        <td>{{ reserva.hora_reserva }}</td>
-                        <td class="cantidad">
-                            {{ reserva.cantidad_personas }}
-                        </td>
-
-                        <td>
-                            {% if reserva.estado == 'Pendiente' %}
-                                <span class="estado pendiente">
-                                    {{ reserva.estado }}
-                                </span>
-
-                            {% elif reserva.estado == 'Confirmada' %}
-                                <span class="estado confirmada">
-                                    {{ reserva.estado }}
-                                </span>
-
-                            {% elif reserva.estado == 'Cancelada' %}
-                                <span class="estado cancelada">
-                                    {{ reserva.estado }}
-                                </span>
-
-                            {% else %}
-                                <span class="estado">
-                                    {{ reserva.estado }}
-                                </span>
-
-                            {% endif %}
-                        </td>
-
-                        <td>
-                            {{ reserva.observaciones or 'Sin observaciones' }}
-                        </td>
+                        <td>{{ usuario.id_usuario }}</td>
+                        <td>{{ usuario.nombre }}</td>
+                        <td>{{ usuario.correo }}</td>
+                        <td>{{ usuario.telefono }}</td>
+                        <td>{{ usuario.nombre_usuario }}</td>
+                        <td>{{ usuario.rol }}</td>
                     </tr>
-
                     {% endfor %}
-
                 {% else %}
-
                     <tr>
-                        <td colspan="9" class="sin-datos">
-                            No se encontraron reservas.
+                        <td colspan="6" class="sin-datos">
+                            No se encontraron usuarios registrados.
                         </td>
                     </tr>
                 {% endif %}
             </tbody>
         </table>
     </div>
+
 </div>
 
 </body>

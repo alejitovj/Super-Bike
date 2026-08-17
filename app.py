@@ -360,32 +360,26 @@ def reporte_excel():
 
     libro = Workbook()
     hoja = libro.active
-    hoja.title = "Reporte Reservas"
+    hoja.title = "Reporte Usuarios"
 
     hoja.append([
-        "ID Reserva",
         "ID Usuario",
         "Nombre",
         "Correo",
-        "Fecha Reserva",
-        "Hora Reserva",
-        "Cantidad Personas",
-        "Estado",
-        "Observaciones"
+        "Teléfono",
+        "Usuario",
+        "Rol",
     ])
 
     for fila in datos:
 
         hoja.append([
-        fila["id_reserva"],
         fila["id_usuario"],
         fila["nombre"],
         fila["correo"],
-        fila["fecha_reserva"],
-        fila["hora_reserva"],
-        fila["cantidad_personas"],
-        fila["estado"],
-        fila["observaciones"]
+        fila["telefono"],
+        fila["nombre_usuario"],
+        fila["rol"],
     ])
 
     archivo = io.BytesIO()
