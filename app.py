@@ -294,7 +294,7 @@ def eliminar_usuario(id):
     )
 
 #====================
-# Reporte de reservas
+# Reporte de usuarios
 #====================
 
 @app.route("/reporte")
@@ -303,64 +303,30 @@ def reporte():
     if "id_usuario" not in session:
         return redirect(url_for("login"))
 
-    fecha = request.args.get("fecha")
-
     cursor = mysql.connection.cursor(
         MySQLdb.cursors.DictCursor
     )
 
-    if fecha:
-
-        cursor.execute("""
+    cursor.execute("""
         SELECT
-
-            r.id_reserva,
-            u.id_usuario,
-            u.nombre,
-            u.correo,
-            r.fecha_reserva,
-            r.hora_reserva,
-            r.cantidad_personas,
-            r.estado,
-            r.observaciones
-            FROM reservas r
-            INNER JOIN gestion_usuarios u
-            ON r.id_usuario = u.id_usuario
-            WHERE r.fecha_reserva = %s
-            ORDER BY r.fecha_reserva DESC, r.hora_reserva DESC
-        """, (fecha,))
-
-    else:
-
-        cursor.execute("""
-        SELECT 
-
-            r.id_reserva,
-            u.id_usuario,
-            u.nombre,
-            u.correo,
-            r.fecha_reserva,
-            r.hora_reserva,
-            r.cantidad_personas,
-            r.estado,
-            r.observaciones
-            FROM reservas r
-            INNER JOIN gestion_usuarios u
-            ON r.id_usuario = u.id_usuario
-            ORDER BY r.fecha_reserva DESC, r.hora_reserva DESC
+            id_usuario,
+            nombre,
+            correo,
+            telefono,
+            nombre_usuario,
+            rol
+            FROM gestion_usuarios
+            ORDER BY id_usuario DESC
         """)
 
-
-    reservas = cursor.fetchall()
+    usuarios = cursor.fetchall()
 
     cursor.close()
 
     return render_template(
-    "reporte.html",
-    reservas = reservas,
-    fecha = fecha
-)
-
+        "reporte.html",
+        usuarios = usuarios
+    )
 
 #=========================
 # Exportar reporte a Excel
@@ -372,51 +338,21 @@ def reporte_excel():
     if "id_usuario" not in session:
         return redirect(url_for("login"))
 
-    fecha = request.args.get("fecha")
-
     cursor = mysql.connection.cursor(
         MySQLdb.cursors.DictCursor
     )
 
-    if fecha:
-
-        cursor.execute("""
+    cursor.execute("""
         SELECT
-            r.id_reserva,
-            u.id_usuario,
-            u.nombre,
-            u.correo,
-            r.fecha_reserva,
-            r.hora_reserva,
-            r.cantidad_personas,
-            r.estado,
-            r.observaciones
-            FROM reservas r
-            INNER JOIN gestion_usuarios u
-            ON r.id_usuario = u.id_usuario
-            WHERE r.fecha_reserva = %s
-            ORDER BY r.fecha_reserva DESC
-        """, (fecha,))
-
-    else:
-
-        cursor.execute("""
-        SELECT
-            r.id_reserva,
-            u.id_usuario,
-            u.nombre,
-            u.correo,
-            r.fecha_reserva,
-            r.hora_reserva,
-            r.cantidad_personas,
-            r.estado,
-            r.observaciones
-            FROM reservas r
-            INNER JOIN gestion_usuarios u
-            ON r.id_usuario = u.id_usuario
-            ORDER BY r.fecha_reserva DESC
+            id_usuario,
+            nombre,
+            correo,
+            telefono,
+            nombre_usuario,
+            rol
+            FROM gestion_usuarios
+            ORDER BY id_usuario DESC
         """)
-
 
     datos = cursor.fetchall()
 
@@ -459,7 +395,7 @@ def reporte_excel():
 
     return send_file(
         archivo,
-        download_name="reporte_reservas.xlsx",
+        download_name="reporte_usuarios.xlsx",
         as_attachment=True
     )
 
