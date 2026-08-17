@@ -309,14 +309,14 @@ def reporte():
 
     cursor.execute("""
         SELECT
-            id_usuario,
+            id,
             nombre,
             correo,
             telefono,
             nombre_usuario,
             rol
             FROM gestion_usuarios
-            ORDER BY id_usuario DESC
+            ORDER BY id DESC
         """)
 
     usuarios = cursor.fetchall()
@@ -344,14 +344,14 @@ def reporte_excel():
 
     cursor.execute("""
         SELECT
-            id_usuario,
+            id,
             nombre,
             correo,
             telefono,
             nombre_usuario,
             rol
             FROM gestion_usuarios
-            ORDER BY id_usuario DESC
+            ORDER BY id DESC
         """)
 
     datos = cursor.fetchall()
@@ -363,7 +363,7 @@ def reporte_excel():
     hoja.title = "Reporte Usuarios"
 
     hoja.append([
-        "ID Usuario",
+        "ID",
         "Nombre",
         "Correo",
         "Teléfono",
@@ -374,7 +374,7 @@ def reporte_excel():
     for fila in datos:
 
         hoja.append([
-        fila["id_usuario"],
+        fila["id"],
         fila["nombre"],
         fila["correo"],
         fila["telefono"],

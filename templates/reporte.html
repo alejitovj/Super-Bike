@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte de Usuarios - Super Bike</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
 
 <div class="contenedor">
@@ -18,7 +16,9 @@
     </div>
 
     <div class="filtros">
-        <a href="{{ url_for('reporte') }}" class="boton limpiar">🔄 Actualizar</a>
+        <a href="{{ url_for('reporte') }}" class="boton buscar">
+            🔎 Actualizar reporte
+        </a>
 
         <a href="{{ url_for('reporte_excel') }}" class="boton excel">
             📊 Exportar a Excel
@@ -26,10 +26,12 @@
     </div>
 
     <div class="tabla-contenedor">
+
         <table>
+
             <thead>
                 <tr>
-                    <th>ID Usuario</th>
+                    <th>ID</th>
                     <th>Nombre</th>
                     <th>Correo</th>
                     <th>Teléfono</th>
@@ -39,21 +41,27 @@
             </thead>
 
             <tbody>
+
                 {% if usuarios %}
+
                     {% for usuario in usuarios %}
+
                     <tr>
-                        <td>{{ usuario.id_usuario }}</td>
+                        <td>{{ usuario.id }}</td>
                         <td>{{ usuario.nombre }}</td>
                         <td>{{ usuario.correo }}</td>
                         <td>{{ usuario.telefono }}</td>
                         <td>{{ usuario.nombre_usuario }}</td>
                         <td>{{ usuario.rol }}</td>
                     </tr>
+
                     {% endfor %}
+
                 {% else %}
+
                     <tr>
                         <td colspan="6" class="sin-datos">
-                            No se encontraron usuarios registrados.
+                            No hay usuarios registrados.
                         </td>
                     </tr>
                 {% endif %}
