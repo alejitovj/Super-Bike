@@ -38,11 +38,22 @@
         <!-- Menú desplegable -->
         <ul class="dropdown-menu" id="dropdownMenu">
             {% if session.get('logueado') %}
-                <li class="menu-item"><a href="{{ url_for('logout') }}">Cerrar sesión</a></li>
+        <li class="menu-item">
+            <a href="{{ url_for('reporte') }}">📊 Reporte de Reservas</a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+        </li>
             {% else %}
-                <li class="menu-item"><a href="{{ url_for('login') }}">Iniciar sesión</a></li>
-                <li class="menu-item"><a href="{{ url_for('registro') }}">Registrarse</a></li>
+
+        <li class="menu-item">
+            <a href="{{ url_for('login') }}">Iniciar sesión</a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ url_for('registro') }}">Registrarse</a>
+        </li>
             {% endif %}
+
         </ul>
     </li>
 </ul>
