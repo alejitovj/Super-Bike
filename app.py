@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, session, redirect, url_for
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 import MySQLdb
+from flask import send_file
+import io
+from openpyxl import Workbook
+
 
 # Crear la aplicacion Flask
 app = Flask(__name__)
@@ -287,6 +291,180 @@ def eliminar_usuario(id):
     return redirect(
         url_for("eliminar_usuarios")
     )
+
+#====================
+# Reporte de reservas
+#====================
+
+@app.route("/reporte")
+def reporte():
+
+    if "id_usuario" not in session:
+        return redirect(url_for("login"))
+
+    fecha = request.args.get("fecha")
+
+    cursor = mysql.connection.cursor(
+        MySQLdb.cursors.DictCursor
+    )
+
+    if fecha:
+
+        cursor.execute("""
+        SELECT
+
+            r.id_reserva,
+            u.id_usuario,
+            u.nombre,
+            u.correo,
+            r.fecha_reserva,
+            r.hora_reserva,
+            r.cantidad_personas,
+            r.estado,
+            r.observaciones
+            FROM reservas r
+            INNER JOIN gestion_usuarios u
+            ON r.id_usuario = u.id_usuario
+            WHERE r.fecha_reserva = %s
+            ORDER BY r.fecha_reserva DESC, r.hora_reserva DESC
+        """, (fecha,))
+
+    else:
+
+        cursor.execute("""
+        SELECT 
+
+            r.id_reserva,
+            u.id_usuario,
+            u.nombre,
+            u.correo,
+            r.fecha_reserva,
+            r.hora_reserva,
+            r.cantidad_personas,
+            r.estado,
+            r.observaciones
+            FROM reservas r
+            INNER JOIN gestion_usuarios u
+            ON r.id_usuario = u.id_usuario
+            ORDER BY r.fecha_reserva DESC, r.hora_reserva DESC
+        """)
+
+
+    reservas = cursor.fetchall()
+
+    cursor.close()
+
+    return render_template(
+    "reporte.html",
+    reservas = reservas,
+    fecha = fecha
+)
+
+
+#=========================
+# Exportar reporte a Excel
+#=========================
+
+@app.route("/reporte_excel")
+def reporte_excel():
+
+    if "id_usuario" not in session:
+        return redirect(url_for("login"))
+
+    fecha = request.args.get("fecha")
+
+    cursor = mysql.connection.cursor(
+        MySQLdb.cursors.DictCursor
+    )
+
+    if fecha:
+
+        cursor.execute("""
+        SELECT
+            r.id_reserva,
+            u.id_usuario,
+            u.nombre,
+            u.correo,
+            r.fecha_reserva,
+            r.hora_reserva,
+            r.cantidad_personas,
+            r.estado,
+            r.observaciones
+            FROM reservas r
+            INNER JOIN gestion_usuarios u
+            ON r.id_usuario = u.id_usuario
+            WHERE r.fecha_reserva = %s
+            ORDER BY r.fecha_reserva DESC
+        """, (fecha,))
+
+    else:
+
+        cursor.execute("""
+        SELECT
+            r.id_reserva,
+            u.id_usuario,
+            u.nombre,
+            u.correo,
+            r.fecha_reserva,
+            r.hora_reserva,
+            r.cantidad_personas,
+            r.estado,
+            r.observaciones
+            FROM reservas r
+            INNER JOIN gestion_usuarios u
+            ON r.id_usuario = u.id_usuario
+            ORDER BY r.fecha_reserva DESC
+        """)
+
+
+    datos = cursor.fetchall()
+
+    cursor.close()
+
+    libro = Workbook()
+    hoja = libro.active
+    hoja.title = "Reporte Reservas"
+
+    hoja.append([
+        "ID Reserva",
+        "ID Usuario",
+        "Nombre",
+        "Correo",
+        "Fecha Reserva",
+        "Hora Reserva",
+        "Cantidad Personas",
+        "Estado",
+        "Observaciones"
+    ])
+
+    for fila in datos:
+
+        hoja.append([
+        fila["id_reserva"],
+        fila["id_usuario"],
+        fila["nombre"],
+        fila["correo"],
+        fila["fecha_reserva"],
+        fila["hora_reserva"],
+        fila["cantidad_personas"],
+        fila["estado"],
+        fila["observaciones"]
+    ])
+
+    archivo = io.BytesIO()
+
+    libro.save(archivo)
+    archivo.seek(0)
+
+    return send_file(
+        archivo,
+        download_name="reporte_reservas.xlsx",
+        as_attachment=True
+    )
+
+
+
+
 
 
 # Ejecutar la aplicación
