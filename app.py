@@ -5,7 +5,6 @@ import MySQLdb
 from flask import send_file
 import io
 from openpyxl import Workbook
-from livereload import Server
 
 # Crear la aplicacion Flask
 app = Flask(__name__)
@@ -401,7 +400,4 @@ def reporte_excel():
 # Ejecutar la aplicación
 
 if __name__ == "__main__":
-    Server = Server(app)
-    Server.watch("static/style.css")
-    Server.watch("templates/*.html")
-    Server.serve()
+    app.run(debug=True)
