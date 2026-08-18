@@ -1,4 +1,3 @@
-```css
 /* =========================================================
    SUPER BIKE
    HOJA DE ESTILOS PRINCIPAL
@@ -1249,96 +1248,191 @@ nav {
     font-weight: 700;
 }
 
-
 /* =========================================================
-   15. REPORTES / TABLAS GENERALES
+   15. REPORTE DE USUARIOS
    ========================================================= */
 
-.contenedor {
+/* ---------- CONTENEDOR PRINCIPAL ---------- */
+
+.reporte-usuarios {
     width: 95%;
     max-width: 1400px;
     margin: 40px auto;
 }
 
-.contenedor > .encabezado {
-    background: #ee4a4a;
-    color: white;
+
+/* ---------- ENCABEZADO ---------- */
+
+.reporte-usuarios .encabezado-reporte {
+    background: #0e0c0c;
+    color: #ffffff;
     padding: 25px;
     border-radius: 12px 12px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.contenedor > .encabezado h1 {
-    margin-bottom: 8px;
+.reporte-usuarios .encabezado-reporte h1 {
+    margin: 0 0 8px;
 }
 
-.contenedor > .encabezado p {
-    opacity: 0.9;
+.reporte-usuarios .encabezado-reporte p {
+    margin: 0;
+    opacity: 1;
 }
 
-.filtros {
-    background: white;
+
+/* ---------- FILTROS / BOTONES ---------- */
+
+.reporte-usuarios .filtros {
+    background: #ffffff;
     padding: 25px;
     display: flex;
     align-items: center;
     gap: 15px;
     flex-wrap: wrap;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
-.campo {
+
+/* ---------- CAMPOS ---------- */
+
+.reporte-usuarios .campo {
     display: flex;
     flex-direction: column;
     gap: 7px;
 }
 
-.campo label {
+.reporte-usuarios .campo label {
     font-weight: bold;
-    color: #444;
+    color: #444444;
 }
 
-.campo input {
+.reporte-usuarios .campo input {
     padding: 11px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     border-radius: 6px;
     font-size: 15px;
 }
 
-.boton {
+
+/* ---------- BOTONES ---------- */
+
+.reporte-usuarios .boton {
     border: none;
     padding: 11px 18px;
     border-radius: 6px;
     cursor: pointer;
     text-decoration: none;
     font-size: 15px;
-    color: white;
+    color: #ffffff;
     display: inline-block;
 }
 
-.buscar {
+.reporte-usuarios .buscar {
     background: #8b0000;
 }
 
-.buscar:hover {
+.reporte-usuarios .buscar:hover {
     background: #650000;
 }
 
-.limpiar {
-    background: #777;
+.reporte-usuarios .limpiar {
+    background: #777777;
 }
 
-.limpiar:hover {
-    background: #555;
+.reporte-usuarios .limpiar:hover {
+    background: #555555;
 }
 
-.excel {
+.reporte-usuarios .excel {
     background: #16833b;
     margin-left: auto;
 }
 
-.excel:hover {
+.reporte-usuarios .excel:hover {
     background: #10632d;
 }
 
+
+/* ---------- TABLA ---------- */
+
+.reporte-usuarios .tabla-contenedor {
+    margin-top: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow-x: auto;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.reporte-usuarios table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.reporte-usuarios th {
+    background: #8b0000;
+    color: #ffffff;
+    padding: 14px 10px;
+    text-align: left;
+}
+
+.reporte-usuarios td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.reporte-usuarios tr:hover {
+    background: #fafafa;
+}
+
+.reporte-usuarios td:first-child {
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* ---------- ESTADOS ---------- */
+
+.reporte-usuarios .estado {
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.reporte-usuarios .pendiente {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.reporte-usuarios .confirmada {
+    background: #d4edda;
+    color: #155724;
+}
+
+.reporte-usuarios .cancelada {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+
+/* ---------- SIN DATOS ---------- */
+
+.reporte-usuarios .sin-datos {
+    text-align: center;
+    padding: 40px;
+    color: #777777;
+}
+
+
+/* ---------- CANTIDAD ---------- */
+
+.reporte-usuarios .cantidad {
+    text-align: center;
+}
 
 /* ---------------------------------------------------------
    TABLAS GENERALES
@@ -1623,31 +1717,6 @@ td:first-child {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
 
-
-/* =========================================================
-   17. REPORTE DE USUARIOS
-   ========================================================= */
-
-.encabezado-reporte {
-    background: #161515;
-    color: rgb(255, 255, 255);
-    padding: 25px;
-    border-radius: 12px 12px 0 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.encabezado-reporte h1 {
-    margin-bottom: 8px;
-}
-
-.encabezado-reporte p {
-    opacity: 1;
-    margin: 0;
-}
-
-
 /* =========================================================
    18. FOOTER
    ========================================================= */
@@ -1879,4 +1948,3 @@ footer p:first-child {
         font-size: 12px;
     }
 }
-```
