@@ -3,12 +3,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 /* ==================== BASE ==================== */
 body {
+    min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f5f5f5;
+    background: #f5f5f5;
     color: #333;
     line-height: 1.6;
 }
@@ -105,27 +107,17 @@ nav {
     width: 100%;
 }
 
-.dropdown-menu li a {
-    display: block;
-    padding: 15px 18px;
-    border-radius: 12px;
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 16px;
-}
-
-.dropdown-menu li a:hover {
-    background: rgba(255,255,255,0.12);
-    transform: translateX(5px);
-    color: #00bfff;
-}
-
 .dropdown-menu li,
 .dropdown-menu li a {
     border-right: none !important;
     border-left: none !important;
     margin: 0 !important;
+}
+
+.dropdown-menu li a {
+    border-radius: 12px;
+    transition: 0.3s;
+    font-size: 16px;
 }
 
 .dropdown-menu a {
@@ -139,6 +131,7 @@ nav {
 
 .dropdown-menu a:hover {
     background: rgba(255, 255, 255, 0) !important;
+    transform: translateX(5px);
 }
 
 .show {
@@ -240,7 +233,6 @@ nav {
 
 .cta-btn {
     padding: 14px 28px;
-    border: none;
     background: #535353;
     color: white;
     border: 2px solid white;
@@ -510,9 +502,14 @@ nav {
     box-shadow: 0 5px 20px #ffffff;
 }
 
-.contacto-info h2 {
+.contacto-info h2,
+.contacto-formulario h2 {
     font-size: 40px;
     margin-bottom: 20px;
+}
+
+.contacto-formulario h2 {
+    margin-bottom: 30px;
 }
 
 .contacto-info p {
@@ -540,11 +537,6 @@ nav {
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-.contacto-formulario h2 {
-    font-size: 40px;
-    margin-bottom: 30px;
 }
 
 .contacto-formulario form {
@@ -625,7 +617,8 @@ nav {
     flex-wrap: wrap;
 }
 
-.about-image {
+.about-image,
+.about-text {
     flex: 1;
     min-width: 300px;
 }
@@ -634,11 +627,6 @@ nav {
     width: 100%;
     border-radius: 20px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-}
-
-.about-text {
-    flex: 1;
-    min-width: 300px;
 }
 
 .about-text h2 {
@@ -730,83 +718,6 @@ nav {
 
 .valor-card p {
     line-height: 1.7;
-}
-
-/* ==================== FOOTER ==================== */
-footer {
-    background: #111;
-    color: white;
-    text-align: center;
-    padding: 25px;
-    font-size: 15px;
-}
-
-/* ==================== RESPONSIVE ==================== */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .nav-links {
-        flex-direction: column;
-    }
-
-    #hero h1,
-    .catalogo-hero h1,
-    .contacto-hero h1,
-    .about-hero h1 {
-        font-size: 40px;
-    }
-
-    #hero p,
-    .catalogo-hero p,
-    .contacto-hero p,
-    .about-hero p {
-        font-size: 18px;
-    }
-
-    .hero-premium {
-        text-align: center;
-        justify-content: center;
-        padding: 100px 20px;
-    }
-
-    .hero-left h1 {
-        font-size: 40px;
-        text-align: center;
-    }
-
-    .hero-left p {
-        font-size: 18px;
-        text-align: center;
-    }
-
-    .hero-buttons {
-        justify-content: center;
-    }
-
-    .floating-bike {
-        width: 100%;
-        max-width: 450px;
-    }
-
-    .catalogo {
-        padding: 50px 20px;
-    }
-
-    .catalogo h2,
-    .contacto-info h2,
-    .contacto-formulario h2,
-    .about-text h2,
-    .valores h2 {
-        font-size: 30px;
-    }
-
-    .contacto-container,
-    .about-container {
-        padding: 50px 20px;
-    }
 }
 
 /* ==================== LOGIN / REGISTRO ==================== */
@@ -1030,10 +941,7 @@ footer {
     animation: barra 2.5s linear forwards;
 }
 
-.toast.error .toast-icon {
-    background: #ef4444;
-}
-
+.toast.error .toast-icon,
 .toast.error .toast-bar {
     background: #ef4444;
 }
@@ -1094,15 +1002,10 @@ footer {
     font-size: 0.78rem;
     margin: 2px 0 0 0;
 }
+
 /* ========================================
    SUPERBIKE - CONSULTAR USUARIOS
 ======================================== */
-
-
-/* ========================================
-   CONTENEDOR GENERAL
-======================================== */
-
 .usuarios-page {
     min-height: 100vh;
     background: #0d0f12;
@@ -1110,23 +1013,15 @@ footer {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
-/* ========================================
-   HEADER DE USUARIOS
-======================================== */
-
 .usuarios-page .usuarios-header {
     width: 100%;
     min-height: 90px;
     padding: 15px 50px;
-
     display: flex;
     align-items: center;
     gap: 20px;
-
     background: #15181d;
     border-bottom: 1px solid #292e35;
-
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
 }
 
@@ -1134,7 +1029,6 @@ footer {
     width: 65px;
     height: 65px;
     object-fit: contain;
-
     transition: transform 0.3s ease;
 }
 
@@ -1144,17 +1038,10 @@ footer {
 
 .usuarios-page .usuarios-header h1 {
     margin: 0;
-
     font-size: 26px;
     font-weight: 700;
-
     color: #ffffff;
 }
-
-
-/* ========================================
-   CONTENEDOR
-======================================== */
 
 .usuarios-page .usuarios-container {
     max-width: 1200px;
@@ -1162,76 +1049,41 @@ footer {
     padding: 0 20px;
 }
 
-
-/* ========================================
-   TITULO
-======================================== */
-
 .usuarios-page .usuarios-container h2 {
     position: relative;
-
     display: inline-block;
-
     margin: 0 0 25px 0;
-
     font-size: 28px;
     font-weight: 700;
-
     color: #ffffff;
 }
 
 .usuarios-page .usuarios-container h2::after {
     content: "";
-
     display: block;
-
     width: 55%;
     height: 4px;
-
     margin-top: 8px;
-
     background: #00e676;
     border-radius: 10px;
 }
 
-
-/* ========================================
-   CONTENEDOR DE TABLA
-======================================== */
-
 .usuarios-page .usuarios-tabla-contenedor {
     width: 100%;
-
     overflow-x: auto;
     overflow-y: hidden;
-
     background: #16191e;
-
     border: 1px solid #292e35;
     border-radius: 12px;
-
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
-
-/* ========================================
-   TABLA
-======================================== */
-
 .usuarios-page .usuarios-table {
     width: 100%;
-
     border-collapse: collapse;
-
     background: #16191e;
-
     color: #ffffff;
 }
-
-
-/* ========================================
-   ENCABEZADO DE TABLA
-======================================== */
 
 .usuarios-page .usuarios-table thead {
     background: #00c853;
@@ -1239,43 +1091,23 @@ footer {
 
 .usuarios-page .usuarios-table thead th {
     padding: 17px 15px;
-
     color: #06140b;
-
     font-size: 14px;
     font-weight: 700;
-
     text-align: left;
     text-transform: uppercase;
-
     border: none;
-
     white-space: nowrap;
 }
 
-
-/* ========================================
-   CELDAS
-======================================== */
-
 .usuarios-page .usuarios-table tbody td {
     padding: 15px;
-
     background: #16191e;
-
     color: #d8dce2;
-
     font-size: 15px;
-
     border-top: 1px solid #292e35;
-
     vertical-align: middle;
 }
-
-
-/* ========================================
-   HOVER DE FILAS
-======================================== */
 
 .usuarios-page .usuarios-table tbody tr {
     transition: background 0.2s ease;
@@ -1283,609 +1115,68 @@ footer {
 
 .usuarios-page .usuarios-table tbody tr:hover td {
     background: #20252c;
-
     color: #ffffff;
 }
-
-
-/* ========================================
-   ID
-======================================== */
 
 .usuarios-page .usuarios-table tbody td:first-child {
     color: #00e676;
     font-weight: bold;
 }
 
-
-/* ========================================
-   ROL
-======================================== */
-
 .usuarios-page .usuarios-table tbody td:last-child {
     color: #00e676;
     font-weight: 600;
 }
 
-
-/* ========================================
-   SIN USUARIOS
-======================================== */
-
 .usuarios-page .usuarios-table .usuarios-vacio {
     padding: 30px;
-
     color: #8c939d;
-
     font-size: 15px;
-
     text-align: center;
 }
 
-
-/* ========================================
-   FOOTER
-======================================== */
-
 .usuarios-page .usuarios-footer {
     width: 100%;
-
     margin-top: 80px;
     padding: 30px 20px;
-
     text-align: center;
-
     background: #15181d;
-
     border-top: 1px solid #292e35;
-
     color: #858c96;
 }
 
 .usuarios-page .usuarios-footer p {
     margin: 6px 0;
-
     font-size: 14px;
 }
 
 .usuarios-page .usuarios-footer p:first-child {
     color: #00e676;
-
     font-size: 21px;
     font-weight: 700;
 }
 
-
 /* ========================================
-   TABLET
+   REPORTES / TABLAS GENERALES
 ======================================== */
-
-@media (max-width: 800px) {
-
-    .usuarios-page .usuarios-header {
-        padding: 15px 25px;
-    }
-
-    .usuarios-page .usuarios-header h1 {
-        font-size: 21px;
-    }
-
-    .usuarios-page .usuarios-container {
-        width: 95%;
-        margin: 35px auto;
-        padding: 0;
-    }
-
-    .usuarios-page .usuarios-table {
-        min-width: 750px;
-    }
-}
-
-
-/* ========================================
-   CELULARES
-======================================== */
-
-@media (max-width: 500px) {
-
-    .usuarios-page .usuarios-header {
-        flex-direction: column;
-
-        padding: 25px 15px;
-
-        text-align: center;
-    }
-
-    .usuarios-page .usuarios-header img {
-        width: 60px;
-        height: 60px;
-    }
-
-    .usuarios-page .usuarios-header h1 {
-        font-size: 18px;
-    }
-
-    .usuarios-page .usuarios-container h2 {
-        font-size: 23px;
-    }
-
-    .usuarios-page .usuarios-footer {
-        margin-top: 50px;
-    }
-
-    .usuarios-page .usuarios-footer p {
-        font-size: 12px;
-    }
-}
-
-/* ========================================
-   SUPERBIKE - ELIMINAR USUARIOS
-======================================== */
-
-/* RESET */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-/* ========================================
-   CUERPO
-======================================== */
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #0d0f12;
-    color: #ffffff;
-    min-height: 100vh;
-}
-
-
-/* ========================================
-   HEADER
-======================================== */
-
-.encabezado {
-    width: 100%;
-    min-height: 85px;
-    padding: 12px 50px;
-
-    display: flex;
-    align-items: center;
-
-    background: #15181d;
-    border-bottom: 1px solid #292e35;
-
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
-}
-
-.logo-titulo {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-
-.logo-titulo img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-
-    transition: transform 0.3s ease;
-}
-
-.logo-titulo img:hover {
-    transform: scale(1.08);
-}
-
-.logo-titulo h1 {
-    font-size: 25px;
-    color: #ffffff;
-}
-
-
-/* ========================================
-   MENU
-======================================== */
-
-.menu-principal {
-    width: 100%;
-    background: #111419;
-
-    border-bottom: 1px solid #292e35;
-}
-
-.menu-principal ul {
-    list-style: none;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 14px 20px;
-}
-
-.menu-principal a {
-    display: block;
-
-    padding: 10px 18px;
-
-    color: #d8dce2;
-    text-decoration: none;
-
-    border-radius: 8px;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    transition: all 0.2s ease;
-}
-
-.menu-principal a:hover {
-    background: #0089c8;
-    color: #06140b;
-}
-
-
-/* ========================================
-   CONTENEDOR
-======================================== */
-
-.login-container {
-    width: 100%;
-    max-width: 1250px;
-
-    margin: 50px auto;
-
-    padding: 0 20px;
-}
-
-.login-form {
-    width: 100%;
-
-    background: #16191e;
-
-    padding: 30px;
-
-    border-radius: 14px;
-
-    border: 1px solid #292e35;
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-}
-
-
-/* ========================================
-   TITULO
-======================================== */
-
-.login-form h2 {
-    margin-bottom: 25px;
-
-    color: #ffffff;
-
-    font-size: 27px;
-    font-weight: 700;
-
-    position: relative;
-}
-
-.login-form h2::after {
-    content: "";
-
-    display: block;
-
-    width: 90px;
-    height: 4px;
-
-    margin-top: 8px;
-
-    background: #00e676;
-
-    border-radius: 10px;
-}
-
-
-/* ========================================
-   TABLA
-======================================== */
-
-.tabla-usuarios {
-    width: 100%;
-
-    border-collapse: collapse;
-
-    overflow: hidden;
-
-    border-radius: 10px;
-
-    background: #16191e;
-}
-
-
-/* ========================================
-   ENCABEZADO TABLA
-======================================== */
-
-.tabla-usuarios thead {
-    background: #00c853;
-}
-
-.tabla-usuarios th {
-    padding: 16px 14px;
-
-    color: #06140b;
-
-    font-size: 13px;
-    font-weight: 700;
-
-    text-transform: uppercase;
-
-    text-align: left;
-}
-
-
-/* ========================================
-   CELDAS
-======================================== */
-
-.tabla-usuarios td {
-    padding: 15px 14px;
-
-    color: #d8dce2;
-
-    border-bottom: 1px solid #292e35;
-
-    vertical-align: middle;
-}
-
-
-/* ========================================
-   HOVER
-======================================== */
-
-.tabla-usuarios tbody tr {
-    transition: all 0.4s ease;
-}
-
-.tabla-usuarios tbody tr:hover {
-    background: #20252c;
-}
-
-.tabla-usuarios tbody tr:hover td {
-    color: rgb(255, 255, 255);
-}
-
-
-/* ========================================
-   ID
-======================================== */
-
-.tabla-usuarios tbody td:first-child {
-    color: #0089c8;
-
-    font-weight: 700;
-}
-
-
-/* ========================================
-   ROL
-======================================== */
-
-.tabla-usuarios tbody td:nth-child(6) {
-    color: #0089c8;
-
-    font-weight: 600;
-}
-
-
-/* ========================================
-   BOTON ELIMINAR
-======================================== */
-
-.tabla-usuarios button {
-    padding: 9px 15px;
-
-    border: none;
-
-    border-radius: 7px;
-
-    background: #d32f2f;
-
-    color: #ffffff;
-
-    font-size: 13px;
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition: all 0.2s ease;
-}
-
-.tabla-usuarios button:hover {
-    background: #ff3d3d;
-
-    transform: translateY(-1px);
-
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
-}
-
-.tabla-usuarios button:active {
-    transform: scale(0.97);
-}
-
-
-/* ========================================
-   BOTON REGRESAR
-======================================== */
-
-.boton-regresar {
-    display: inline-block;
-
-    padding: 11px 20px;
-
-    background: #0089c8;
-
-    color: #06140b;
-
-    text-decoration: none;
-
-    border-radius: 8px;
-
-    font-weight: 700;
-
-    transition: all 0.2s ease;
-}
-
-.boton-regresar:hover {
-    background: #0089c8e1;
-
-    transform: translateY(-1px);
-
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-}
-
-
-/* ========================================
-   FOOTER
-======================================== */
-
-footer {
-    width: 100%;
-
-    margin-top: 70px;
-
-    padding: 30px 20px;
-
-    text-align: center;
-
-    background: #15181d;
-
-    border-top: 1px solid #292e35;
-
-    color: #858c96;
-}
-
-footer p {
-    margin: 6px 0;
-
-    font-size: 14px;
-}
-
-footer p:first-child {
-    color: #ffffffa9;
-
-    font-size: 21px;
-    font-weight: 700;
-}
-
-
-/* ========================================
-   RESPONSIVE
-======================================== */
-
-@media (max-width: 900px) {
-
-    .encabezado {
-        padding: 12px 25px;
-    }
-
-    .login-container {
-        padding: 0 15px;
-    }
-
-    .login-form {
-        padding: 20px;
-        overflow-x: auto;
-    }
-
-    .tabla-usuarios {
-        min-width: 850px;
-    }
-}
-
-
-/* ========================================
-   CELULARES
-======================================== */
-
-@media (max-width: 600px) {
-
-    .encabezado {
-        padding: 20px 15px;
-    }
-
-    .logo-titulo h1 {
-        font-size: 20px;
-    }
-
-    .logo-titulo img {
-        width: 50px;
-        height: 50px;
-    }
-
-    .menu-principal ul {
-        flex-direction: column;
-
-        gap: 5px;
-    }
-
-    .menu-principal a {
-        width: 220px;
-
-        text-align: center;
-    }
-
-    .login-container {
-        margin: 30px auto;
-    }
-
-    .login-form {
-        padding: 18px;
-    }
-
-    .login-form h2 {
-        font-size: 23px;
-    }
-
-    footer {
-        margin-top: 45px;
-    }
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: #f5f5f5;
-    color: #333;
-}
-
 .contenedor {
     width: 95%;
     max-width: 1400px;
     margin: 40px auto;
 }
 
-.encabezado {
+.contenedor > .encabezado {
     background: #2e1818;
     color: white;
     padding: 25px;
     border-radius: 12px 12px 0 0;
 }
 
-.encabezado h1 {
+.contenedor > .encabezado h1 {
     margin-bottom: 8px;
 }
 
-.encabezado p {
+.contenedor > .encabezado p {
     opacity: 0.9;
 }
 
@@ -1893,10 +1184,10 @@ body {
     background: white;
     padding: 25px;
     display: flex;
-    align-items: end;
+    align-items: center;
     gap: 15px;
     flex-wrap: wrap;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
 .campo {
@@ -1958,13 +1249,13 @@ body {
     background: white;
     border-radius: 10px;
     overflow-x: auto;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 1100px;
+    min-width: 800px;
 }
 
 th {
@@ -1981,6 +1272,11 @@ td {
 
 tr:hover {
     background: #fafafa;
+}
+
+td:first-child {
+    font-weight: bold;
+    text-align: center;
 }
 
 .estado {
@@ -2015,17 +1311,200 @@ tr:hover {
     text-align: center;
 }
 
-/* =========================
-    REPORTE DE USUARIOS
-========================= */
-
-.contenedor {
-    width: 95%;
-    max-width: 1400px;
-    margin: 40px auto;
+/* ========================================
+   SUPERBIKE - ELIMINAR USUARIOS
+======================================== */
+.encabezado {
+    width: 100%;
+    min-height: 85px;
+    padding: 12px 50px;
+    display: flex;
+    align-items: center;
+    background: #15181d;
+    border-bottom: 1px solid #292e35;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
 }
 
-.encabezado {
+.logo-titulo {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.logo-titulo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo-titulo img:hover {
+    transform: scale(1.08);
+}
+
+.logo-titulo h1 {
+    font-size: 25px;
+    color: #ffffff;
+}
+
+.menu-principal {
+    width: 100%;
+    background: #111419;
+    border-bottom: 1px solid #292e35;
+}
+
+.menu-principal ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+}
+
+.menu-principal a {
+    display: block;
+    padding: 10px 18px;
+    color: #d8dce2;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.menu-principal a:hover {
+    background: #0089c8;
+    color: #06140b;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.login-form {
+    width: 100%;
+    background: #16191e;
+    padding: 30px;
+    border-radius: 14px;
+    border: 1px solid #292e35;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.login-form h2 {
+    margin-bottom: 25px;
+    color: #ffffff;
+    font-size: 27px;
+    font-weight: 700;
+    position: relative;
+}
+
+.login-form h2::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 4px;
+    margin-top: 8px;
+    background: #00e676;
+    border-radius: 10px;
+}
+
+.tabla-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #16191e;
+}
+
+.tabla-usuarios thead {
+    background: #00c853;
+}
+
+.tabla-usuarios th {
+    padding: 16px 14px;
+    color: #06140b;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.tabla-usuarios td {
+    padding: 15px 14px;
+    color: #d8dce2;
+    border-bottom: 1px solid #292e35;
+    vertical-align: middle;
+}
+
+.tabla-usuarios tbody tr {
+    transition: all 0.4s ease;
+}
+
+.tabla-usuarios tbody tr:hover {
+    background: #20252c;
+}
+
+.tabla-usuarios tbody tr:hover td {
+    color: rgb(255, 255, 255);
+}
+
+.tabla-usuarios tbody td:first-child {
+    color: #0089c8;
+    font-weight: 700;
+}
+
+.tabla-usuarios tbody td:nth-child(6) {
+    color: #0089c8;
+    font-weight: 600;
+}
+
+.tabla-usuarios button {
+    padding: 9px 15px;
+    border: none;
+    border-radius: 7px;
+    background: #d32f2f;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tabla-usuarios button:hover {
+    background: #ff3d3d;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.tabla-usuarios button:active {
+    transform: scale(0.97);
+}
+
+.boton-regresar {
+    display: inline-block;
+    padding: 11px 20px;
+    background: #0089c8;
+    color: #06140b;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.boton-regresar:hover {
+    background: #0089c8e1;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   REPORTE DE USUARIOS
+========================= */
+.encabezado-reporte {
     background: #cc2512;
     color: rgb(255, 255, 255);
     padding: 25px;
@@ -2035,90 +1514,211 @@ tr:hover {
     justify-content: center;
 }
 
-.encabezado h1 {
+.encabezado-reporte h1 {
     margin-bottom: 8px;
 }
 
-.encabezado p {
+.encabezado-reporte p {
     opacity: 1;
     margin: 0;
 }
 
-.filtros {
-    background: white;
-    padding: 25px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-.boton {
-    border: none;
-    padding: 11px 18px;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 15px;
-    color: white;
-}
-
-.buscar {
-    background: #8b0000;
-}
-
-.buscar:hover {
-    background: #650000;
-}
-
-.excel {
-    background: #16833b;
-    margin-left: auto;
-}
-
-.excel:hover {
-    background: #10632d;
-}
-
-.tabla-contenedor {
-    margin-top: 20px;
-    background: white;
-    border-radius: 10px;
-    overflow-x: auto;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-table {
+/* ==================== FOOTER ==================== */
+footer {
     width: 100%;
-    border-collapse: collapse;
-    min-width: 800px;
-}
-
-th {
-    background: #8b0000;
-    color: white;
-    padding: 14px 10px;
-    text-align: left;
-}
-
-td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-tr:hover {
-    background: #fafafa;
-}
-
-td:first-child {
-    font-weight: bold;
+    margin-top: 70px;
+    padding: 30px 20px;
     text-align: center;
+    background: #15181d;
+    border-top: 1px solid #292e35;
+    color: #858c96;
+    font-size: 15px;
 }
 
-.sin-datos {
-    text-align: center;
-    padding: 40px;
-    color: #777;
+footer p {
+    margin: 6px 0;
+    font-size: 14px;
 }
 
+footer p:first-child {
+    color: #ffffffa9;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 900px) {
+    .encabezado {
+        padding: 12px 25px;
+    }
+
+    .login-container {
+        padding: 0 15px;
+    }
+
+    .login-form {
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    .tabla-usuarios {
+        min-width: 850px;
+    }
+}
+
+@media (max-width: 800px) {
+    .usuarios-page .usuarios-header {
+        padding: 15px 25px;
+    }
+
+    .usuarios-page .usuarios-header h1 {
+        font-size: 21px;
+    }
+
+    .usuarios-page .usuarios-container {
+        width: 95%;
+        margin: 35px auto;
+        padding: 0;
+    }
+
+    .usuarios-page .usuarios-table {
+        min-width: 750px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+    }
+
+    #hero h1,
+    .catalogo-hero h1,
+    .contacto-hero h1,
+    .about-hero h1 {
+        font-size: 40px;
+    }
+
+    #hero p,
+    .catalogo-hero p,
+    .contacto-hero p,
+    .about-hero p {
+        font-size: 18px;
+    }
+
+    .hero-premium {
+        text-align: center;
+        justify-content: center;
+        padding: 100px 20px;
+    }
+
+    .hero-left h1 {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .hero-left p {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .floating-bike {
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .catalogo {
+        padding: 50px 20px;
+    }
+
+    .catalogo h2,
+    .contacto-info h2,
+    .contacto-formulario h2,
+    .about-text h2,
+    .valores h2 {
+        font-size: 30px;
+    }
+
+    .contacto-container,
+    .about-container {
+        padding: 50px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .encabezado {
+        padding: 20px 15px;
+    }
+
+    .logo-titulo h1 {
+        font-size: 20px;
+    }
+
+    .logo-titulo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .menu-principal ul {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .menu-principal a {
+        width: 220px;
+        text-align: center;
+    }
+
+    .login-container {
+        margin: 30px auto;
+    }
+
+    .login-form {
+        padding: 18px;
+    }
+
+    .login-form h2 {
+        font-size: 23px;
+    }
+
+    footer {
+        margin-top: 45px;
+    }
+}
+
+@media (max-width: 500px) {
+    .usuarios-page .usuarios-header {
+        flex-direction: column;
+        padding: 25px 15px;
+        text-align: center;
+    }
+
+    .usuarios-page .usuarios-header img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .usuarios-page .usuarios-header h1 {
+        font-size: 18px;
+    }
+
+    .usuarios-page .usuarios-container h2 {
+        font-size: 23px;
+    }
+
+    .usuarios-page .usuarios-footer {
+        margin-top: 50px;
+    }
+
+    .usuarios-page .usuarios-footer p {
+        font-size: 12px;
+    }
+}
