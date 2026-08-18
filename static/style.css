@@ -1525,7 +1525,7 @@ body {
 }
 
 .menu-principal a:hover {
-    background: #00c853;
+    background: #0089c8;
     color: #06140b;
 }
 
@@ -1648,7 +1648,7 @@ body {
 ======================================== */
 
 .tabla-usuarios tbody tr {
-    transition: all 0.2s ease;
+    transition: all 0.4s ease;
 }
 
 .tabla-usuarios tbody tr:hover {
@@ -1656,7 +1656,7 @@ body {
 }
 
 .tabla-usuarios tbody tr:hover td {
-    color: #ffffff;
+    color: rgb(255, 255, 255);
 }
 
 
@@ -1665,7 +1665,7 @@ body {
 ======================================== */
 
 .tabla-usuarios tbody td:first-child {
-    color: #00e676;
+    color: #0089c8;
 
     font-weight: 700;
 }
@@ -1676,7 +1676,7 @@ body {
 ======================================== */
 
 .tabla-usuarios tbody td:nth-child(6) {
-    color: #00e676;
+    color: #0089c8;
 
     font-weight: 600;
 }
@@ -1727,7 +1727,7 @@ body {
 
     padding: 11px 20px;
 
-    background: #00c853;
+    background: #0089c8;
 
     color: #06140b;
 
@@ -1741,7 +1741,7 @@ body {
 }
 
 .boton-regresar:hover {
-    background: #00e676;
+    background: #0089c8e1;
 
     transform: translateY(-1px);
 
@@ -1776,7 +1776,7 @@ footer p {
 }
 
 footer p:first-child {
-    color: #00e676;
+    color: #ffffffa9;
 
     font-size: 21px;
     font-weight: 700;
@@ -1875,7 +1875,7 @@ body {
 }
 
 .encabezado {
-    background: #8b0000;
+    background: #2e1818;
     color: white;
     padding: 25px;
     border-radius: 12px 12px 0 0;
@@ -2016,7 +2016,7 @@ tr:hover {
 }
 
 /* =========================
-   REPORTE DE USUARIOS
+    REPORTE DE USUARIOS
 ========================= */
 
 .contenedor {
@@ -2026,10 +2026,13 @@ tr:hover {
 }
 
 .encabezado {
-    background: #8b0000;
-    color: white;
+    background: #cc2512;
+    color: rgb(255, 255, 255);
     padding: 25px;
     border-radius: 12px 12px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .encabezado h1 {
@@ -2037,7 +2040,8 @@ tr:hover {
 }
 
 .encabezado p {
-    opacity: 0.9;
+    opacity: 1;
+    margin: 0;
 }
 
 .filtros {
@@ -2117,3 +2121,4 @@ td:first-child {
     padding: 40px;
     color: #777;
 }
+
