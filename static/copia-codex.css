@@ -1,14 +1,4 @@
-```css
-/* =========================================================
-   SUPER BIKE
-   HOJA DE ESTILOS PRINCIPAL
-   ========================================================= */
-
-
-/* =========================================================
-   1. RESET
-   ========================================================= */
-
+﻿/* ==================== RESET ==================== */
 * {
     margin: 0;
     padding: 0;
@@ -16,11 +6,7 @@
     font-family: Arial, sans-serif;
 }
 
-
-/* =========================================================
-   2. BASE GENERAL
-   ========================================================= */
-
+/* ==================== BASE ==================== */
 body {
     min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
@@ -29,11 +15,7 @@ body {
     line-height: 1.6;
 }
 
-
-/* =========================================================
-   3. HEADER / NAVBAR PRINCIPAL
-   ========================================================= */
-
+/* ==================== HEADER / NAVBAR ==================== */
 header {
     background: #000000ea;
     padding: 10px 40px;
@@ -87,7 +69,7 @@ nav {
     color: gray;
 }
 
-.nav-links > li:not(:last-child):not(.dropdown)::after {
+.nav-links > li:not(:last-child):not(.dropdown):after {
     content: "";
     width: 1px;
     height: 20px;
@@ -96,11 +78,7 @@ nav {
     margin-right: 5px;
 }
 
-
-/* =========================================================
-   4. DROPDOWN DEL PERFIL
-   ========================================================= */
-
+/* ==================== DROPDOWN ==================== */
 .dropdown {
     position: relative;
 }
@@ -115,10 +93,10 @@ nav {
     padding: 10px;
     list-style: none;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255,255,255,0.08);
     backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
     display: none;
     overflow: hidden;
     animation: dropdownFade 0.3s ease;
@@ -160,17 +138,12 @@ nav {
     display: block;
 }
 
-
-/* =========================================================
-   5. ANIMACIONES
-   ========================================================= */
-
+/* ==================== ANIMACIONES ==================== */
 @keyframes dropdownFade {
     from {
         opacity: 0;
         transform: translateY(-10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -179,15 +152,13 @@ nav {
 
 @keyframes floatBike {
     0% {
-        transform: translateY(0);
+        transform: translateY(0px);
     }
-
     50% {
         transform: translateY(-18px);
     }
-
     100% {
-        transform: translateY(0);
+        transform: translateY(0px);
     }
 }
 
@@ -196,12 +167,10 @@ nav {
         transform: scale(1);
         opacity: 0.7;
     }
-
     50% {
         transform: scale(1.1);
         opacity: 1;
     }
-
     100% {
         transform: scale(1);
         opacity: 0.7;
@@ -213,7 +182,6 @@ nav {
         opacity: 0;
         transform: translateY(30px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -225,7 +193,6 @@ nav {
         opacity: 0;
         transform: translateX(100%);
     }
-
     to {
         opacity: 1;
         transform: translateX(0);
@@ -233,25 +200,14 @@ nav {
 }
 
 @keyframes barra {
-    from {
-        width: 100%;
-    }
-
-    to {
-        width: 0%;
-    }
+    from { width: 100%; }
+    to { width: 0%; }
 }
 
-
-/* =========================================================
-   6. HERO PRINCIPAL
-   ========================================================= */
-
+/* ==================== HERO PRINCIPAL ==================== */
 #hero {
     height: 90vh;
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("img/PortadaBike.jpeg.png");
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("img/PortadaBike.jpeg.png");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -293,11 +249,7 @@ nav {
     transform: scale(1.05);
 }
 
-
-/* =========================================================
-   7. HERO PREMIUM
-   ========================================================= */
-
+/* ==================== HERO PREMIUM ==================== */
 .hero-premium {
     min-height: 100vh;
     background: radial-gradient(circle at top, #1f1f1f, #0a0a0a);
@@ -381,11 +333,7 @@ nav {
     width: 450px;
     height: 450px;
     border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        rgba(0, 191, 255, 0.35),
-        transparent 70%
-    );
+    background: radial-gradient(circle, rgba(0,191,255,0.35), transparent 70%);
     filter: blur(50px);
     animation: pulseGlow 4s ease-in-out infinite;
 }
@@ -395,20 +343,14 @@ nav {
     position: relative;
     z-index: 2;
     object-fit: contain;
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
     animation: floatBike 5s ease-in-out infinite;
 }
 
-
-/* =========================================================
-   8. CATÁLOGO
-   ========================================================= */
-
+/* ==================== CATÁLOGO ==================== */
 .catalogo-hero {
     height: 90vh;
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url("img/cta.png");
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("img/cta.png");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -453,7 +395,7 @@ nav {
     background: white;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     transition: 0.3s;
     display: flex;
     flex-direction: column;
@@ -516,16 +458,10 @@ nav {
     transform: scale(1.03);
 }
 
-
-/* =========================================================
-   9. CONTACTO
-   ========================================================= */
-
+/* ==================== CONTACTO ==================== */
 .contacto-hero {
     height: 90vh;
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url("img/scott-spark-2021-rc-worldcup.png");
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("img/scott-spark-2021-rc-worldcup.png");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -600,7 +536,7 @@ nav {
     background: white;
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
 .contacto-formulario form {
@@ -646,16 +582,10 @@ nav {
     transform: translateY(-3px);
 }
 
-
-/* =========================================================
-   10. QUIÉNES SOMOS
-   ========================================================= */
-
+/* ==================== QUIÉNES SOMOS ==================== */
 .about-hero {
     height: 90vh;
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-        url("img/Gemini_Generated_Image_q6pwy3q6pwy3q6pw.png");
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("img/Gemini_Generated_Image_q6pwy3q6pwy3q6pw.png");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -696,7 +626,7 @@ nav {
 .about-image img {
     width: 100%;
     border-radius: 20px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
 .about-text h2 {
@@ -722,9 +652,9 @@ nav {
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255,255,255,0.08);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255,255,255,0.1);
     padding: 40px;
     border-radius: 25px;
     width: 400px;
@@ -790,19 +720,13 @@ nav {
     line-height: 1.7;
 }
 
-
-/* =========================================================
-   11. LOGIN / REGISTRO
-   ========================================================= */
-
+/* ==================== LOGIN / REGISTRO ==================== */
 .auth-body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url("img/PortadaBike.jpeg.png");
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("img/PortadaBike.jpeg.png");
     background-size: cover;
     background-position: center;
     padding: 20px;
@@ -884,7 +808,7 @@ nav {
 .auth-card button:hover {
     background: #ffffff;
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .auth-card span {
@@ -910,26 +834,20 @@ nav {
     transform: translateY(-2px);
 }
 
-
-/* =========================================================
-   12. MENSAJE ENVIADO
-   ========================================================= */
-
+/* ==================== MENSAJE ENVIADO ==================== */
 .mensaje-box {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url("img/PortadaBike.jpeg.png");
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("img/PortadaBike.jpeg.png");
     background-size: cover;
     background-position: center;
     padding: 20px;
 }
 
 .mensaje-card {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255,255,255,0.08);
     backdrop-filter: blur(15px);
     padding: 50px;
     border-radius: 25px;
@@ -937,7 +855,7 @@ nav {
     color: white;
     width: 100%;
     max-width: 600px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
 .mensaje-card h1 {
@@ -969,11 +887,7 @@ nav {
     transform: translateY(-5px);
 }
 
-
-/* =========================================================
-   13. TOAST / NOTIFICACIONES
-   ========================================================= */
-
+/* ==================== TOAST ==================== */
 .toast {
     display: none;
     flex-direction: column;
@@ -981,14 +895,14 @@ nav {
     top: 25px;
     right: 25px;
     width: 360px;
-    background: rgba(25, 25, 25, 0.95);
+    background: rgba(25,25,25,.95);
     backdrop-filter: blur(18px);
     border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 20px 45px rgba(0,0,0,.45);
     color: #fff;
     z-index: 9999;
-    animation: toast 0.45s ease;
+    animation: toast .45s ease;
 }
 
 .toast-icon {
@@ -1031,11 +945,6 @@ nav {
 .toast.error .toast-bar {
     background: #ef4444;
 }
-
-
-/* ---------------------------------------------------------
-   TOAST SECUNDARIO
-   --------------------------------------------------------- */
 
 .toast-notification {
     position: fixed;
@@ -1094,11 +1003,9 @@ nav {
     margin: 2px 0 0 0;
 }
 
-
-/* =========================================================
-   14. CONSULTAR USUARIOS
-   ========================================================= */
-
+/* ========================================
+   SUPERBIKE - CONSULTAR USUARIOS
+======================================== */
 .usuarios-page {
     min-height: 100vh;
     background: #0d0f12;
@@ -1249,11 +1156,9 @@ nav {
     font-weight: 700;
 }
 
-
-/* =========================================================
-   15. REPORTES / TABLAS GENERALES
-   ========================================================= */
-
+/* ========================================
+   REPORTES / TABLAS GENERALES
+======================================== */
 .contenedor {
     width: 95%;
     max-width: 1400px;
@@ -1282,7 +1187,7 @@ nav {
     align-items: center;
     gap: 15px;
     flex-wrap: wrap;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
 .campo {
@@ -1339,17 +1244,12 @@ nav {
     background: #10632d;
 }
 
-
-/* ---------------------------------------------------------
-   TABLAS GENERALES
-   --------------------------------------------------------- */
-
 .tabla-contenedor {
     margin-top: 20px;
     background: white;
     border-radius: 10px;
     overflow-x: auto;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
 table {
@@ -1411,11 +1311,9 @@ td:first-child {
     text-align: center;
 }
 
-
-/* =========================================================
-   16. ELIMINAR USUARIOS
-   ========================================================= */
-
+/* ========================================
+   SUPERBIKE - ELIMINAR USUARIOS
+======================================== */
 .encabezado {
     width: 100%;
     min-height: 85px;
@@ -1480,11 +1378,6 @@ td:first-child {
     color: #06140b;
 }
 
-
-/* ---------------------------------------------------------
-   CONTENEDOR DEL FORMULARIO / TABLA
-   --------------------------------------------------------- */
-
 .login-container {
     width: 100%;
     max-width: 1250px;
@@ -1518,11 +1411,6 @@ td:first-child {
     background: #00e676;
     border-radius: 10px;
 }
-
-
-/* ---------------------------------------------------------
-   TABLA DE USUARIOS
-   --------------------------------------------------------- */
 
 .tabla-usuarios {
     width: 100%;
@@ -1574,11 +1462,6 @@ td:first-child {
     font-weight: 600;
 }
 
-
-/* ---------------------------------------------------------
-   BOTÓN ELIMINAR
-   --------------------------------------------------------- */
-
 .tabla-usuarios button {
     padding: 9px 15px;
     border: none;
@@ -1601,11 +1484,6 @@ td:first-child {
     transform: scale(0.97);
 }
 
-
-/* ---------------------------------------------------------
-   BOTÓN REGRESAR
-   --------------------------------------------------------- */
-
 .boton-regresar {
     display: inline-block;
     padding: 11px 20px;
@@ -1623,11 +1501,9 @@ td:first-child {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
 
-
-/* =========================================================
-   17. REPORTE DE USUARIOS
-   ========================================================= */
-
+/* =========================
+   REPORTE DE USUARIOS
+========================= */
 .encabezado-reporte {
     background: #161515;
     color: rgb(255, 255, 255);
@@ -1647,11 +1523,7 @@ td:first-child {
     margin: 0;
 }
 
-
-/* =========================================================
-   18. FOOTER
-   ========================================================= */
-
+/* ==================== FOOTER ==================== */
 footer {
     width: 100%;
     margin-top: 70px;
@@ -1674,13 +1546,8 @@ footer p:first-child {
     font-weight: 700;
 }
 
-
-/* =========================================================
-   19. RESPONSIVE — TABLET
-   ========================================================= */
-
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 900px) {
-
     .encabezado {
         padding: 12px 25px;
     }
@@ -1699,13 +1566,7 @@ footer p:first-child {
     }
 }
 
-
-/* =========================================================
-   20. RESPONSIVE — USUARIOS
-   ========================================================= */
-
 @media (max-width: 800px) {
-
     .usuarios-page .usuarios-header {
         padding: 15px 25px;
     }
@@ -1725,13 +1586,7 @@ footer p:first-child {
     }
 }
 
-
-/* =========================================================
-   21. RESPONSIVE — MÓVILES
-   ========================================================= */
-
 @media (max-width: 768px) {
-
     nav {
         flex-direction: column;
         gap: 15px;
@@ -1798,13 +1653,7 @@ footer p:first-child {
     }
 }
 
-
-/* =========================================================
-   22. RESPONSIVE — MÓVILES PEQUEÑOS
-   ========================================================= */
-
 @media (max-width: 600px) {
-
     .encabezado {
         padding: 20px 15px;
     }
@@ -1845,13 +1694,7 @@ footer p:first-child {
     }
 }
 
-
-/* =========================================================
-   23. RESPONSIVE — USUARIOS EN CELULAR
-   ========================================================= */
-
 @media (max-width: 500px) {
-
     .usuarios-page .usuarios-header {
         flex-direction: column;
         padding: 25px 15px;
@@ -1879,4 +1722,3 @@ footer p:first-child {
         font-size: 12px;
     }
 }
-```
