@@ -394,9 +394,6 @@ def reporte_excel():
 
 
 
-
-
-
 # Ejecutar la aplicación
 
 if __name__ == "__main__":

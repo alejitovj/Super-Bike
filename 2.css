@@ -1166,7 +1166,7 @@ nav {
 }
 
 .contenedor > .encabezado {
-    background: #ee4a4a;
+    background: #3cf802;
     color: white;
     padding: 25px;
     border-radius: 12px 12px 0 0;
@@ -1220,7 +1220,7 @@ nav {
 }
 
 .buscar {
-    background: #8b0000;
+    background: #8b8900;
 }
 
 .buscar:hover {
