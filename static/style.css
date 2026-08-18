@@ -1259,11 +1259,14 @@ nav {
     margin: 40px auto;
 }
 
-.contenedor > .encabezado-reporte {
-    background: #ee1313;
+.contenedor > .encabezado {
+    background: #801818;
     color: white;
     padding: 25px;
     border-radius: 12px 12px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .contenedor > .encabezado h1 {
@@ -1628,8 +1631,8 @@ td:first-child {
    ========================================================= */
 
 .encabezado-reporte {
-    background: #0e0c0c;
-    color: rgb(236, 8, 8);
+    background: #d61f1f;
+    color: rgb(255, 255, 255);
     padding: 25px;
     border-radius: 12px 12px 0 0;
     display: flex;
