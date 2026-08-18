@@ -1107,7 +1107,7 @@ nav {
 
 .usuarios-page .usuarios-header {
     width: 100%;
-    min-height: 90px;
+    min-height: 120px;
     padding: 15px 50px;
     display: flex;
     align-items: center;
@@ -1138,7 +1138,13 @@ nav {
 .usuarios-page .usuarios-container {
     max-width: 1200px;
     margin: 50px auto;
-    padding: 0 20px;
+    padding: 50px;
+    width: 100%;
+    background: #16191e;
+    padding: 30px;
+    border-radius: 14px;
+    border: 1px solid #292e35;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .usuarios-page .usuarios-container h2 {
@@ -1202,7 +1208,7 @@ nav {
 }
 
 .usuarios-page .usuarios-table tbody tr {
-    transition: background 0.2s ease;
+    transition: background 0.8s ease;
 }
 
 .usuarios-page .usuarios-table tbody tr:hover td {
@@ -1211,12 +1217,12 @@ nav {
 }
 
 .usuarios-page .usuarios-table tbody td:first-child {
-    color: #00e676;
+    color: #0089c8;
     font-weight: bold;
 }
 
 .usuarios-page .usuarios-table tbody td:last-child {
-    color: #00e676;
+    color: #0089c8;
     font-weight: 600;
 }
 
@@ -1243,7 +1249,7 @@ nav {
 }
 
 .usuarios-page .usuarios-footer p:first-child {
-    color: #00e676;
+    color: #ffffffa9;
     font-size: 21px;
     font-weight: 700;
 }
@@ -1420,7 +1426,7 @@ td:first-child {
 
 .encabezado {
     width: 100%;
-    min-height: 85px;
+    min-height: 90px;
     padding: 12px 50px;
     display: flex;
     align-items: center;
