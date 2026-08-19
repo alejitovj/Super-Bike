@@ -1,0 +1,165 @@
+/* ==================== QUIÉNES SOMOS ==================== */
+
+.about-hero {
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("../img/Gemini_Generated_Image_q6pwy3q6pwy3q6pw.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.about-overlay {
+    padding: 20px;
+}
+
+.about-hero h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.about-hero p {
+    font-size: 22px;
+}
+
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 80px 50px;
+    flex-wrap: wrap;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-text h2 {
+    font-size: 45px;
+    margin-bottom: 25px;
+    color: #111;
+}
+
+.about-text p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.mision-vision {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 50px;
+    flex-wrap: wrap;
+    background: #ffffff;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 40px;
+    border-radius: 25px;
+    width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 40px #00bfff4d;
+}
+
+.card h2 {
+    font-size: 35px;
+    margin-bottom: 20px;
+    color: #aa1818;
+}
+
+.card p {
+    color: #000000;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+.valores {
+    padding: 80px 50px;
+    text-align: center;
+}
+
+.valores h2 {
+    font-size: 45px;
+    margin-bottom: 50px;
+    color: #534e4e;
+}
+
+.valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.valor-card {
+    background: rgb(255, 255, 255);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px #3a484da1;
+    transition: 0.3s;
+}
+
+.valor-card:hover {
+    transform: translateY(-10px);
+}
+
+.valor-card h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #535133;
+}
+
+.valor-card p {
+    line-height: 1.7;
+}
+
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+
+    .about-hero h1 {
+        font-size: 40px;
+    }
+
+    .about-hero p {
+        font-size: 18px;
+    }
+
+    .about-container {
+        padding: 50px 20px;
+    }
+
+    .about-text h2,
+    .valores h2 {
+        font-size: 30px;
+    }
+}
