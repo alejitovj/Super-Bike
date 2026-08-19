@@ -1,121 +1,416 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Catálogo | Superbike</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
+
+
 <body>
-    <!-- HEADER -->
+
+
+    <!-- ==================== HEADER ==================== -->
+
     <header>
+
         <nav>
+
             <div class="logo">
-                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="">
-                <span>Superbike</span>
+
+                <img
+                    src="{{ url_for('static', filename='img/logo.png') }}"
+                    alt="Logo Superbike">
+
+                <span>
+                    Superbike
+                </span>
+
             </div>
+
+
             <ul class="nav-links">
-    <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
-    <li><a href="{{ url_for('catalogo') }}">Catálogo</a></li>
-    <li><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
-    <li><a href="{{ url_for('quienessomos') }}">Quiénes somos</a></li>
-                <li class="dropdown">
-                    <a href="#" id="perfil-btn">👤 Perfil</a>
-                    <ul class="dropdown-menu">
-            <li><a href="{{ url_for('login') }}">Iniciar sesión</a></li>
-            <li><a href="{{ url_for('registro') }}">Registrarse</a></li>
-                    </ul>
+
+                <li>
+                    <a href="{{ url_for('inicio') }}">
+                        Inicio
+                    </a>
                 </li>
+
+                <li>
+                    <a href="{{ url_for('catalogo') }}">
+                        Catálogo
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('contacto') }}">
+                        Contáctanos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('quienessomos') }}">
+                        Quiénes somos
+                    </a>
+                </li>
+
+
+                <!-- PERFIL -->
+
+                <li class="dropdown">
+
+                    <a href="#" id="perfil-btn" class="user-toggle">
+
+                        <span>
+                            👤
+                        </span>
+
+                        {% if session.get('logueado') %}
+
+                            <span>
+                                Hola, {{ session.get('user_name') }}
+                            </span>
+
+                        {% else %}
+
+                            <span>
+                                Perfil
+                            </span>
+
+                        {% endif %}
+
+                        <span class="arrow-down">
+                            &#9660;
+                        </span>
+
+                    </a>
+
+
+                    <ul class="dropdown-menu" id="dropdownMenu">
+
+                        {% if session.get('logueado') %}
+
+                            <li>
+                                <a href="{{ url_for('reporte') }}">
+                                    📊 Reporte de Usuarios
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ url_for('logout') }}">
+                                    Cerrar sesión
+                                </a>
+                            </li>
+
+                        {% else %}
+
+                            <li>
+                                <a href="{{ url_for('login') }}">
+                                    Iniciar sesión
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ url_for('registro') }}">
+                                    Registrarse
+                                </a>
+                            </li>
+
+                        {% endif %}
+
+                    </ul>
+
+                </li>
+
             </ul>
+
         </nav>
+
     </header>
 
-    <!-- HERO -->
+
+
+    <!-- ==================== HERO ==================== -->
+
     <section class="catalogo-hero">
+
         <div class="catalogo-overlay">
-            <h1>Nuestro Catálogo</h1>
-            <p>Descubre bicicletas modernas, resistentes y diseñadas para cualquier tipo de aventura.</p>
+
+            <h1>
+                Nuestro Catálogo
+            </h1>
+
+            <p>
+                Descubre bicicletas modernas,
+                resistentes y diseñadas para
+                cualquier tipo de aventura.
+            </p>
+
         </div>
+
     </section>
 
-    <!-- CATÁLOGO -->
+
+
+    <!-- ==================== CATÁLOGO ==================== -->
+
     <section class="catalogo">
-        <h2>Bicicletas Destacadas</h2>
+
+        <h2>
+            Bicicletas Destacadas
+        </h2>
+
+
         <div class="catalogo-grid">
-            <!-- CARD 1 -->
+
+
+            <!-- ==================== BICICLETA 1 ==================== -->
+
             <div class="catalogo-card">
-                <img src="{{ url_for('static', filename='img/Bici de montaña.png') }}" alt="Bike 1">
+
+                <img
+                    src="{{ url_for('static', filename='img/Bici de montaña.png') }}"
+                    alt="Bicicleta de montaña">
+
                 <div class="catalogo-info">
-                    <h3>Bicicleta Montaña</h3>
-                    <p>Ideal para rutas exigentes y terrenos difíciles.</p>
-                    <span>$1'800.000</span>
-                    <button>Comprar</button>
+
+                    <h3>
+                        Bicicleta Montaña
+                    </h3>
+
+                    <p>
+                        Ideal para rutas exigentes
+                        y terrenos difíciles.
+                    </p>
+
+                    <span>
+                        $1'800.000
+                    </span>
+
+                    <button>
+                        Comprar
+                    </button>
+
                 </div>
+
             </div>
-            <!-- CARD 2 -->
+
+
+
+            <!-- ==================== BICICLETA 2 ==================== -->
+
             <div class="catalogo-card">
-                <img src="{{ url_for('static', filename='img/mtb.png') }}" alt="">
+
+                <img
+                    src="{{ url_for('static', filename='img/mtb.png') }}"
+                    alt="Bicicleta MTB">
+
                 <div class="catalogo-info">
-                    <h3>Bicicleta MTB</h3>
-                    <p>Excelente para uso urbano y deportivo.</p>
-                    <span>$1'200.000</span>
-                    <button>Comprar</button>
+
+                    <h3>
+                        Bicicleta MTB
+                    </h3>
+
+                    <p>
+                        Excelente para uso urbano
+                        y deportivo.
+                    </p>
+
+                    <span>
+                        $1'200.000
+                    </span>
+
+                    <button>
+                        Comprar
+                    </button>
+
                 </div>
+
             </div>
-            <!-- CARD 3 -->
+
+
+
+            <!-- ==================== BICICLETA 3 ==================== -->
+
             <div class="catalogo-card">
-                <img src="{{ url_for('static', filename='img/downhill.png') }}" alt="">
+
+                <img
+                    src="{{ url_for('static', filename='img/downhill.png') }}"
+                    alt="Bicicleta Downhill">
+
                 <div class="catalogo-info">
-                    <h3>Bicicleta Downhill</h3>
-                    <p>Diseñada para descensos y saltos extremos.</p>
-                    <span>$2'200.000</span>
-                    <button>Comprar</button>
+
+                    <h3>
+                        Bicicleta Downhill
+                    </h3>
+
+                    <p>
+                        Diseñada para descensos
+                        y saltos extremos.
+                    </p>
+
+                    <span>
+                        $2'200.000
+                    </span>
+
+                    <button>
+                        Comprar
+                    </button>
+
                 </div>
+
             </div>
-            <!-- CARD 4 -->
+
+
+
+            <!-- ==================== BICICLETA 4 ==================== -->
+
             <div class="catalogo-card">
-                <img src="{{ url_for('static', filename='img/urbana.png') }}" alt="">
+
+                <img
+                    src="{{ url_for('static', filename='img/urbana.png') }}"
+                    alt="Bicicleta urbana">
+
                 <div class="catalogo-info">
-                    <h3>Bicicleta Urbana</h3>
-                    <p>Cómoda y perfecta para uso diario de trabajo o ciudad.</p>
-                    <span>$800.000</span>
-                    <button>Comprar</button>
+
+                    <h3>
+                        Bicicleta Urbana
+                    </h3>
+
+                    <p>
+                        Cómoda y perfecta para uso
+                        diario de trabajo o ciudad.
+                    </p>
+
+                    <span>
+                        $800.000
+                    </span>
+
+                    <button>
+                        Comprar
+                    </button>
+
                 </div>
+
             </div>
-            <!-- CARD 5 -->
+
+
+
+            <!-- ==================== BICICLETA 5 ==================== -->
+
             <div class="catalogo-card">
-                <img src="{{ url_for('static', filename='img/niños.png') }}" alt="">
+
+                <img
+                    src="{{ url_for('static', filename='img/niños.png') }}"
+                    alt="Bicicleta para niños">
+
                 <div class="catalogo-info">
-                    <h3>Bicicleta para Niños</h3>
-                    <p>Ideal para niños entre 5 y 10 años, con mente introvertida.</p>
-                    <span>$850.000</span>
-                    <button>Comprar</button>
+
+                    <h3>
+                        Bicicleta para Niños
+                    </h3>
+
+                    <p>
+                        Ideal para niños entre
+                        5 y 10 años.
+                    </p>
+
+                    <span>
+                        $850.000
+                    </span>
+
+                    <button>
+                        Comprar
+                    </button>
+
                 </div>
+
             </div>
-            <!-- CARD 6 -->
+
+
+
+            <!-- ==================== BICICLETA 6 ==================== -->
+
             <div class="catalogo-card">
-                <img src="{{ url_for('static', filename='img/Bici de montaña.png') }}" alt="">
+
+                <img
+                    src="{{ url_for('static', filename='img/Bici de montaña.png') }}"
+                    alt="Bicicleta eléctrica de alta gama">
+
                 <div class="catalogo-info">
-                    <h3>Bicicleta Alta Gama Electrica</h3>
-                    <p>Alto rendimiento y máxima velocidad.</p>
-                    <span>$3'500.000</span>
-                    <button>Comprar</button>
+
+                    <h3>
+                        Bicicleta Alta Gama Eléctrica
+                    </h3>
+
+                    <p>
+                        Alto rendimiento
+                        y máxima velocidad.
+                    </p>
+
+                    <span>
+                        $3'500.000
+                    </span>
+
+                    <button>
+                        Comprar
+                    </button>
+
                 </div>
+
             </div>
+
+
         </div>
+
     </section>
 
-    <!-- FOOTER -->
+
+
+    <!-- ==================== FOOTER ==================== -->
+
     <footer>
-        <p>&copy; 2025 Superbike | Todos los derechos reservados</p>
+
+        <p>
+            &copy; 2026 Superbike |
+            Todos los derechos reservados
+        </p>
+
     </footer>
+
+
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+
     <script>
+
         const perfilBtn = document.getElementById("perfil-btn");
-        const menu = document.querySelector(".dropdown-menu");
-        perfilBtn.addEventListener("click", function (e) {
-            e.preventDefault();
-            menu.classList.toggle("show");
-        });
+        const menu = document.getElementById("dropdownMenu");
+
+
+        if (perfilBtn && menu) {
+
+            perfilBtn.addEventListener("click", function (e) {
+
+                e.preventDefault();
+
+                menu.classList.toggle("show");
+
+            });
+
+        }
+
     </script>
+
+
 </body>
+
 </html>

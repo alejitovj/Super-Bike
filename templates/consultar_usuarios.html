@@ -1,93 +1,161 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Usuarios - SuperBike</title>
-    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link
+        rel="icon"
+        href="{{ url_for('static', filename='img/logo.png') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='global.css') }}"
+    >
+
 </head>
 
 <body>
 
     <div class="usuarios-page">
 
-        <header class="usuarios-header">
-            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo SuperBike">
 
-            <h1>Bienvenidos a nuestra página de bicicletas</h1>
+        <!-- HEADER -->
+
+        <header class="usuarios-header">
+
+            <img
+                src="{{ url_for('static', filename='img/logo.png') }}"
+                alt="Logo SuperBike"
+            >
+
+            <h1>
+                Bienvenidos a nuestra página de bicicletas
+            </h1>
+
         </header>
 
+
+        <!-- MENÚ -->
+
         <nav class="menu-principal">
-    <ul>
 
-        <li>
-            <a href="{{ url_for('panel_inicio') }}">
-                Inicio
-            </a>
-        </li>
+            <ul>
 
-        <li>
-            <a href="{{ url_for('consultar_usuarios') }}">
-                Consultar Usuarios
-            </a>
-        </li>
+                <li>
+                    <a href="{{ url_for('panel_inicio') }}">
+                        Inicio
+                    </a>
+                </li>
 
-        <li>
-            <a href="{{ url_for('eliminar_usuarios') }}">
-                Eliminar Usuarios
-            </a>
-        </li>
+                <li>
+                    <a href="{{ url_for('consultar_usuarios') }}">
+                        Consultar Usuarios
+                    </a>
+                </li>
 
-        <li>
-            <a href="{{ url_for('logout') }}">
-                Cerrar Sesión
-            </a>
-        </li>
+                <li>
+                    <a href="{{ url_for('eliminar_usuarios') }}">
+                        Eliminar Usuarios
+                    </a>
+                </li>
 
-    </ul>
-</nav>
+                <li>
+                    <a href="{{ url_for('logout') }}">
+                        Cerrar Sesión
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <!-- CONTENIDO -->
 
         <main class="usuarios-container">
 
-            <h2>Usuarios Registrados</h2>
+            <h2>
+                Usuarios Registrados
+            </h2>
+
 
             <div class="usuarios-tabla-contenedor">
 
                 <table class="usuarios-table">
 
                     <thead>
+
                         <tr>
+
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Correo</th>
                             <th>Teléfono</th>
                             <th>Usuario</th>
                             <th>Rol</th>
+
                         </tr>
+
                     </thead>
+
 
                     <tbody>
 
                         {% if usuarios %}
 
                             {% for usuario in usuarios %}
+
                             <tr>
-                                <td>{{ usuario.id }}</td>
-                                <td>{{ usuario.nombre }}</td>
-                                <td>{{ usuario.correo }}</td>
-                                <td>{{ usuario.telefono }}</td>
-                                <td>{{ usuario.nombre_usuario }}</td>
-                                <td>{{ usuario.rol }}</td>
+
+                                <td>
+                                    {{ usuario.id }}
+                                </td>
+
+                                <td>
+                                    {{ usuario.nombre }}
+                                </td>
+
+                                <td>
+                                    {{ usuario.correo }}
+                                </td>
+
+                                <td>
+                                    {{ usuario.telefono }}
+                                </td>
+
+                                <td>
+                                    {{ usuario.nombre_usuario }}
+                                </td>
+
+                                <td>
+                                    {{ usuario.rol }}
+                                </td>
+
                             </tr>
+
                             {% endfor %}
 
                         {% else %}
 
                             <tr>
-                                <td colspan="6" class="usuarios-vacio">
+
+                                <td
+                                    colspan="6"
+                                    class="usuarios-vacio"
+                                >
                                     No hay usuarios registrados.
                                 </td>
+
                             </tr>
 
                         {% endif %}
@@ -100,15 +168,27 @@
 
         </main>
 
-        <footer class="usuarios-footer">
-            <p>SuperBike</p>
 
-            <p>LUIS ALEJANDRO VELANDIA JURADO</p>
-            
-            <p>2026 - CEET - COLEGIO GABRIEL BETANCOUR MEJÍA</p>
+        <!-- FOOTER -->
+
+        <footer class="usuarios-footer">
+
+            <p>
+                SuperBike
+            </p>
+
+            <p>
+                LUIS ALEJANDRO VELANDIA JURADO
+            </p>
+
+            <p>
+                2026 - CEET - COLEGIO GABRIEL BETANCOUR MEJÍA
+            </p>
+
         </footer>
 
     </div>
 
 </body>
+
 </html>

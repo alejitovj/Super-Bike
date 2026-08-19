@@ -1,41 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Registro | Superbike</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='global.css') }}"
+    >
+
 </head>
 
 <body class="auth-body">
+
     <div class="auth-container">
-        <!-- Cambiado de registro-form a auth-card para que use la misma tarjeta del login -->
-        <form id="registroForm" class="auth-card" method="post" action="{{url_for('registro')}}">
 
-            <h1>Crear Cuenta</h1>
-            <p>Únete a la experiencia Superbike</p>
-            
-            <label>Nombre Completo</label>
-            <input type="text" name="nombre" placeholder="" required>
+        <form
+            id="registroForm"
+            class="auth-card"
+            method="POST"
+            action="{{ url_for('registro') }}"
+        >
 
-            <label>Correo Electronico</label>
-            <input type="email" name="correo" placeholder="" required>
+            <h1>
+                Crear Cuenta
+            </h1>
 
-            <label>Telefono</label>
-            <input type="tel" name="telefono" placeholder="" required>
+            <p>
+                Únete a la experiencia Superbike
+            </p>
 
-            <label>Nombre de usuario</label>
-            <input type="text" name="nombre_usuario" placeholder="" required>
-            
-            <label>Contraseña</label>
-            <input type="password" name="password" placeholder="" required>
 
-            <button type="submit">Registrarse</button>
+            <label>
+                Nombre Completo
+            </label>
+
+            <input
+                type="text"
+                name="nombre"
+                required
+            >
+
+
+            <label>
+                Correo Electrónico
+            </label>
+
+            <input
+                type="email"
+                name="correo"
+                required
+            >
+
+
+            <label>
+                Teléfono
+            </label>
+
+            <input
+                type="tel"
+                name="telefono"
+                required
+            >
+
+
+            <label>
+                Nombre de usuario
+            </label>
+
+            <input
+                type="text"
+                name="nombre_usuario"
+                required
+            >
+
+
+            <label>
+                Contraseña
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                required
+            >
+
+
+            <button type="submit">
+                Registrarse
+            </button>
+
 
             <span>
-                <li><a href="{{ url_for('login') }}">Iniciar sesión</a></li>
+
+                ¿Ya tienes cuenta?
+
+                <a href="{{ url_for('login') }}">
+                    Iniciar sesión
+                </a>
+
             </span>
+
         </form>
+
     </div>
+
 </body>
+
 </html>

@@ -1,136 +1,265 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Superbike</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
+
     <header>
         <nav>
+
             <div class="logo">
-                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo del proyecto" class="logo">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Superbike">
                 <span>Superbike</span>
             </div>
+
             <ul class="nav-links">
-    <li><a href="{{ url_for('inicio') }}">Inicio</a></li>
-    <li><a href="{{ url_for('catalogo') }}">Catálogo</a></li>
-    <li><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
-    <li><a href="{{ url_for('quienessomos') }}">Quiénes somos</a></li>
 
-    <li class="dropdown">
-        <a href="#" id="userToggle" class="user-toggle">
-            <!-- Icono de usuario -->
-            <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px; vertical-align: middle; margin-right: 4px;">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-            
-            {% if session.get('logueado') %}
-                <span>Hola, {{ session.get('user_name') }}</span>
-            {% else %}
-                <span>Perfil</span>
-            {% endif %}
-            <span class="arrow-down" style="font-size: 10px; margin-left: 4px;">&#9660;</span>
-        </a>
+                <li>
+                    <a href="{{ url_for('inicio') }}">Inicio</a>
+                </li>
 
-        <!-- Menú desplegable -->
-        <ul class="dropdown-menu" id="dropdownMenu">
-            {% if session.get('logueado') %}
-        <li class="menu-item">
-            <a href="{{ url_for('reporte') }}">📊 Reporte de Usuarios</a>
-        </li>
-        <li class="menu-item">
-            <a href="{{ url_for('logout') }}">Cerrar sesión</a>
-        </li>
-            {% else %}
+                <li>
+                    <a href="{{ url_for('catalogo') }}">Catálogo</a>
+                </li>
 
-        <li class="menu-item">
-            <a href="{{ url_for('login') }}">Iniciar sesión</a>
-        </li>
-        <li class="menu-item">
-            <a href="{{ url_for('registro') }}">Registrarse</a>
-        </li>
-            {% endif %}
+                <li>
+                    <a href="{{ url_for('contacto') }}">Contáctanos</a>
+                </li>
 
-        </ul>
-    </li>
-</ul>
+                <li>
+                    <a href="{{ url_for('quienessomos') }}">Quiénes somos</a>
+                </li>
+
+                <li class="dropdown">
+
+                    <a href="#" id="userToggle" class="user-toggle">
+
+                        <svg class="user-icon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+
+                        </svg>
+
+                        {% if session.get('logueado') %}
+                            <span>Hola, {{ session.get('user_name') }}</span>
+                        {% else %}
+                            <span>Perfil</span>
+                        {% endif %}
+
+                        <span class="arrow-down">&#9660;</span>
+
+                    </a>
+
+                    <ul class="dropdown-menu" id="dropdownMenu">
+
+                        {% if session.get('logueado') %}
+
+                            <li class="menu-item">
+                                <a href="{{ url_for('reporte') }}">
+                                    📊 Reporte de Usuarios
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="{{ url_for('logout') }}">
+                                    Cerrar sesión
+                                </a>
+                            </li>
+
+                        {% else %}
+
+                            <li class="menu-item">
+                                <a href="{{ url_for('login') }}">
+                                    Iniciar sesión
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="{{ url_for('registro') }}">
+                                    Registrarse
+                                </a>
+                            </li>
+
+                        {% endif %}
+
+                    </ul>
+
+                </li>
+
+            </ul>
+
         </nav>
     </header>
 
+
     {% if session.get('logueado') %}
-<div id="welcome-toast" class="toast-notification">
-    <div class="toast-indicator"></div>
-    <div class="toast-content">
-        <p class="toast-title">¡Bienvenido, <strong>{{ session.get('user_name') }}</strong>!</p>
-        <p class="toast-subtext">Sesión iniciada correctamente</p>
+
+    <div id="welcome-toast" class="toast-notification">
+
+        <div class="toast-indicator"></div>
+
+        <div class="toast-content">
+
+            <p class="toast-title">
+                ¡Bienvenido,
+                <strong>{{ session.get('user_name') }}</strong>!
+            </p>
+
+            <p class="toast-subtext">
+                Sesión iniciada correctamente
+            </p>
+
+        </div>
+
     </div>
-</div>
-{% endif %}
+
+    {% endif %}
+
 
     <main>
+
         <section id="hero">
+
             <h1>Bienvenido a Superbike</h1>
-            <p>Encuentra tu bicicleta perfecta con nosotros</p>
-            <button class="cta-btn">Ver Propiedades</button>
+
+            <p>
+                Encuentra tu bicicleta perfecta con nosotros
+            </p>
+
+            <a href="{{ url_for('catalogo') }}" class="cta-btn">
+                Ver Catálogo
+            </a>
+
         </section>
+
 
         <section class="hero-premium">
+
             <div class="hero-left">
-                <span class="mini-texto">NUEVA GENERACIÓN DE BICICLETAS</span>
-                <h1>Ruedas que inspiran, diseño que emociona.</h1>
-                <p>Bicicletas diseñadas para velocidad, precisión y aventura.</p>
+
+                <span class="mini-texto">
+                    NUEVA GENERACIÓN DE BICICLETAS
+                </span>
+
+                <h1>
+                    Ruedas que inspiran,
+                    diseño que emociona.
+                </h1>
+
+                <p>
+                    Bicicletas diseñadas para velocidad,
+                    precisión y aventura.
+                </p>
+
                 <div class="hero-buttons">
-                    <a href= class="btn-outline">Explorar catálogo</a>
-                    <a href="quienessomos.html" class="btn-outline">Saber más</a>
+
+                    <a href="{{ url_for('catalogo') }}" class="btn-outline">
+                        Explorar catálogo
+                    </a>
+
+                    <a href="{{ url_for('quienessomos') }}" class="btn-outline">
+                        Saber más
+                    </a>
+
                 </div>
+
             </div>
+
+
             <div class="bike-container">
+
                 <div class="glow"></div>
-                <img src="{{ url_for('static', filename='img/95226-00_LEVO-R-4-SW-SHDWSIL-CARB-SILDST-S2--_HERO_DARK-PDP.png') }}" alt="Bike" class="floating-bike">
+
+                <img
+                    src="{{ url_for('static', filename='img/95226-00_LEVO-R-4-SW-SHDWSIL-CARB-SILDST-S2--_HERO_DARK-PDP.png') }}"
+                    alt="Bicicleta Superbike"
+                    class="floating-bike">
+
             </div>
+
         </section>
+
     </main>
 
+
     <footer>
-        <p>&copy; 2025 Superbike. Todos los derechos reservados.</p>
+
+        <p>
+            &copy; 2026 Superbike. Todos los derechos reservados.
+        </p>
+
     </footer>
 
-    <script>
-        // Lógica del menú desplegable
-        const perfilBtn = document.getElementById("userToggle");
-        const menu = document.querySelector(".dropdown-menu");
 
-        if (perfilBtn) {
-            perfilBtn.addEventListener("click", function(e){
+    <script>
+
+        const perfilBtn = document.getElementById("userToggle");
+        const menu = document.getElementById("dropdownMenu");
+
+        if (perfilBtn && menu) {
+
+            perfilBtn.addEventListener("click", function (e) {
+
                 e.preventDefault();
+
                 menu.classList.toggle("show");
+
             });
+
         }
 
-        // Lógica de la notificación flotante (Toast)
-        document.addEventListener('DOMContentLoaded', function() {
-            const toast = document.getElementById('welcome-toast');
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const toast = document.getElementById("welcome-toast");
 
             if (toast) {
+
                 setTimeout(() => {
-                    toast.classList.add('show');
+
+                    toast.classList.add("show");
+
                 }, 300);
 
+
                 setTimeout(() => {
-                    toast.classList.remove('show');
-                    toast.classList.add('hide');
+
+                    toast.classList.remove("show");
+                    toast.classList.add("hide");
+
                 }, 3800);
 
-                toast.addEventListener('transitionend', function() {
-                    if (toast.classList.contains('hide')) {
+
+                toast.addEventListener("transitionend", function () {
+
+                    if (toast.classList.contains("hide")) {
+
                         toast.remove();
+
                     }
+
                 });
+
             }
+
         });
+
     </script>
+
 </body>
+
 </html>

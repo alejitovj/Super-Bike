@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Mensaje Enviado | Superbike</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='global.css') }}"
+    >
+
 </head>
+
 <body>
 
     <section class="mensaje-box">
 
         <div class="mensaje-card">
 
-            <h1>✅ MENSAJE ENVIADO</h1>
+            <h1>
+                ✅ MENSAJE ENVIADO
+            </h1>
 
             <p>
                 Gracias por contactarte con Superbike.
                 Nuestro equipo responderá tu mensaje pronto.
             </p>
 
-            <a href="index.html" class="volver-btn">
+            <a
+                href="{{ url_for('inicio') }}"
+                class="volver-btn"
+            >
                 Volver al inicio
             </a>
 
@@ -29,4 +46,5 @@
     </section>
 
 </body>
+
 </html>

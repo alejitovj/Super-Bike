@@ -2,35 +2,103 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Iniciar Sesión | Superbike</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='global.css') }}"
+    >
+
 </head>
+
 <body class="auth-body">
-{% if error %}
+
+    {% if error %}
+
     <div id="mensaje-login" class="toast error">
-    <div class="toast-icon">X</div>
-    <div class="toast-text">
-        <h4>Error</h4>
-        <p>{{ error }}</p>
+
+        <div class="toast-icon">
+            X
+        </div>
+
+        <div class="toast-text">
+
+            <h4>
+                Error
+            </h4>
+
+            <p>
+                {{ error }}
+            </p>
+
+        </div>
+
+        <div class="toast-bar"></div>
+
     </div>
-    <div class="toast-bar"></div>
-    </div>
-{% endif %}
+
+    {% endif %}
+
 
     <div class="auth-container">
-        <form id="loginForm" class="auth-card" action="/login" method="POST">
-            <h1>Iniciar Sesión</h1>
-            <p>Bienvenido nuevamente a Superbike</p>
-            <input type="email" name="correo" placeholder="Ingresa tu correo electronico" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
-            <button type="submit">Ingresar</button>
+
+        <form
+            id="loginForm"
+            class="auth-card"
+            action="{{ url_for('login') }}"
+            method="POST"
+        >
+
+            <h1>
+                Iniciar Sesión
+            </h1>
+
+            <p>
+                Bienvenido nuevamente a Superbike
+            </p>
+
+
+            <input
+                type="email"
+                name="correo"
+                placeholder="Ingresa tu correo electrónico"
+                required
+            >
+
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Contraseña"
+                required
+            >
+
+
+            <button type="submit">
+                Ingresar
+            </button>
+
+
             <span>
+
                 ¿No tienes cuenta?
-            <li><a href="{{ url_for('registro') }}">Registrate</a></li>
+
+                <a href="{{ url_for('registro') }}">
+                    Regístrate
+                </a>
+
             </span>
+
         </form>
+
     </div>
 
 </body>

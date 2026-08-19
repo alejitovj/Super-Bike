@@ -1,75 +1,141 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Usuarios - Super Bike</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Reporte de Usuarios - SuperBike</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='global.css') }}"
+    >
+
 </head>
+
 <body>
 
-<div class="contenedor reporte-usuarios">
+    <div class="contenedor reporte-usuarios">
 
-    <div class="encabezado-reporte">
-        <h1>Reporte de Usuarios</h1>
-        <p>Consulta y exportación de usuarios registrados en Super Bike</p>
-    </div>
+        <div class="encabezado-reporte">
 
-    <div class="filtros">
-        <a href="{{ url_for('reporte') }}" class="boton buscar">
-            🔎 Actualizar reporte
-        </a>
+            <h1>
+                Reporte de Usuarios
+            </h1>
 
-        <a href="{{ url_for('reporte_excel') }}" class="boton excel">
-            📊 Exportar a Excel
-        </a>
-    </div>
+            <p>
+                Consulta y exportación de usuarios registrados
+                en Super Bike
+            </p>
 
-    <div class="tabla-contenedor">
+        </div>
 
-        <table>
 
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Teléfono</th>
-                    <th>Usuario</th>
-                    <th>Rol</th>
-                </tr>
-            </thead>
+        <div class="filtros">
 
-            <tbody>
+            <a
+                href="{{ url_for('reporte') }}"
+                class="boton buscar"
+            >
+                🔎 Actualizar reporte
+            </a>
 
-                {% if usuarios %}
 
-                    {% for usuario in usuarios %}
+            <a
+                href="{{ url_for('reporte_excel') }}"
+                class="boton excel"
+            >
+                📊 Exportar a Excel
+            </a>
 
-                    <tr>
-                        <td>{{ usuario.id }}</td>
-                        <td>{{ usuario.nombre }}</td>
-                        <td>{{ usuario.correo }}</td>
-                        <td>{{ usuario.telefono }}</td>
-                        <td>{{ usuario.nombre_usuario }}</td>
-                        <td>{{ usuario.rol }}</td>
-                    </tr>
+        </div>
 
-                    {% endfor %}
 
-                {% else %}
+        <div class="tabla-contenedor">
+
+            <table>
+
+                <thead>
 
                     <tr>
-                        <td colspan="6" class="sin-datos">
-                            No hay usuarios registrados.
-                        </td>
-                    </tr>
-                {% endif %}
-            </tbody>
-        </table>
-    </div>
 
-</div>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Usuario</th>
+                        <th>Rol</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% if usuarios %}
+
+                        {% for usuario in usuarios %}
+
+                        <tr>
+
+                            <td>
+                                {{ usuario.id }}
+                            </td>
+
+                            <td>
+                                {{ usuario.nombre }}
+                            </td>
+
+                            <td>
+                                {{ usuario.correo }}
+                            </td>
+
+                            <td>
+                                {{ usuario.telefono }}
+                            </td>
+
+                            <td>
+                                {{ usuario.nombre_usuario }}
+                            </td>
+
+                            <td>
+                                {{ usuario.rol }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+
+                            <td
+                                colspan="6"
+                                class="sin-datos"
+                            >
+                                No hay usuarios registrados.
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
 
 </body>
+
 </html>
