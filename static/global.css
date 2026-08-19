@@ -1,0 +1,376 @@
+/* ==================== RESET ==================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ==================== BASE ==================== */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+/* ==================== HEADER / NAVBAR ==================== */
+
+header {
+    background: #000000ea;
+    padding: 10px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: gray;
+}
+
+.nav-links > li:not(:last-child):not(.dropdown):after {
+    content: "";
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+
+/* ==================== DROPDOWN ==================== */
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: -30px;
+    left: auto;
+    width: fit-content;
+    min-width: 160px;
+    padding: 10px;
+    list-style: none;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    display: none;
+    overflow: hidden;
+    animation: dropdownFade 0.3s ease;
+    z-index: 999;
+}
+
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 15px 18px;
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.dropdown-menu li a:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateX(5px);
+    color: #00bfff;
+}
+
+.dropdown-menu li,
+.dropdown-menu li a {
+    border-right: none !important;
+    border-left: none !important;
+    margin: 0 !important;
+}
+
+.dropdown-menu a {
+    color: #1a1414 !important;
+    font-weight: 600 !important;
+    padding: 8px 16px !important;
+    display: block !important;
+    text-align: left !important;
+    text-decoration: none !important;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0) !important;
+}
+
+.show {
+    display: block;
+}
+
+
+/* ==================== ANIMACIONES ==================== */
+
+@keyframes dropdownFade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatBike {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-18px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes pulseGlow {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes toast {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes barra {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+
+/* ==================== FOOTER ==================== */
+
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    font-size: 15px;
+}
+
+
+/* ==================== TOAST ==================== */
+
+.toast {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    width: 360px;
+    background: rgba(25,25,25,.95);
+    backdrop-filter: blur(18px);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0,0,0,.45);
+    color: #fff;
+    z-index: 9999;
+    animation: toast .45s ease;
+}
+
+.toast-icon {
+    width: 55px;
+    height: 55px;
+    margin: 18px;
+    background: #22c55e;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    float: left;
+}
+
+.toast-text {
+    padding: 18px 20px 18px 0;
+    overflow: hidden;
+}
+
+.toast-text h4 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.toast-text p {
+    margin: 6px 0 0;
+    font-size: 14px;
+    color: #cfcfcf;
+}
+
+.toast-bar {
+    height: 4px;
+    background: #22c55e;
+    animation: barra 2.5s linear forwards;
+}
+
+.toast.error .toast-icon {
+    background: #ef4444;
+}
+
+.toast.error .toast-bar {
+    background: #ef4444;
+}
+
+
+/* ==================== TOAST NOTIFICATION ==================== */
+
+.toast-notification {
+    position: fixed;
+    top: 90px;
+    right: 25px;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 4px solid #10b981;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-notification.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.toast-notification.hide {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+}
+
+.toast-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+}
+
+.toast-title {
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+.toast-title strong {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.toast-subtext {
+    color: #a1a1aa;
+    font-size: 0.78rem;
+    margin: 2px 0 0 0;
+}
+
+
+/* ==================== RESPONSIVE GENERAL ==================== */
+
+@media (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+    }
+}
