@@ -1,0 +1,432 @@
+/* ========================================
+   SUPERBIKE - ELIMINAR USUARIOS
+======================================== */
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.encabezado-eliminar {
+    width: 100%;
+    min-height: 85px;
+    padding: 12px 50px;
+
+    display: flex;
+    align-items: center;
+
+    background: #15181d;
+    border-bottom: 1px solid #292e35;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
+}
+
+.encabezado-eliminar .logo-titulo {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.encabezado-eliminar .logo-titulo img {
+    width: 60px;
+    height: 60px;
+
+    object-fit: contain;
+
+    transition: transform 0.3s ease;
+}
+
+.encabezado-eliminar .logo-titulo img:hover {
+    transform: scale(1.08);
+}
+
+.encabezado-eliminar .logo-titulo h1 {
+    font-size: 25px;
+    color: #ffffff;
+}
+
+
+/* ========================================
+   MENU PRINCIPAL
+======================================== */
+
+.menu-principal {
+    width: 100%;
+
+    background: #111419;
+
+    border-bottom: 1px solid #292e35;
+}
+
+.menu-principal ul {
+    list-style: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 14px 20px;
+}
+
+.menu-principal a {
+    display: block;
+
+    padding: 10px 18px;
+
+    color: #d8dce2;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.menu-principal a:hover {
+    background: #0089c8;
+
+    color: #06140b;
+}
+
+
+/* ========================================
+   CONTENEDOR
+======================================== */
+
+.login-container {
+    width: 100%;
+
+    max-width: 1250px;
+
+    margin: 50px auto;
+
+    padding: 0 20px;
+}
+
+
+/* ========================================
+   TARJETA
+======================================== */
+
+.login-form {
+    width: 100%;
+
+    background: #16191e;
+
+    padding: 30px;
+
+    border-radius: 14px;
+
+    border: 1px solid #292e35;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ========================================
+   TITULO
+======================================== */
+
+.login-form h2 {
+    margin-bottom: 25px;
+
+    color: #ffffff;
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    position: relative;
+}
+
+.login-form h2::after {
+    content: "";
+
+    display: block;
+
+    width: 90px;
+    height: 4px;
+
+    margin-top: 8px;
+
+    background: #00e676;
+
+    border-radius: 10px;
+}
+
+
+/* ========================================
+   TABLA
+======================================== */
+
+.tabla-usuarios {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background: #16191e;
+}
+
+
+/* ========================================
+   ENCABEZADO TABLA
+======================================== */
+
+.tabla-usuarios thead {
+    background: #00c853;
+}
+
+.tabla-usuarios th {
+    padding: 16px 14px;
+
+    color: #06140b;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    text-align: left;
+}
+
+
+/* ========================================
+   CELDAS
+======================================== */
+
+.tabla-usuarios td {
+    padding: 15px 14px;
+
+    color: #d8dce2;
+
+    border-bottom: 1px solid #292e35;
+
+    vertical-align: middle;
+}
+
+
+/* ========================================
+   HOVER FILAS
+======================================== */
+
+.tabla-usuarios tbody tr {
+    transition: all 0.4s ease;
+}
+
+.tabla-usuarios tbody tr:hover {
+    background: #20252c;
+}
+
+.tabla-usuarios tbody tr:hover td {
+    color: #ffffff;
+}
+
+
+/* ========================================
+   ID
+======================================== */
+
+.tabla-usuarios tbody td:first-child {
+    color: #0089c8;
+
+    font-weight: 700;
+}
+
+
+/* ========================================
+   ROL
+======================================== */
+
+.tabla-usuarios tbody td:nth-child(6) {
+    color: #0089c8;
+
+    font-weight: 600;
+}
+
+
+/* ========================================
+   BOTON ELIMINAR
+======================================== */
+
+.tabla-usuarios button {
+    padding: 9px 15px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #d32f2f;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.tabla-usuarios button:hover {
+    background: #ff3d3d;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.tabla-usuarios button:active {
+    transform: scale(0.97);
+}
+
+
+/* ========================================
+   BOTON REGRESAR
+======================================== */
+
+.boton-regresar {
+    display: inline-block;
+
+    padding: 11px 20px;
+
+    background: #0089c8;
+
+    color: #06140b;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-weight: 700;
+
+    transition: all 0.2s ease;
+}
+
+.boton-regresar:hover {
+    background: #0089c8e1;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+    width: 100%;
+
+    margin-top: 70px;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    background: #15181d;
+
+    border-top: 1px solid #292e35;
+
+    color: #858c96;
+}
+
+footer p {
+    margin: 6px 0;
+
+    font-size: 14px;
+}
+
+footer p:first-child {
+    color: #ffffffa9;
+
+    font-size: 21px;
+
+    font-weight: 700;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 900px) {
+
+    .encabezado-eliminar {
+        padding: 12px 25px;
+    }
+
+    .login-container {
+        padding: 0 15px;
+    }
+
+    .login-form {
+        padding: 20px;
+
+        overflow-x: auto;
+    }
+
+    .tabla-usuarios {
+        min-width: 850px;
+    }
+}
+
+
+/* ========================================
+   CELULARES
+======================================== */
+
+@media (max-width: 600px) {
+
+    .encabezado-eliminar {
+        padding: 20px 15px;
+    }
+
+    .encabezado-eliminar .logo-titulo h1 {
+        font-size: 20px;
+    }
+
+    .encabezado-eliminar .logo-titulo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .menu-principal ul {
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+    .menu-principal a {
+        width: 220px;
+
+        text-align: center;
+    }
+
+    .login-container {
+        margin: 30px auto;
+    }
+
+    .login-form {
+        padding: 18px;
+    }
+
+    .login-form h2 {
+        font-size: 23px;
+    }
+
+    footer {
+        margin-top: 45px;
+    }
+}

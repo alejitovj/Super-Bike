@@ -1,0 +1,136 @@
+/* ==================== CATÁLOGO ==================== */
+
+.catalogo-hero {
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("../img/cta.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.catalogo-overlay {
+    padding: 20px;
+}
+
+.catalogo-hero h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.catalogo-hero p {
+    font-size: 22px;
+    max-width: 700px;
+}
+
+
+/* ==================== PRODUCTOS ==================== */
+
+.catalogo {
+    padding: 80px 50px;
+    background: #f5f5f5;
+}
+
+.catalogo h2 {
+    text-align: center;
+    font-size: 45px;
+    margin-bottom: 50px;
+}
+
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+}
+
+.catalogo-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.catalogo-card:hover {
+    transform: translateY(-10px);
+}
+
+.catalogo-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    background: #f5f5f5;
+}
+
+.catalogo-info {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.catalogo-info h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.catalogo-info p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    min-height: 60px;
+}
+
+.catalogo-info span {
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.catalogo-info button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background: #4b4b4b;
+    color: white;
+    font-size: 18px;
+    margin-top: auto;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.catalogo-info button:hover {
+    background: #000000;
+    transform: scale(1.03);
+}
+
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+
+    .catalogo-hero h1 {
+        font-size: 40px;
+    }
+
+    .catalogo-hero p {
+        font-size: 18px;
+    }
+
+    .catalogo {
+        padding: 50px 20px;
+    }
+
+    .catalogo h2 {
+        font-size: 30px;
+    }
+}

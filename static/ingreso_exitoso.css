@@ -1,0 +1,171 @@
+/* ========================================
+   SUPERBIKE - INGRESO EXITOSO
+======================================== */
+
+
+/* ========================================
+   CONTENEDOR PRINCIPAL
+======================================== */
+
+.auth-body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url("../img/PortadaBike.jpeg.png");
+
+    background-size: cover;
+    background-position: center;
+
+    padding: 20px;
+}
+
+
+/* ========================================
+   CONTENEDOR
+======================================== */
+
+.auth-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ========================================
+   TARJETA
+======================================== */
+
+.auth-card {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 40px 30px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 25px;
+
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+
+    color: white;
+
+    text-align: center;
+
+    animation: fadeUp 0.8s ease;
+}
+
+
+/* ========================================
+   ICONO DE ÉXITO
+======================================== */
+
+.success-icon {
+    font-size: 60px;
+
+    color: #4BB543;
+
+    margin-bottom: 20px;
+
+    line-height: 1;
+}
+
+
+/* ========================================
+   TITULO
+======================================== */
+
+.success-card h1 {
+    color: #ffffff;
+
+    margin-bottom: 10px;
+
+    font-size: 26px;
+}
+
+
+/* ========================================
+   TEXTO
+======================================== */
+
+.success-card p {
+    color: #aaa;
+
+    margin-bottom: 30px;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   BOTÓN INICIAR SESIÓN
+======================================== */
+
+.success-card a {
+    display: inline-block;
+
+    width: 100%;
+
+    padding: 12px;
+
+    background-color: #ffffff;
+
+    color: #000000;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+
+    transition: all 0.3s ease;
+}
+
+.success-card a:hover {
+    background-color: #e0e0e0;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 500px) {
+
+    .auth-body {
+        padding: 15px;
+    }
+
+    .auth-card {
+        padding: 35px 22px;
+    }
+
+    .success-icon {
+        font-size: 55px;
+    }
+
+    .success-card h1 {
+        font-size: 23px;
+    }
+
+    .success-card p {
+        font-size: 14px;
+    }
+}

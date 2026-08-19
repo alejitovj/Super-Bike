@@ -1,0 +1,147 @@
+/* ==================== CONTACTO ==================== */
+
+.contacto-hero {
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("../img/scott-spark-2021-rc-worldcup.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.overlay {
+    padding: 20px;
+}
+
+.contacto-hero h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.contacto-hero p {
+    font-size: 22px;
+    max-width: 700px;
+}
+
+.contacto-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 80px 50px;
+    flex-wrap: wrap;
+}
+
+.contacto-info {
+    flex: 1;
+    min-width: 300px;
+    background: #a19494a4;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px #ffffff;
+}
+
+.contacto-info h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.contacto-info p {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.info-box {
+    margin-bottom: 25px;
+    padding: 20px;
+    border-left: 5px solid #535353;
+    background: #f7f7f7;
+    border-radius: 10px;
+}
+
+.info-box h3 {
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.contacto-formulario {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.contacto-formulario h2 {
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.contacto-formulario form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contacto-formulario input,
+.contacto-formulario textarea {
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.contacto-formulario input:focus,
+.contacto-formulario textarea:focus {
+    border-color: #535353;
+    outline: none;
+    box-shadow: 0 0 10px #535353;
+}
+
+.contacto-formulario textarea {
+    height: 180px;
+    resize: none;
+}
+
+.contacto-formulario button {
+    padding: 16px;
+    border: none;
+    background: #535353;
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contacto-formulario button:hover {
+    background: #000000;
+    transform: translateY(-3px);
+}
+
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+
+    .contacto-hero h1 {
+        font-size: 40px;
+    }
+
+    .contacto-hero p {
+        font-size: 18px;
+    }
+
+    .contacto-container {
+        padding: 50px 20px;
+    }
+
+    .contacto-info h2,
+    .contacto-formulario h2 {
+        font-size: 30px;
+    }
+}
