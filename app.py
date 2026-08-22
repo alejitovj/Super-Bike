@@ -186,7 +186,8 @@ def registro():
                     nombre_usuario,
                     correo,
                     contraseña,
-                    telefono
+                    telefono,
+                    rol
                 )
                 VALUES (%s, %s, %s, %s)
                 """,
@@ -194,7 +195,8 @@ def registro():
                     nombre_usuario,
                     correo,
                     contraseña_encriptada,
-                    telefono
+                    telefono,
+                    "usuario"
                 )
             )
 
