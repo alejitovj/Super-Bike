@@ -40,7 +40,31 @@
 
                 <li class="dropdown">
 
-                    <a href="#" id="perfil-btn">👤 Perfil</a>
+                    <a href="#" id="perfil-btn" class="user-toggle">
+
+                        <span>
+                            👤
+                        </span>
+
+                        {% if session.get('logueado') %}
+
+                            <span>
+                                Hola, {{ session.get('user_name') }}
+                            </span>
+
+                        {% else %}
+
+                            <span>
+                                Perfil
+                            </span>
+
+                        {% endif %}
+
+                        <span class="arrow-down">
+                            &#9660;
+                        </span>
+
+                    </a>
 
                     <ul class="dropdown-menu">
 
