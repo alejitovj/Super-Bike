@@ -1,404 +1,706 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, send_file
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 import MySQLdb
-from flask import send_file
-import io
 from openpyxl import Workbook
+import io
 
-# Crear la aplicacion Flask
+
+# ============================================================
+# CONFIGURACIÓN DE LA APLICACIÓN
+# ============================================================
+
 app = Flask(__name__)
-app.secret_key = 'SuperBike'
 
-# Configuracion de MYSQL
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'super_bike'
+# Clave secreta para manejar las sesiones
+app.secret_key = "SuperBike"
 
-# Crear la conexion
+
+# ============================================================
+# CONFIGURACIÓN DE MYSQL
+# ============================================================
+
+app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = ""
+app.config["MYSQL_DB"] = "super_bike"
+
 mysql = MySQL(app)
 
-# --- RUTAS DE APLICACIÓN ---
 
-# Página principal
+# ============================================================
+# FUNCIONES AUXILIARES
+# ============================================================
+
+def usuario_logueado():
+    """
+    Comprueba si existe una sesión activa.
+    """
+    return session.get("logueado") is True
+
+
+def administrador():
+    """
+    Comprueba si el usuario actualmente conectado
+    tiene rol de administrador.
+    """
+    return session.get("rol") == "admin"
+
+
+def proteger_ruta():
+    """
+    Si el usuario no está logueado, lo envía al login.
+    """
+    if not usuario_logueado():
+        return redirect(url_for("login"))
+
+    return None
+
+
+def proteger_administrador():
+    """
+    Comprueba que el usuario esté logueado y además
+    tenga permisos de administrador.
+    """
+    if not usuario_logueado():
+        return redirect(url_for("login"))
+
+    if not administrador():
+        return redirect(url_for("panel_inicio"))
+
+    return None
+
+
+# ============================================================
+# PÁGINA PRINCIPAL
+# ============================================================
+
 @app.route("/")
 def inicio():
-    return render_template("index.html")
+    return render_template(
+        "index.html",
+        usuario=session.get("user_name")
+    )
 
-# Página de catalogo
+
+# ============================================================
+# CATÁLOGO
+# ============================================================
+
 @app.route("/catalogo")
 def catalogo():
     return render_template("catalogo.html")
 
-# Página de contacto
+
+# ============================================================
+# CONTACTO
+# ============================================================
+
 @app.route("/contacto")
 def contacto():
     return render_template("contacto.html")
 
-# Página de quienes somos
+
+# ============================================================
+# QUIÉNES SOMOS
+# ============================================================
+
 @app.route("/quienes-somos")
 def quienessomos():
     return render_template("quienessomos.html")
 
-# Ruta para comprobar la conexion a la base de datos
+
+# ============================================================
+# COMPROBAR CONEXIÓN CON LA BASE DE DATOS
+# ============================================================
+
 @app.route("/conexion")
 def conexion():
     try:
-        cursor = mysql.connection.cursor()
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
         cursor.execute("SELECT * FROM gestion_usuarios")
         datos = cursor.fetchall()
+
         cursor.close()
+
         return {
             "mensaje": "Conexión exitosa a la base de datos",
             "cantidad_registros": len(datos),
             "usuarios": datos
         }
+
     except Exception as error:
         return {
             "mensaje": "Error al conectar con la base de datos",
             "detalle": str(error)
         }, 500
 
-# Página de registro
+
+# ============================================================
+# REGISTRO DE USUARIO
+# ============================================================
+
 @app.route("/registro", methods=["GET", "POST"])
 def registro():
+
     if request.method == "POST":
+
         nombre_usuario = request.form["nombre_usuario"]
         correo = request.form["correo"]
         telefono = request.form["telefono"]
-        contraseña = request.form["password"]  # Aquí capturamos la contraseña
+        contraseña = request.form["password"]
 
-        # Encriptamos la variable correcta
+        # Encriptar contraseña
         contraseña_encriptada = generate_password_hash(contraseña)
 
         try:
+
             cursor = mysql.connection.cursor()
-            sql = "INSERT INTO gestion_usuarios (nombre_usuario, correo, contraseña, telefono) VALUES (%s, %s, %s, %s)"
-            datos = (nombre_usuario, correo, contraseña_encriptada, telefono)
-            
-            cursor.execute(sql, datos)
+
+            # Comprobar si el correo ya existe
+            cursor.execute(
+                """
+                SELECT id
+                FROM gestion_usuarios
+                WHERE correo = %s
+                """,
+                (correo,)
+            )
+
+            usuario_existente = cursor.fetchone()
+
+            if usuario_existente:
+                cursor.close()
+
+                return render_template(
+                    "registro.html",
+                    error="El correo ya está registrado"
+                )
+
+            # Registrar usuario
+            cursor.execute(
+                """
+                INSERT INTO gestion_usuarios
+                (
+                    nombre_usuario,
+                    correo,
+                    contraseña,
+                    telefono
+                )
+                VALUES (%s, %s, %s, %s)
+                """,
+                (
+                    nombre_usuario,
+                    correo,
+                    contraseña_encriptada,
+                    telefono
+                )
+            )
+
             mysql.connection.commit()
             cursor.close()
 
             return redirect(url_for("ingreso_exitoso"))
+
         except Exception as error:
-            return f"Error al registrar: {error}"
-            
+
+            return render_template(
+                "registro.html",
+                error=f"Error al registrar: {error}"
+            )
+
     return render_template("registro.html")
 
-# Página de inicio de sesión
+
+# ============================================================
+# INICIO DE SESIÓN
+# ============================================================
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
     if request.method == "POST":
+
         correo = request.form["correo"]
         contraseña = request.form["password"]
 
-        cursor = mysql.connection.cursor()
-        cursor.execute("SELECT * FROM gestion_usuarios WHERE correo = %s", (correo,))
-        usuario = cursor.fetchone()
-        cursor.close()
+        try:
 
-        if usuario:
-            contraseña_hash = usuario[3]
+            cursor = mysql.connection.cursor(
+                MySQLdb.cursors.DictCursor
+            )
 
-            if check_password_hash(contraseña_hash, contraseña):
-                session['logueado'] = True
-                session['user_name'] = usuario[1]
-                session['correo'] = usuario[2]
-                session['id_usuario'] = usuario[0]
-                return redirect(url_for('panel_inicio'))
-            else:
-                # Contraseña incorrecta
-                return render_template("login.html", error="Contraseña incorrecta")
-        else:
-            # Correo no registrado
-            return render_template("login.html", error="El correo no está registrado")
+            cursor.execute(
+                """
+                SELECT
+                    id,
+                    nombre,
+                    correo,
+                    contraseña,
+                    telefono,
+                    nombre_usuario,
+                    rol
+                FROM gestion_usuarios
+                WHERE correo = %s
+                """,
+                (correo,)
+            )
+
+            usuario = cursor.fetchone()
+
+            cursor.close()
+
+            # Comprobar si existe el usuario
+            if not usuario:
+
+                return render_template(
+                    "login.html",
+                    error="El correo no está registrado"
+                )
+
+            # Comprobar contraseña
+            if not check_password_hash(
+                usuario["contraseña"],
+                contraseña
+            ):
+
+                return render_template(
+                    "login.html",
+                    error="Contraseña incorrecta"
+                )
+
+            # ==================================================
+            # GUARDAR DATOS EN LA SESIÓN
+            # ==================================================
+
+            session["logueado"] = True
+            session["id_usuario"] = usuario["id"]
+            session["user_name"] = usuario["nombre_usuario"]
+            session["correo"] = usuario["correo"]
+            session["rol"] = usuario["rol"]
+
+            return redirect(url_for("panel_inicio"))
+
+        except Exception as error:
+
+            return render_template(
+                "login.html",
+                error=f"Error al iniciar sesión: {error}"
+            )
 
     return render_template("login.html")
 
 
-# Ruta principal de bienvenida (protegida)
+# ============================================================
+# PÁGINA DE INICIO DESPUÉS DEL LOGIN
+# ============================================================
+
 @app.route("/inicio")
 def panel_inicio():
-    # Verificamos si la clave 'logueado' existe en la sesión
-    if session.get('logueado') == True:
-        return render_template("index.html", usuario=session.get('nombre_usuario'))
-    else:
-        return redirect(url_for('login'))
-    
 
-# Ruta para cerrar sesión
+    proteccion = proteger_ruta()
+
+    if proteccion:
+        return proteccion
+
+    return render_template(
+        "index.html",
+        usuario=session.get("user_name")
+    )
+
+
+# ============================================================
+# CERRAR SESIÓN
+# ============================================================
+
 @app.route("/logout")
 def logout():
-    session.clear() # Borra todos los datos y la sesión activa
-    return redirect(url_for('login')) # Lo regresa al login
+
+    session.clear()
+
+    return redirect(url_for("login"))
 
 
-# NUEVA RUTA SOLO PARA MOSTRAR EL ÉXITO (GET)
+# ============================================================
+# REGISTRO EXITOSO
+# ============================================================
+
 @app.route("/exito")
 def ingreso_exitoso():
     return render_template("ingreso_exitoso.html")
 
 
-
-# Consultar Usuarios
+# ============================================================
+# CONSULTAR USUARIOS
+# ============================================================
 
 @app.route("/consultar_usuarios")
 def consultar_usuarios():
 
-    if not session.get("logueado"):
-        return redirect(url_for("login"))
+    proteccion = proteger_administrador()
 
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    if proteccion:
+        return proteccion
 
-    cursor.execute("""
-        SELECT
-            id,
-            nombre,
-            correo,
-            telefono,
-            nombre_usuario,
-            rol
-        FROM gestion_usuarios
-    """)
+    try:
 
-    usuarios = cursor.fetchall()
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
 
-    cursor.close()
+        cursor.execute(
+            """
+            SELECT
+                id,
+                nombre,
+                correo,
+                telefono,
+                nombre_usuario,
+                rol
+            FROM gestion_usuarios
+            ORDER BY id DESC
+            """
+        )
 
-    return render_template(
-        "consultar_usuarios.html",
-        usuarios=usuarios
-    )
+        usuarios = cursor.fetchall()
+
+        cursor.close()
+
+        return render_template(
+            "consultar_usuarios.html",
+            usuarios=usuarios
+        )
+
+    except Exception as error:
+
+        return f"Error al consultar usuarios: {error}", 500
 
 
-# =================
-# Editar Usuario
-# =================
+# ============================================================
+# EDITAR USUARIO
+# ============================================================
 
 @app.route("/editar_usuario/<int:id>", methods=["GET", "POST"])
 def editar_usuario(id):
 
-    if not session.get("logueado"):
-        return redirect(url_for("login"))
+    proteccion = proteger_administrador()
 
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    if proteccion:
+        return proteccion
 
-    if request.method == "POST":
+    try:
 
-        nombre = request.form["nombre"]
-        correo = request.form["correo"]
-        telefono = request.form["telefono"]
-        nombre_usuario = request.form["nombre_usuario"]
-        rol = request.form["rol"]
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
 
-        cursor.execute("""
-            UPDATE gestion_usuarios
-            SET
-                nombre = %s,
-                correo = %s,
-                telefono = %s,
-                nombre_usuario = %s,
-                rol = %s
+        # ----------------------------------------------------
+        # ACTUALIZAR USUARIO
+        # ----------------------------------------------------
+
+        if request.method == "POST":
+
+            nombre = request.form["nombre"]
+            correo = request.form["correo"]
+            telefono = request.form["telefono"]
+            nombre_usuario = request.form["nombre_usuario"]
+            rol = request.form["rol"]
+
+            cursor.execute(
+                """
+                UPDATE gestion_usuarios
+                SET
+                    nombre = %s,
+                    correo = %s,
+                    telefono = %s,
+                    nombre_usuario = %s,
+                    rol = %s
+                WHERE id = %s
+                """,
+                (
+                    nombre,
+                    correo,
+                    telefono,
+                    nombre_usuario,
+                    rol,
+                    id
+                )
+            )
+
+            mysql.connection.commit()
+
+            cursor.close()
+
+            return redirect(
+                url_for("consultar_usuarios")
+            )
+
+        # ----------------------------------------------------
+        # OBTENER USUARIO
+        # ----------------------------------------------------
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                nombre,
+                correo,
+                telefono,
+                nombre_usuario,
+                rol
+            FROM gestion_usuarios
             WHERE id = %s
-        """, (
-            nombre,
-            correo,
-            telefono,
-            nombre_usuario,
-            rol,
-            id
-        ))
+            """,
+            (id,)
+        )
 
-        mysql.connection.commit()
+        usuario = cursor.fetchone()
+
         cursor.close()
 
-        return redirect(url_for("consultar_usuarios"))
+        # Usuario no encontrado
+        if not usuario:
+            return "Usuario no encontrado", 404
 
-    cursor.execute("""
-        SELECT *
-        FROM gestion_usuarios
-        WHERE id = %s
-    """, (id,))
+        return render_template(
+            "editar_usuario.html",
+            usuario=usuario
+        )
 
-    usuario = cursor.fetchone()
+    except Exception as error:
 
-    cursor.close()
+        return f"Error al editar usuario: {error}", 500
 
-    return render_template(
-        "editar_usuario.html",
-        usuario=usuario
-    )
 
-# ======================================
-# Eliminar usuarios
-# ======================================
+# ============================================================
+# PÁGINA PARA ELIMINAR USUARIOS
+# ============================================================
 
 @app.route("/eliminar_usuarios")
 def eliminar_usuarios():
 
-    if not session.get("logueado"):
-        return redirect(url_for("login"))
+    proteccion = proteger_administrador()
 
-    cursor = mysql.connection.cursor(
-        MySQLdb.cursors.DictCursor
-    )
+    if proteccion:
+        return proteccion
 
-    cursor.execute(
-        """
-        SELECT
-            id,
-            nombre,
-            correo,
-            telefono,
-            nombre_usuario,
-            rol
-        FROM gestion_usuarios
-        """
-    )
+    try:
 
-    usuarios = cursor.fetchall()
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
 
-    cursor.close()
+        cursor.execute(
+            """
+            SELECT
+                id,
+                nombre,
+                correo,
+                telefono,
+                nombre_usuario,
+                rol
+            FROM gestion_usuarios
+            ORDER BY id DESC
+            """
+        )
 
-    return render_template(
-        "eliminar_usuarios.html",
-        usuarios=usuarios
-    )
+        usuarios = cursor.fetchall()
+
+        cursor.close()
+
+        return render_template(
+            "eliminar_usuarios.html",
+            usuarios=usuarios
+        )
+
+    except Exception as error:
+
+        return f"Error al cargar usuarios: {error}", 500
 
 
-# ======================================
-# Eliminar usuario seleccionado
-# ======================================
+# ============================================================
+# ELIMINAR USUARIO
+# ============================================================
 
 @app.route("/eliminar_usuario/<int:id>", methods=["POST"])
 def eliminar_usuario(id):
 
-    if not session.get("logueado"):
-        return redirect(url_for("login"))
+    proteccion = proteger_administrador()
 
-    cursor = mysql.connection.cursor()
+    if proteccion:
+        return proteccion
 
-    cursor.execute(
-        """
-        DELETE FROM gestion_usuarios
-        WHERE id = %s
-        """,
-        (id,)
-    )
+    try:
 
-    mysql.connection.commit()
+        cursor = mysql.connection.cursor()
 
-    cursor.close()
+        cursor.execute(
+            """
+            DELETE FROM gestion_usuarios
+            WHERE id = %s
+            """,
+            (id,)
+        )
 
-    return redirect(
-        url_for("eliminar_usuarios")
-    )
+        mysql.connection.commit()
 
-# ====================
-# Reporte de usuarios
-# ====================
+        cursor.close()
+
+        return redirect(
+            url_for("eliminar_usuarios")
+        )
+
+    except Exception as error:
+
+        return f"Error al eliminar usuario: {error}", 500
+
+
+# ============================================================
+# REPORTE DE USUARIOS
+# ============================================================
 
 @app.route("/reporte")
 def reporte():
 
-    if "id_usuario" not in session:
-        return redirect(url_for("login"))
+    proteccion = proteger_administrador()
 
-    cursor = mysql.connection.cursor(
-        MySQLdb.cursors.DictCursor
-    )
+    if proteccion:
+        return proteccion
 
-    cursor.execute("""
-        SELECT
-            id,
-            nombre,
-            correo,
-            telefono,
-            nombre_usuario,
-            rol
+    try:
+
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                nombre,
+                correo,
+                telefono,
+                nombre_usuario,
+                rol
             FROM gestion_usuarios
             ORDER BY id DESC
-        """)
+            """
+        )
 
-    usuarios = cursor.fetchall()
+        usuarios = cursor.fetchall()
 
-    cursor.close()
+        cursor.close()
 
-    return render_template(
-        "reporte.html",
-        usuarios = usuarios
-    )
+        return render_template(
+            "reporte.html",
+            usuarios=usuarios
+        )
 
-# =========================
-# Exportar reporte a Excel
-# =========================
+    except Exception as error:
 
+        return f"Error al generar reporte: {error}", 500
+
+
+# ============================================================
+# EXPORTAR REPORTE A EXCEL
+# ============================================================
 
 @app.route("/reporte_excel")
 def reporte_excel():
 
-    if "id_usuario" not in session:
-        return redirect(url_for("login"))
+    proteccion = proteger_administrador()
 
-    cursor = mysql.connection.cursor(
-        MySQLdb.cursors.DictCursor
-    )
+    if proteccion:
+        return proteccion
 
-    cursor.execute("""
-        SELECT
-            id,
-            nombre,
-            correo,
-            telefono,
-            nombre_usuario,
-            rol
+    try:
+
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                nombre,
+                correo,
+                telefono,
+                nombre_usuario,
+                rol
             FROM gestion_usuarios
             ORDER BY id DESC
-        """)
+            """
+        )
 
-    datos = cursor.fetchall()
+        datos = cursor.fetchall()
 
-    cursor.close()
+        cursor.close()
 
-    libro = Workbook()
-    hoja = libro.active
-    hoja.title = "Reporte Usuarios"
+        # ----------------------------------------------------
+        # CREAR ARCHIVO EXCEL
+        # ----------------------------------------------------
 
-    hoja.append([
-        "ID",
-        "Nombre",
-        "Correo",
-        "Teléfono",
-        "Usuario",
-        "Rol",
-    ])
+        libro = Workbook()
 
-    for fila in datos:
+        hoja = libro.active
+        hoja.title = "Reporte Usuarios"
 
-        hoja.append([
-        fila["id"],
-        fila["nombre"],
-        fila["correo"],
-        fila["telefono"],
-        fila["nombre_usuario"],
-        fila["rol"],
-    ])
+        # Encabezados
+        hoja.append(
+            [
+                "ID",
+                "Nombre",
+                "Correo",
+                "Teléfono",
+                "Usuario",
+                "Rol"
+            ]
+        )
 
-    archivo = io.BytesIO()
+        # Datos
+        for fila in datos:
 
-    libro.save(archivo)
-    archivo.seek(0)
+            hoja.append(
+                [
+                    fila["id"],
+                    fila["nombre"],
+                    fila["correo"],
+                    fila["telefono"],
+                    fila["nombre_usuario"],
+                    fila["rol"]
+                ]
+            )
 
-    return send_file(
-        archivo,
-        download_name="reporte_usuarios.xlsx",
-        as_attachment=True
-    )
+        # ----------------------------------------------------
+        # GUARDAR EXCEL EN MEMORIA
+        # ----------------------------------------------------
+
+        archivo = io.BytesIO()
+
+        libro.save(archivo)
+
+        archivo.seek(0)
+
+        # ----------------------------------------------------
+        # DESCARGAR ARCHIVO
+        # ----------------------------------------------------
+
+        return send_file(
+            archivo,
+            download_name="reporte_usuarios.xlsx",
+            as_attachment=True
+        )
+
+    except Exception as error:
+
+        return f"Error al generar el archivo Excel: {error}", 500
 
 
-# Ejecutar la aplicación
+# ============================================================
+# EJECUTAR APLICACIÓN
+# ============================================================
 
 if __name__ == "__main__":
     app.run(debug=True)
