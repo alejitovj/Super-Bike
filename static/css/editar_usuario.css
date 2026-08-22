@@ -1,0 +1,361 @@
+/* ========================================
+   SUPERBIKE - EDITAR USUARIO
+======================================== */
+
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.encabezado {
+    width: 100%;
+    min-height: 85px;
+    padding: 12px 50px;
+
+    display: flex;
+    align-items: center;
+
+    background: #15181d;
+    border-bottom: 1px solid #292e35;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
+}
+
+.logo-titulo {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.logo-titulo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+
+    transition: transform 0.3s ease;
+}
+
+.logo-titulo img:hover {
+    transform: scale(1.08);
+}
+
+.logo-titulo h1 {
+    font-size: 25px;
+    color: #ffffff;
+}
+
+
+/* ========================================
+   USUARIO
+======================================== */
+
+.usuario {
+    margin-left: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: right;
+
+    color: #d8dce2;
+}
+
+.usuario span {
+    font-size: 13px;
+    color: #858c96;
+}
+
+.usuario strong {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+
+/* ========================================
+   CONTENEDOR DEL FORMULARIO
+======================================== */
+
+.login-container {
+    width: 100%;
+    max-width: 700px;
+
+    margin: 50px auto;
+
+    padding: 0 20px;
+}
+
+
+/* ========================================
+   FORMULARIO
+======================================== */
+
+.login-form {
+    width: 100%;
+
+    background: #16191e;
+
+    padding: 35px;
+
+    border-radius: 14px;
+
+    border: 1px solid #292e35;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+    color: #ffffff;
+}
+
+
+/* ========================================
+   TITULO
+======================================== */
+
+.login-form h2 {
+    margin-bottom: 30px;
+
+    color: #ffffff;
+
+    font-size: 27px;
+    font-weight: 700;
+
+    position: relative;
+}
+
+.login-form h2::after {
+    content: "";
+
+    display: block;
+
+    width: 90px;
+    height: 4px;
+
+    margin-top: 8px;
+
+    background: #00e676;
+
+    border-radius: 10px;
+}
+
+
+/* ========================================
+   LABELS
+======================================== */
+
+.login-form label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #d8dce2;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* ========================================
+   INPUTS
+======================================== */
+
+.login-form input,
+.login-form select {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    margin-bottom: 20px;
+
+    background: #0d0f12;
+
+    border: 1px solid #292e35;
+
+    border-radius: 8px;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: all 0.2s ease;
+}
+
+.login-form input:focus,
+.login-form select:focus {
+    border-color: #0089c8;
+
+    box-shadow: 0 0 0 2px rgba(0, 137, 200, 0.15);
+}
+
+
+/* ========================================
+   SELECT
+======================================== */
+
+.login-form select {
+    cursor: pointer;
+}
+
+.login-form select option {
+    background: #16191e;
+    color: #ffffff;
+}
+
+
+/* ========================================
+   BOTÓN GUARDAR
+======================================== */
+
+.login-form button {
+    width: 100%;
+
+    padding: 13px 20px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #00c853;
+
+    color: #06140b;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.login-form button:hover {
+    background: #00e676;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 15px rgba(0, 230, 118, 0.2);
+}
+
+.login-form button:active {
+    transform: scale(0.98);
+}
+
+
+/* ========================================
+   BOTÓN CANCELAR
+======================================== */
+
+.login-form form > a {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 12px 20px;
+
+    background: #292e35;
+
+    color: #d8dce2;
+
+    text-decoration: none;
+
+    text-align: center;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.login-form form > a:hover {
+    background: #0089c8;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+    width: 100%;
+
+    margin-top: 70px;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    background: #15181d;
+
+    border-top: 1px solid #292e35;
+
+    color: #858c96;
+}
+
+footer p {
+    margin: 6px 0;
+
+    font-size: 14px;
+}
+
+footer p:first-child {
+    color: #ffffffa9;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .encabezado {
+        padding: 20px 15px;
+    }
+
+    .logo-titulo {
+        gap: 12px;
+    }
+
+    .logo-titulo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logo-titulo h1 {
+        font-size: 20px;
+    }
+
+    .usuario {
+        display: none;
+    }
+
+    .login-container {
+        margin: 30px auto;
+
+        padding: 0 15px;
+    }
+
+    .login-form {
+        padding: 20px;
+    }
+
+    .login-form h2 {
+        font-size: 23px;
+    }
+
+    footer {
+        margin-top: 45px;
+    }
+}

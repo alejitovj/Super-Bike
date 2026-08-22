@@ -1,0 +1,323 @@
+/* ========================================
+   SUPERBIKE - CONSULTAR USUARIOS
+======================================== */
+
+
+/* ========================================
+   CONTENEDOR GENERAL
+======================================== */
+
+.usuarios-page {
+    min-height: 100vh;
+    background: #0d0f12;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ========================================
+   HEADER DE USUARIOS
+======================================== */
+
+.usuarios-page .usuarios-header {
+    width: 100%;
+    min-height: 90px;
+    padding: 15px 50px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    background: #15181d;
+    border-bottom: 1px solid #292e35;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.35);
+}
+
+.usuarios-page .usuarios-header img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+
+    transition: transform 0.3s ease;
+}
+
+.usuarios-page .usuarios-header img:hover {
+    transform: scale(1.08);
+}
+
+.usuarios-page .usuarios-header h1 {
+    margin: 0;
+
+    font-size: 26px;
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+
+/* ========================================
+   CONTENEDOR
+======================================== */
+
+.usuarios-page .usuarios-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+
+/* ========================================
+   TITULO
+======================================== */
+
+.usuarios-page .usuarios-container h2 {
+    position: relative;
+
+    display: inline-block;
+
+    margin: 0 0 25px 0;
+
+    font-size: 28px;
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+.usuarios-page .usuarios-container h2::after {
+    content: "";
+
+    display: block;
+
+    width: 55%;
+    height: 4px;
+
+    margin-top: 8px;
+
+    background: #00e676;
+    border-radius: 10px;
+}
+
+
+/* ========================================
+   CONTENEDOR DE TABLA
+======================================== */
+
+.usuarios-page .usuarios-tabla-contenedor {
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    background: #16191e;
+
+    border: 1px solid #292e35;
+    border-radius: 12px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ========================================
+   TABLA
+======================================== */
+
+.usuarios-page .usuarios-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #16191e;
+
+    color: #ffffff;
+}
+
+
+/* ========================================
+   ENCABEZADO DE TABLA
+======================================== */
+
+.usuarios-page .usuarios-table thead {
+    background: #00c853;
+}
+
+.usuarios-page .usuarios-table thead th {
+    padding: 17px 15px;
+
+    color: #06140b;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-align: left;
+    text-transform: uppercase;
+
+    border: none;
+
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   CELDAS
+======================================== */
+
+.usuarios-page .usuarios-table tbody td {
+    padding: 15px;
+
+    background: #16191e;
+
+    color: #d8dce2;
+
+    font-size: 15px;
+
+    border-top: 1px solid #292e35;
+
+    vertical-align: middle;
+}
+
+
+/* ========================================
+   HOVER DE FILAS
+======================================== */
+
+.usuarios-page .usuarios-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.usuarios-page .usuarios-table tbody tr:hover td {
+    background: #20252c;
+
+    color: #ffffff;
+}
+
+
+/* ========================================
+   ID
+======================================== */
+
+.usuarios-page .usuarios-table tbody td:first-child {
+    color: #00e676;
+    font-weight: bold;
+}
+
+
+/* ========================================
+   ROL
+======================================== */
+
+.usuarios-page .usuarios-table tbody td:last-child {
+    color: #00e676;
+    font-weight: 600;
+}
+
+
+/* ========================================
+   SIN USUARIOS
+======================================== */
+
+.usuarios-page .usuarios-table .usuarios-vacio {
+    padding: 30px;
+
+    color: #8c939d;
+
+    font-size: 15px;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.usuarios-page .usuarios-footer {
+    width: 100%;
+
+    margin-top: 80px;
+    padding: 30px 20px;
+
+    text-align: center;
+
+    background: #15181d;
+
+    border-top: 1px solid #292e35;
+
+    color: #858c96;
+}
+
+.usuarios-page .usuarios-footer p {
+    margin: 6px 0;
+
+    font-size: 14px;
+}
+
+.usuarios-page .usuarios-footer p:first-child {
+    color: #00e676;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 800px) {
+
+    .usuarios-page .usuarios-header {
+        padding: 15px 25px;
+    }
+
+    .usuarios-page .usuarios-header h1 {
+        font-size: 21px;
+    }
+
+    .usuarios-page .usuarios-container {
+        width: 95%;
+        margin: 35px auto;
+        padding: 0;
+    }
+
+    .usuarios-page .usuarios-table {
+        min-width: 750px;
+    }
+}
+
+
+/* ========================================
+   CELULARES
+======================================== */
+
+@media (max-width: 500px) {
+
+    .usuarios-page .usuarios-header {
+        flex-direction: column;
+
+        padding: 25px 15px;
+
+        text-align: center;
+    }
+
+    .usuarios-page .usuarios-header img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .usuarios-page .usuarios-header h1 {
+        font-size: 18px;
+    }
+
+    .usuarios-page .usuarios-container h2 {
+        font-size: 23px;
+    }
+
+    .usuarios-page .usuarios-footer {
+        margin-top: 50px;
+    }
+
+    .usuarios-page .usuarios-footer p {
+        font-size: 12px;
+    }
+}

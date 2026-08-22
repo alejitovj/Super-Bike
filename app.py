@@ -117,6 +117,7 @@ def login():
 
     return render_template("login.html")
 
+
 # Ruta principal de bienvenida (protegida)
 @app.route("/inicio")
 def panel_inicio():
@@ -125,6 +126,7 @@ def panel_inicio():
         return render_template("index.html", usuario=session.get('nombre_usuario'))
     else:
         return redirect(url_for('login'))
+    
 
 # Ruta para cerrar sesión
 @app.route("/logout")
@@ -137,6 +139,8 @@ def logout():
 @app.route("/exito")
 def ingreso_exitoso():
     return render_template("ingreso_exitoso.html")
+
+
 
 # Consultar Usuarios
 
@@ -292,9 +296,9 @@ def eliminar_usuario(id):
         url_for("eliminar_usuarios")
     )
 
-#====================
+# ====================
 # Reporte de usuarios
-#====================
+# ====================
 
 @app.route("/reporte")
 def reporte():
@@ -327,9 +331,10 @@ def reporte():
         usuarios = usuarios
     )
 
-#=========================
+# =========================
 # Exportar reporte a Excel
-#=========================
+# =========================
+
 
 @app.route("/reporte_excel")
 def reporte_excel():
@@ -391,7 +396,6 @@ def reporte_excel():
         download_name="reporte_usuarios.xlsx",
         as_attachment=True
     )
-
 
 
 # Ejecutar la aplicación

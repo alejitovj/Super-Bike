@@ -1,0 +1,114 @@
+/* ==================== REGISTRO ==================== */
+
+.auth-body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("../img/PortadaBike.jpeg.png");
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.auth-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 430px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 45px;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    animation: fadeUp 0.8s ease;
+    color: white;
+}
+
+.auth-card h1 {
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.auth-card p {
+    text-align: center;
+    color: #cfcfcf;
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.auth-card input {
+    padding: 15px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.auth-card input::placeholder {
+    color: #d1d1d1;
+}
+
+.auth-card input:focus {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.auth-card button {
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #222;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 5px;
+}
+
+.auth-card button:hover {
+    background: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.auth-card span {
+    text-align: center;
+    font-size: 14px;
+    color: #bbb;
+    margin-top: 5px;
+    display: block;
+}
+
+.auth-card span a {
+    color: #ff5252;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-card span a:hover {
+    text-decoration: underline;
+}
+
+.auth-card a:hover {
+    background-color: #e0e0e0 !important;
+    transform: translateY(-2px);
+}
