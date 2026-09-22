@@ -124,6 +124,160 @@ def catalogo():
         return f"Error al cargar el catálogo: {error}", 500
 
 
+    # ============================================================
+# AGREGAR PRODUCTO AL CARRITO
+# ============================================================
+
+@app.route("/agregar_carrito/<int:id>", methods=["POST"])
+def agregar_carrito(id):
+
+    proteccion = proteger_ruta()
+
+    if proteccion:
+        return proteccion
+
+    usuario_id = session.get("id_usuario")
+
+    try:
+
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
+
+        # Comprobar que el producto existe
+        cursor.execute(
+            """
+            SELECT id, stock
+            FROM productos
+            WHERE id = %s
+            """,
+            (id,)
+        )
+
+        producto = cursor.fetchone()
+
+        if not producto:
+            cursor.close()
+            return "Producto no encontrado", 404
+
+        # Comprobar si ya está en el carrito
+        cursor.execute(
+            """
+            SELECT id, cantidad
+            FROM carrito
+            WHERE usuario_id = %s
+            AND producto_id = %s
+            """,
+            (usuario_id, id)
+        )
+
+        producto_carrito = cursor.fetchone()
+
+        if producto_carrito:
+
+            nueva_cantidad = producto_carrito["cantidad"] + 1
+
+            if nueva_cantidad > producto["stock"]:
+                cursor.close()
+                return "No hay suficiente stock", 400
+
+            cursor.execute(
+                """
+                UPDATE carrito
+                SET cantidad = %s
+                WHERE id = %s
+                """,
+                (
+                    nueva_cantidad,
+                    producto_carrito["id"]
+                )
+            )
+
+        else:
+
+            cursor.execute(
+                """
+                INSERT INTO carrito
+                (
+                    usuario_id,
+                    producto_id,
+                    cantidad
+                )
+                VALUES (%s, %s, %s)
+                """,
+                (
+                    usuario_id,
+                    id,
+                    1
+                )
+            )
+
+        mysql.connection.commit()
+        cursor.close()
+
+        return redirect(url_for("carrito"))
+
+    except Exception as error:
+
+        return f"Error al agregar al carrito: {error}", 500
+
+# ============================================================
+# CARRITO DE COMPRAS
+# ============================================================
+
+@app.route("/carrito")
+def carrito():
+
+    proteccion = proteger_ruta()
+
+    if proteccion:
+        return proteccion
+
+    usuario_id = session.get("id_usuario")
+
+    try:
+
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
+
+        cursor.execute(
+            """
+            SELECT
+                carrito.id,
+                carrito.cantidad,
+                productos.nombre,
+                productos.precio,
+                productos.imagen,
+                productos.stock
+            FROM carrito
+            INNER JOIN productos
+                ON carrito.producto_id = productos.id
+            WHERE carrito.usuario_id = %s
+            ORDER BY carrito.id DESC
+            """,
+            (usuario_id,)
+        )
+
+        productos_carrito = cursor.fetchall()
+
+        cursor.close()
+
+        total = sum(
+            producto["precio"] * producto["cantidad"]
+            for producto in productos_carrito
+        )
+
+        return render_template(
+            "carrito.html",
+            productos=productos_carrito,
+            total=total
+        )
+
+    except Exception as error:
+
+        return f"Error al cargar el carrito: {error}", 500
+
 # ============================================================
 # CONTACTO
 # ============================================================
