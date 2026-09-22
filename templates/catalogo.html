@@ -164,35 +164,32 @@
 
     <section class="catalogo">
 
-        <h2>
-            Bicicletas Destacadas
-        </h2>
+    <h2>
+        Bicicletas Destacadas
+    </h2>
 
+    <div class="catalogo-grid">
 
-        <div class="catalogo-grid">
-
-
-            <!-- ==================== BICICLETA 1 ==================== -->
+        {% for producto in productos %}
 
             <div class="catalogo-card">
 
                 <img
-                    src="{{ url_for('static', filename='img/Bici de montaña.png') }}"
-                    alt="Bicicleta de montaña">
+                    src="{{ url_for('static', filename='img/' + producto.imagen) }}"
+                    alt="{{ producto.nombre }}">
 
                 <div class="catalogo-info">
 
                     <h3>
-                        Bicicleta Montaña
+                        {{ producto.nombre }}
                     </h3>
 
                     <p>
-                        Ideal para rutas exigentes
-                        y terrenos difíciles.
+                        {{ producto.descripcion }}
                     </p>
 
                     <span>
-                        $1'800.000
+                        ${{ "{:,.0f}".format(producto.precio).replace(",", ".") }}
                     </span>
 
                     <button>
@@ -203,175 +200,11 @@
 
             </div>
 
+        {% endfor %}
 
+    </div>
 
-            <!-- ==================== BICICLETA 2 ==================== -->
-
-            <div class="catalogo-card">
-
-                <img
-                    src="{{ url_for('static', filename='img/mtb.png') }}"
-                    alt="Bicicleta MTB">
-
-                <div class="catalogo-info">
-
-                    <h3>
-                        Bicicleta MTB
-                    </h3>
-
-                    <p>
-                        Excelente para uso urbano
-                        y deportivo.
-                    </p>
-
-                    <span>
-                        $1'200.000
-                    </span>
-
-                    <button>
-                        Comprar
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ==================== BICICLETA 3 ==================== -->
-
-            <div class="catalogo-card">
-
-                <img
-                    src="{{ url_for('static', filename='img/downhill.png') }}"
-                    alt="Bicicleta Downhill">
-
-                <div class="catalogo-info">
-
-                    <h3>
-                        Bicicleta Downhill
-                    </h3>
-
-                    <p>
-                        Diseñada para descensos
-                        y saltos extremos.
-                    </p>
-
-                    <span>
-                        $2'200.000
-                    </span>
-
-                    <button>
-                        Comprar
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ==================== BICICLETA 4 ==================== -->
-
-            <div class="catalogo-card">
-
-                <img
-                    src="{{ url_for('static', filename='img/urbana.png') }}"
-                    alt="Bicicleta urbana">
-
-                <div class="catalogo-info">
-
-                    <h3>
-                        Bicicleta Urbana
-                    </h3>
-
-                    <p>
-                        Cómoda y perfecta para uso
-                        diario de trabajo o ciudad.
-                    </p>
-
-                    <span>
-                        $800.000
-                    </span>
-
-                    <button>
-                        Comprar
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ==================== BICICLETA 5 ==================== -->
-
-            <div class="catalogo-card">
-
-                <img
-                    src="{{ url_for('static', filename='img/niños.png') }}"
-                    alt="Bicicleta para niños">
-
-                <div class="catalogo-info">
-
-                    <h3>
-                        Bicicleta para Niños
-                    </h3>
-
-                    <p>
-                        Ideal para niños entre
-                        5 y 10 años.
-                    </p>
-
-                    <span>
-                        $850.000
-                    </span>
-
-                    <button>
-                        Comprar
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ==================== BICICLETA 6 ==================== -->
-
-            <div class="catalogo-card">
-
-                <img
-                    src="{{ url_for('static', filename='img/Bici de montaña.png') }}"
-                    alt="Bicicleta eléctrica de alta gama">
-
-                <div class="catalogo-info">
-
-                    <h3>
-                        Bicicleta Alta Gama Eléctrica
-                    </h3>
-
-                    <p>
-                        Alto rendimiento
-                        y máxima velocidad.
-                    </p>
-
-                    <span>
-                        $3'500.000
-                    </span>
-
-                    <button>
-                        Comprar
-                    </button>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
+</section>
 
 
 

@@ -89,7 +89,39 @@ def inicio():
 
 @app.route("/catalogo")
 def catalogo():
-    return render_template("catalogo.html")
+
+    try:
+
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                nombre,
+                descripcion,
+                precio,
+                imagen,
+                stock
+            FROM productos
+            ORDER BY id ASC
+            """
+        )
+
+        productos = cursor.fetchall()
+
+        cursor.close()
+
+        return render_template(
+            "catalogo.html",
+            productos=productos
+        )
+
+    except Exception as error:
+
+        return f"Error al cargar el catálogo: {error}", 500
 
 
 # ============================================================
