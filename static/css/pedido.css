@@ -1,0 +1,257 @@
+/* =========================================================
+   SUPERBIKE - PEDIDO
+   ========================================================= */
+
+.pedido {
+    width: min(1000px, 92%);
+    margin: 75px auto 80px;
+}
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.pedido-header {
+    position: relative;
+    margin-bottom: 45px;
+    padding: 45px 25px;
+    text-align: center;
+    overflow: hidden;
+    border: 1px solid rgba(0, 229, 255, 0.12);
+    border-radius: 22px;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0, 229, 255, 0.09),
+            transparent 58%
+        ),
+        #101417;
+}
+
+.pedido-header::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    top: -100px;
+    right: -70px;
+    border: 1px solid rgba(0, 229, 255, 0.09);
+    border-radius: 50%;
+}
+
+.pedido-header::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    left: -90px;
+    bottom: -90px;
+    border: 1px solid rgba(0, 229, 255, 0.07);
+    border-radius: 50%;
+}
+
+.pedido-header h1 {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 10px;
+    color: var(--cian);
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    text-shadow: 0 0 22px rgba(0, 229, 255, 0.2);
+}
+
+.pedido-header p {
+    position: relative;
+    z-index: 2;
+    color: #a3adb2;
+    font-size: 0.95rem;
+}
+
+/* =========================================================
+   DATOS DEL PEDIDO
+   ========================================================= */
+
+.pedido-datos,
+.pedido-productos,
+.pedido-total {
+    margin-bottom: 20px;
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 18px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.01)
+        ),
+        #111519;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+
+.pedido-datos h2,
+.pedido-productos h2 {
+    margin-bottom: 20px;
+    color: var(--blanco);
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.pedido-datos p {
+    margin: 9px 0;
+    color: #8d989e;
+    font-size: 0.88rem;
+}
+
+.pedido-datos strong {
+    color: #dde3e7;
+}
+
+.pedido-datos p:last-child strong {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 30px;
+    color: #071114;
+    background: var(--cian);
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+}
+
+/* =========================================================
+   PRODUCTOS
+   ========================================================= */
+
+.pedido-productos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pedido-producto {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.018);
+    transition:
+        border-color var(--transicion),
+        background var(--transicion),
+        transform var(--transicion);
+}
+
+.pedido-producto:hover {
+    transform: translateX(4px);
+    border-color: rgba(0, 229, 255, 0.14);
+    background: rgba(0, 229, 255, 0.025);
+}
+
+.pedido-producto img {
+    width: 125px;
+    height: 100px;
+    flex-shrink: 0;
+    object-fit: contain;
+    padding: 8px;
+    border-radius: 10px;
+    background: #0a0e10;
+}
+
+.pedido-producto-info {
+    flex: 1;
+}
+
+.pedido-producto-info h3 {
+    margin-bottom: 8px;
+    color: var(--blanco);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.pedido-producto-info p {
+    color: #88939a;
+    font-size: 0.83rem;
+}
+
+/* =========================================================
+   TOTAL
+   ========================================================= */
+
+.pedido-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.pedido-total h2 {
+    color: #aab3b8;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.pedido-total strong {
+    color: var(--cian);
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+/* =========================================================
+   ACCIONES
+   ========================================================= */
+
+.pedido-acciones {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.pedido-acciones a {
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 0.87rem;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .pedido {
+        margin-top: 55px;
+    }
+
+    .pedido-header {
+        padding: 35px 20px;
+    }
+
+    .pedido-datos,
+    .pedido-productos,
+    .pedido-total {
+        padding: 21px;
+    }
+
+    .pedido-producto {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .pedido-producto img {
+        width: 100%;
+        height: 180px;
+    }
+
+    .pedido-total {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .pedido-total strong {
+        font-size: 1.4rem;
+    }
+
+    .pedido-acciones a {
+        width: 100%;
+        text-align: center;
+    }
+
+}
