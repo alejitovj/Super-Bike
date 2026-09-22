@@ -2,20 +2,14 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Catálogo | Superbike</title>
-
     <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/catalogo.css') }}">
 </head>
 
-
 <body>
-
 
     <!-- ==================== HEADER ==================== -->
 
@@ -34,7 +28,6 @@
                 </span>
 
             </div>
-
 
             <ul class="nav-links">
 
@@ -61,7 +54,6 @@
                         Quiénes somos
                     </a>
                 </li>
-
 
                 <!-- PERFIL -->
 
@@ -93,16 +85,25 @@
 
                     </a>
 
-
                     <ul class="dropdown-menu" id="dropdownMenu">
 
                         {% if session.get('logueado') %}
 
                             <li>
-                                <a href="{{ url_for('reporte') }}">
-                                    📊 Reporte de Usuarios
+                                <a href="{{ url_for('mis_pedidos') }}">
+                                    📦 Mis pedidos
                                 </a>
                             </li>
+
+                            {% if session.get('rol') == 'admin' %}
+
+                                <li>
+                                    <a href="{{ url_for('reporte') }}">
+                                        📊 Reporte de Usuarios
+                                    </a>
+                                </li>
+
+                            {% endif %}
 
                             <li>
                                 <a href="{{ url_for('logout') }}">
@@ -137,7 +138,6 @@
     </header>
 
 
-
     <!-- ==================== HERO ==================== -->
 
     <section class="catalogo-hero">
@@ -159,59 +159,57 @@
     </section>
 
 
-
     <!-- ==================== CATÁLOGO ==================== -->
 
     <section class="catalogo">
 
-    <h2>
-        Bicicletas Destacadas
-    </h2>
+        <h2>
+            Bicicletas Destacadas
+        </h2>
 
-    <div class="catalogo-grid">
+        <div class="catalogo-grid">
 
-        {% for producto in productos %}
+            {% for producto in productos %}
 
-            <div class="catalogo-card">
+                <div class="catalogo-card">
 
-                <img
-                    src="{{ url_for('static', filename='img/' + producto.imagen) }}"
-                    alt="{{ producto.nombre }}">
+                    <img
+                        src="{{ url_for('static', filename='img/' + producto.imagen) }}"
+                        alt="{{ producto.nombre }}">
 
-                <div class="catalogo-info">
+                    <div class="catalogo-info">
 
-                    <h3>
-                        {{ producto.nombre }}
-                    </h3>
+                        <h3>
+                            {{ producto.nombre }}
+                        </h3>
 
-                    <p>
-                        {{ producto.descripcion }}
-                    </p>
+                        <p>
+                            {{ producto.descripcion }}
+                        </p>
 
-                    <span>
-                        ${{ "{:,.0f}".format(producto.precio).replace(",", ".") }}
-                    </span>
+                        <span>
+                            ${{ "{:,.0f}".format(producto.precio).replace(",", ".") }}
+                        </span>
 
-                    <form
-    action="{{ url_for('agregar_carrito', id=producto.id) }}"
-    method="POST">
+                        <form
+                            action="{{ url_for('agregar_carrito', id=producto.id) }}"
+                            method="POST">
 
-    <button type="submit">
-        Comprar
-    </button>
+                            <button type="submit">
+                                Comprar
+                            </button>
 
-</form>
+                        </form>
+
+                    </div>
 
                 </div>
 
-            </div>
+            {% endfor %}
 
-        {% endfor %}
+        </div>
 
-    </div>
-
-</section>
-
+    </section>
 
 
     <!-- ==================== FOOTER ==================== -->
@@ -226,14 +224,12 @@
     </footer>
 
 
-
     <!-- ==================== JAVASCRIPT ==================== -->
 
     <script>
 
         const perfilBtn = document.getElementById("perfil-btn");
         const menu = document.getElementById("dropdownMenu");
-
 
         if (perfilBtn && menu) {
 
@@ -248,7 +244,6 @@
         }
 
     </script>
-
 
 </body>
 
