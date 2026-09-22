@@ -1,0 +1,46 @@
+.mis-pedidos {
+    width: 90%;
+    max-width: 1000px;
+    margin: 120px auto 60px;
+}
+
+.mis-pedidos > h1 {
+    margin-bottom: 35px;
+}
+
+.pedidos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pedido-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    border-radius: 12px;
+    background: #1a1a1a;
+}
+
+.pedido-info h2 {
+    margin-bottom: 15px;
+}
+
+.pedido-info p {
+    margin: 8px 0;
+}
+
+.pedido-boton a,
+.sin-pedidos a {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.sin-pedidos {
+    text-align: center;
+    padding: 80px 20px;
+}

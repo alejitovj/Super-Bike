@@ -278,6 +278,318 @@ def carrito():
 
         return f"Error al cargar el carrito: {error}", 500
 
+    # ============================================================
+# FINALIZAR COMPRA
+# ============================================================
+
+@app.route("/realizar_pedido", methods=["POST"])
+def realizar_pedido():
+
+    proteccion = proteger_ruta()
+
+    if proteccion:
+        return proteccion
+
+    usuario_id = session.get("id_usuario")
+
+    try:
+
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
+
+        # ----------------------------------------------------
+        # OBTENER PRODUCTOS DEL CARRITO
+        # ----------------------------------------------------
+
+        cursor.execute(
+            """
+            SELECT
+                carrito.id,
+                carrito.producto_id,
+                carrito.cantidad,
+                productos.nombre,
+                productos.precio,
+                productos.stock
+            FROM carrito
+            INNER JOIN productos
+                ON carrito.producto_id = productos.id
+            WHERE carrito.usuario_id = %s
+            """,
+            (usuario_id,)
+        )
+
+        productos_carrito = cursor.fetchall()
+
+        # Comprobar que el carrito no esté vacío
+        if not productos_carrito:
+
+            cursor.close()
+
+            return redirect(
+                url_for("carrito")
+            )
+
+        # ----------------------------------------------------
+        # COMPROBAR STOCK
+        # ----------------------------------------------------
+
+        for producto in productos_carrito:
+
+            if producto["cantidad"] > producto["stock"]:
+
+                cursor.close()
+
+                return (
+                    f"No hay suficiente stock de "
+                    f"{producto['nombre']}",
+                    400
+                )
+
+        # ----------------------------------------------------
+        # CALCULAR TOTAL
+        # ----------------------------------------------------
+
+        total = sum(
+            producto["precio"] * producto["cantidad"]
+            for producto in productos_carrito
+        )
+
+        # ----------------------------------------------------
+        # CREAR PEDIDO
+        # ----------------------------------------------------
+
+        cursor.execute(
+            """
+            INSERT INTO pedidos
+            (
+                usuario_id,
+                total,
+                estado
+            )
+            VALUES (%s, %s, %s)
+            """,
+            (
+                usuario_id,
+                total,
+                "Pedido realizado"
+            )
+        )
+
+        pedido_id = cursor.lastrowid
+
+        # ----------------------------------------------------
+        # GUARDAR DETALLES DEL PEDIDO
+        # ----------------------------------------------------
+
+        for producto in productos_carrito:
+
+            cursor.execute(
+                """
+                INSERT INTO detalle_pedido
+                (
+                    pedido_id,
+                    producto_id,
+                    cantidad,
+                    precio
+                )
+                VALUES (%s, %s, %s, %s)
+                """,
+                (
+                    pedido_id,
+                    producto["producto_id"],
+                    producto["cantidad"],
+                    producto["precio"]
+                )
+            )
+
+            # ------------------------------------------------
+            # DESCONTAR STOCK
+            # ------------------------------------------------
+
+            cursor.execute(
+                """
+                UPDATE productos
+                SET stock = stock - %s
+                WHERE id = %s
+                """,
+                (
+                    producto["cantidad"],
+                    producto["producto_id"]
+                )
+            )
+
+        # ----------------------------------------------------
+        # VACIAR CARRITO
+        # ----------------------------------------------------
+
+        cursor.execute(
+            """
+            DELETE FROM carrito
+            WHERE usuario_id = %s
+            """,
+            (usuario_id,)
+        )
+
+        mysql.connection.commit()
+
+        cursor.close()
+
+        # ----------------------------------------------------
+        # MOSTRAR PEDIDO
+        # ----------------------------------------------------
+
+        return redirect(
+            url_for(
+                "pedido",
+                id=pedido_id
+            )
+        )
+
+    except Exception as error:
+
+        mysql.connection.rollback()
+
+        return (
+            f"Error al realizar el pedido: {error}",
+            500
+        )
+
+    # ============================================================
+# VER PEDIDO
+# ============================================================
+
+@app.route("/pedido/<int:id>")
+def pedido(id):
+
+    proteccion = proteger_ruta()
+
+    if proteccion:
+        return proteccion
+
+    usuario_id = session.get("id_usuario")
+
+    try:
+
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
+
+        # ----------------------------------------------------
+        # DATOS DEL PEDIDO
+        # ----------------------------------------------------
+
+        cursor.execute(
+            """
+            SELECT
+                pedidos.id,
+                pedidos.fecha,
+                pedidos.total,
+                pedidos.estado
+            FROM pedidos
+            WHERE pedidos.id = %s
+            AND pedidos.usuario_id = %s
+            """,
+            (
+                id,
+                usuario_id
+            )
+        )
+
+        pedido_actual = cursor.fetchone()
+
+        if not pedido_actual:
+
+            cursor.close()
+
+            return "Pedido no encontrado", 404
+
+        # ----------------------------------------------------
+        # PRODUCTOS DEL PEDIDO
+        # ----------------------------------------------------
+
+        cursor.execute(
+            """
+            SELECT
+                detalle_pedido.cantidad,
+                detalle_pedido.precio,
+                productos.nombre,
+                productos.imagen
+            FROM detalle_pedido
+            INNER JOIN productos
+                ON detalle_pedido.producto_id = productos.id
+            WHERE detalle_pedido.pedido_id = %s
+            """,
+            (id,)
+        )
+
+        productos = cursor.fetchall()
+
+        cursor.close()
+
+        return render_template(
+            "pedido.html",
+            pedido=pedido_actual,
+            productos=productos
+        )
+
+    except Exception as error:
+
+        return (
+            f"Error al consultar el pedido: {error}",
+            500
+        )
+
+    # ============================================================
+# MIS PEDIDOS
+# ============================================================
+
+@app.route("/mis_pedidos")
+def mis_pedidos():
+
+    proteccion = proteger_ruta()
+
+    if proteccion:
+        return proteccion
+
+    usuario_id = session.get("id_usuario")
+
+    try:
+
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                fecha,
+                total,
+                estado
+            FROM pedidos
+            WHERE usuario_id = %s
+            ORDER BY id DESC
+            """,
+            (usuario_id,)
+        )
+
+        pedidos = cursor.fetchall()
+
+        cursor.close()
+
+        return render_template(
+            "mis_pedidos.html",
+            pedidos=pedidos
+        )
+
+    except Exception as error:
+
+        return (
+            f"Error al consultar los pedidos: {error}",
+            500
+        )
+
 # ============================================================
 # CONTACTO
 # ============================================================

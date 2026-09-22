@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Mis pedidos | Superbike</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/global.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/mis_pedidos.css') }}">
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+
+                <img
+                    src="{{ url_for('static', filename='img/logo.png') }}"
+                    alt="Logo Superbike">
+
+                <span>
+                    Superbike
+                </span>
+
+            </div>
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="{{ url_for('inicio') }}">
+                        Inicio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('catalogo') }}">
+                        Catálogo
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('carrito') }}">
+                        🛒 Carrito
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main class="mis-pedidos">
+
+        <h1>
+            📦 Mis pedidos
+        </h1>
+
+
+        {% if pedidos %}
+
+            <div class="pedidos-lista">
+
+                {% for pedido in pedidos %}
+
+                    <div class="pedido-card">
+
+                        <div class="pedido-info">
+
+                            <h2>
+                                Pedido #{{ pedido.id }}
+                            </h2>
+
+                            <p>
+                                Fecha:
+                                {{ pedido.fecha }}
+                            </p>
+
+                            <p>
+                                Total:
+                                ${{ "{:,.0f}".format(pedido.total).replace(",", ".") }}
+                            </p>
+
+                            <p>
+                                Estado:
+                                <strong>
+                                    {{ pedido.estado }}
+                                </strong>
+                            </p>
+
+                        </div>
+
+
+                        <div class="pedido-boton">
+
+                            <a
+                                href="{{ url_for('pedido', id=pedido.id) }}">
+
+                                Ver pedido
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="sin-pedidos">
+
+                <h2>
+                    Aún no tienes pedidos
+                </h2>
+
+                <p>
+                    Cuando realices una compra,
+                    aparecerá aquí.
+                </p>
+
+                <a href="{{ url_for('catalogo') }}">
+                    Ir al catálogo
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            &copy; 2026 Superbike |
+            Todos los derechos reservados
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
