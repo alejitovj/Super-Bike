@@ -2,6 +2,11 @@
    SUPERBIKE — CARRITO
    ========================================================= */
 
+body {
+    margin: 0;
+    background: #080a0c !important;
+    color: #ffffff;
+}
 .carrito-header {
     width: 100%;
     height: 82px;
@@ -534,6 +539,40 @@
     letter-spacing: 2px;
 }
 
+/* =========================================================
+   ELIMINAR PRODUCTO
+   ========================================================= */
+
+.form-eliminar {
+    margin-top: 10px;
+}
+
+.btn-eliminar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 10px;
+    border: 1px solid rgba(255, 80, 80, 0.18);
+    border-radius: 7px;
+    background: rgba(255, 70, 70, 0.035);
+    color: #9a7777;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.btn-eliminar:hover {
+    background: rgba(255, 70, 70, 0.09);
+    border-color: rgba(255, 80, 80, 0.35);
+    color: #ff6b6b;
+    transform: translateY(-1px);
+}
 
 /* =========================================================
    RESPONSIVE
@@ -657,6 +696,7 @@
 
     .carrito-precio {
         grid-column: auto;
+        align-items: flex-start;
     }
 
 }

@@ -205,17 +205,35 @@
 
                             <!-- PRECIO -->
 
-                            <div class="carrito-precio">
+                            <!-- PRECIO -->
 
-                                <span class="precio-unitario">
-                                    ${{ "{:,.0f}".format(producto.precio).replace(",", ".") }}
-                                </span>
+<div class="carrito-precio">
 
-                                <span class="precio-total-producto">
-                                    ${{ "{:,.0f}".format(producto.precio * producto.cantidad).replace(",", ".") }}
-                                </span>
+    <span class="precio-unitario">
+        ${{ "{:,.0f}".format(producto.precio).replace(",", ".") }}
+    </span>
 
-                            </div>
+    <span class="precio-total-producto">
+        ${{ "{:,.0f}".format(producto.precio * producto.cantidad).replace(",", ".") }}
+    </span>
+
+    <form
+        action="{{ url_for('eliminar_del_carrito', id=producto.id) }}"
+        method="POST"
+        class="form-eliminar"
+    >
+
+        <button
+            type="submit"
+            class="btn-eliminar"
+            onclick="return confirm('¿Quieres eliminar esta bicicleta del carrito?')"
+        >
+            🗑 Eliminar
+        </button>
+
+    </form>
+
+</div>
 
                         </article>
 

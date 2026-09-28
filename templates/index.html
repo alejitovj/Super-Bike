@@ -7,7 +7,6 @@
     <title>Superbike</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-
 </head>
 
 <body>
@@ -38,16 +37,15 @@
                     <a href="{{ url_for('quienessomos') }}">Quiénes somos</a>
                 </li>
 
+                <!-- PERFIL -->
                 <li class="dropdown">
 
-                    <a href="#" id="userToggle" class="user-toggle">
+                    <a href="#" id="perfil-btn" class="user-toggle">
 
-                        <span>
-                            👤
-                        </span>
+                        <span>👤</span>
 
                         {% if session.get('logueado') %}
-                            <span>Hola, {{ session.get('user_name') }}</span>
+                            <span>{{ session.get('user_name') }}</span>
                         {% else %}
                             <span>Perfil</span>
                         {% endif %}
@@ -60,13 +58,27 @@
 
                         {% if session.get('logueado') %}
 
-                            <li class="menu-item">
-                                <a href="{{ url_for('reporte') }}">
-                                    📊 Reporte de Usuarios
+                            <li>
+                                <div class="perfil-usuario">
+                                    {{ session.get('user_name') }}
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="{{ url_for('mis_pedidos') }}">
+                                    📦 Mis pedidos
                                 </a>
                             </li>
 
-                            <li class="menu-item">
+                            {% if session.get('rol') == 'admin' %}
+                                <li>
+                                    <a href="{{ url_for('reporte') }}">
+                                        📊 Reporte de usuarios
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            <li>
                                 <a href="{{ url_for('logout') }}">
                                     Cerrar sesión
                                 </a>
@@ -74,13 +86,13 @@
 
                         {% else %}
 
-                            <li class="menu-item">
+                            <li>
                                 <a href="{{ url_for('login') }}">
                                     Iniciar sesión
                                 </a>
                             </li>
 
-                            <li class="menu-item">
+                            <li>
                                 <a href="{{ url_for('registro') }}">
                                     Registrarse
                                 </a>
@@ -199,7 +211,7 @@
 
     <script>
 
-        const perfilBtn = document.getElementById("userToggle");
+        const perfilBtn = document.getElementById("perfil-btn");
         const menu = document.getElementById("dropdownMenu");
 
         if (perfilBtn && menu) {
@@ -209,6 +221,16 @@
                 e.preventDefault();
 
                 menu.classList.toggle("show");
+
+            });
+
+            document.addEventListener("click", function (e) {
+
+                const dropdown = document.querySelector(".dropdown");
+
+                if (dropdown && !dropdown.contains(e.target)) {
+                    menu.classList.remove("show");
+                }
 
             });
 
@@ -222,26 +244,18 @@
             if (toast) {
 
                 setTimeout(() => {
-
                     toast.classList.add("show");
-
                 }, 300);
 
-
                 setTimeout(() => {
-
                     toast.classList.remove("show");
                     toast.classList.add("hide");
-
                 }, 3800);
-
 
                 toast.addEventListener("transitionend", function () {
 
                     if (toast.classList.contains("hide")) {
-
                         toast.remove();
-
                     }
 
                 });

@@ -11,7 +11,7 @@
 
 <body>
 
-    <!-- ==================== HEADER ==================== -->
+    <!-- HEADER -->
 
     <header>
 
@@ -61,22 +61,12 @@
 
                     <a href="#" id="perfil-btn" class="user-toggle">
 
-                        <span>
-                            👤
-                        </span>
+                        <span>👤</span>
 
                         {% if session.get('logueado') %}
-
-                            <span>
-                                Hola, {{ session.get('user_name') }}
-                            </span>
-
+                            <span>{{ session.get('user_name') }}</span>
                         {% else %}
-
-                            <span>
-                                Perfil
-                            </span>
-
+                            <span>Perfil</span>
                         {% endif %}
 
                         <span class="arrow-down">
@@ -90,6 +80,12 @@
                         {% if session.get('logueado') %}
 
                             <li>
+                                <div class="perfil-usuario">
+                                    {{ session.get('user_name') }}
+                                </div>
+                            </li>
+
+                            <li>
                                 <a href="{{ url_for('mis_pedidos') }}">
                                     📦 Mis pedidos
                                 </a>
@@ -99,7 +95,7 @@
 
                                 <li>
                                     <a href="{{ url_for('reporte') }}">
-                                        📊 Reporte de Usuarios
+                                        📊 Reporte de usuarios
                                     </a>
                                 </li>
 
@@ -138,7 +134,7 @@
     </header>
 
 
-    <!-- ==================== HERO ==================== -->
+    <!-- HERO -->
 
     <section class="catalogo-hero">
 
@@ -159,7 +155,7 @@
     </section>
 
 
-    <!-- ==================== CATÁLOGO ==================== -->
+    <!-- CATÁLOGO -->
 
     <section class="catalogo">
 
@@ -192,10 +188,10 @@
                         </span>
 
                         <a
-    href="{{ url_for('producto', id=producto.id) }}"
-    class="btn-comprar">
-    Comprar
-</a>
+                            href="{{ url_for('producto', id=producto.id) }}"
+                            class="btn-comprar">
+                            Comprar
+                        </a>
 
                     </div>
 
@@ -208,7 +204,7 @@
     </section>
 
 
-    <!-- ==================== FOOTER ==================== -->
+    <!-- FOOTER -->
 
     <footer>
 
@@ -220,7 +216,7 @@
     </footer>
 
 
-    <!-- ==================== JAVASCRIPT ==================== -->
+    <!-- PERFIL -->
 
     <script>
 
@@ -234,6 +230,16 @@
                 e.preventDefault();
 
                 menu.classList.toggle("show");
+
+            });
+
+            document.addEventListener("click", function (e) {
+
+                const dropdown = document.querySelector(".dropdown");
+
+                if (dropdown && !dropdown.contains(e.target)) {
+                    menu.classList.remove("show");
+                }
 
             });
 

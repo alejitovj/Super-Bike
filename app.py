@@ -314,7 +314,55 @@ def carrito():
 
         return f"Error al cargar el carrito: {error}", 500
 
-    # ============================================================
+
+# ============================================================
+# ELIMINAR PRODUCTO DEL CARRITO
+# ============================================================
+
+@app.route("/eliminar_del_carrito/<int:id>", methods=["POST"])
+def eliminar_del_carrito(id):
+
+    proteccion = proteger_ruta()
+
+    if proteccion:
+        return proteccion
+
+    usuario_id = session.get("id_usuario")
+
+    try:
+
+        cursor = mysql.connection.cursor()
+
+        cursor.execute(
+            """
+            DELETE FROM carrito
+            WHERE id = %s
+            AND usuario_id = %s
+            """,
+            (
+                id,
+                usuario_id
+            )
+        )
+
+        mysql.connection.commit()
+
+        cursor.close()
+
+        return redirect(
+            url_for("carrito")
+        )
+
+    except Exception as error:
+
+        mysql.connection.rollback()
+
+        return (
+            f"Error al eliminar el producto del carrito: {error}",
+            500
+        )
+
+# ============================================================
 # FINALIZAR COMPRA
 # ============================================================
 

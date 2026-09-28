@@ -68,9 +68,42 @@
 
     <main class="mis-pedidos">
 
-        <h1>
-            📦 Mis pedidos
-        </h1>
+        <section class="pedidos-encabezado">
+
+            <div>
+
+                <span class="pedidos-etiqueta">
+                    SUPERVISIÓN DE COMPRAS
+                </span>
+
+                <h1>
+                    Mis pedidos
+                </h1>
+
+                <p>
+                    Consulta el estado y seguimiento de todas
+                    tus compras en Superbike.
+                </p>
+
+            </div>
+
+            {% if pedidos %}
+
+                <div class="pedidos-contador">
+
+                    <span>
+                        PEDIDOS
+                    </span>
+
+                    <strong>
+                        {{ pedidos|length }}
+                    </strong>
+
+                </div>
+
+            {% endif %}
+
+        </section>
 
 
         {% if pedidos %}
@@ -79,54 +112,162 @@
 
                 {% for pedido in pedidos %}
 
-                    <div class="pedido-card">
+                    <article class="pedido-card">
 
-                        <div class="pedido-info">
+                        <div class="pedido-card-superior">
 
-                            <h2>
-                                Pedido #{{ pedido.id }}
-                            </h2>
+                            <div class="pedido-identificador">
 
-                            <p>
-                                Fecha:
-                                {{ pedido.fecha }}
-                            </p>
+                                <span>
+                                    PEDIDO
+                                </span>
 
-                            <p>
-                                Total:
-                                ${{ "{:,.0f}".format(pedido.total).replace(",", ".") }}
-                            </p>
+                                <h2>
+                                    #{{ pedido.id }}
+                                </h2>
 
-                            <p>
-                                Estado:
-                                <strong>
-                                    {{ pedido.estado }}
-                                </strong>
-                            </p>
+                            </div>
+
+
+                            <div class="pedido-estado
+                                {% if pedido.estado == 'Pedido realizado' %}
+                                    estado-realizado
+                                {% elif pedido.estado == 'En preparación' %}
+                                    estado-preparacion
+                                {% elif pedido.estado == 'Enviado' %}
+                                    estado-enviado
+                                {% elif pedido.estado == 'Entregado' %}
+                                    estado-entregado
+                                {% endif %}">
+
+                                <span class="estado-punto"></span>
+
+                                {{ pedido.estado }}
+
+                            </div>
 
                         </div>
 
 
-                        <div class="pedido-boton">
+                        <div class="pedido-separador"></div>
+
+
+                        <div class="pedido-datos">
+
+                            <div class="dato-pedido">
+
+                                <span class="dato-icono">
+                                    📅
+                                </span>
+
+                                <div>
+
+                                    <small>
+                                        FECHA
+                                    </small>
+
+                                    <strong>
+                                        {{ pedido.fecha }}
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="dato-pedido">
+
+                                <span class="dato-icono">
+                                    💳
+                                </span>
+
+                                <div>
+
+                                    <small>
+                                        TOTAL
+                                    </small>
+
+                                    <strong class="precio-pedido">
+                                        ${{ "{:,.0f}".format(pedido.total).replace(",", ".") }}
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="dato-pedido">
+
+                                <span class="dato-icono">
+                                    🚚
+                                </span>
+
+                                <div>
+
+                                    <small>
+                                        SEGUIMIENTO
+                                    </small>
+
+                                    <strong>
+                                        Disponible
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="pedido-card-inferior">
+
+                            <span class="pedido-mensaje">
+
+                                {% if pedido.estado == "Pedido realizado" %}
+                                    Tu pedido fue registrado correctamente.
+                                {% elif pedido.estado == "En preparación" %}
+                                    Tu pedido está siendo preparado.
+                                {% elif pedido.estado == "Enviado" %}
+                                    Tu pedido está en camino.
+                                {% elif pedido.estado == "Entregado" %}
+                                    Tu pedido fue entregado correctamente.
+                                {% endif %}
+
+                            </span>
+
 
                             <a
-                                href="{{ url_for('pedido', id=pedido.id) }}">
+                                href="{{ url_for('pedido', id=pedido.id) }}"
+                                class="btn-seguimiento">
 
-                                Ver pedido
+                                Ver seguimiento
+
+                                <span>
+                                    →
+                                </span>
 
                             </a>
 
                         </div>
 
-                    </div>
+                    </article>
 
                 {% endfor %}
 
             </div>
 
+
         {% else %}
 
-            <div class="sin-pedidos">
+            <section class="sin-pedidos">
+
+                <div class="sin-pedidos-icono">
+                    📦
+                </div>
+
+                <span>
+                    HISTORIAL VACÍO
+                </span>
 
                 <h2>
                     Aún no tienes pedidos
@@ -134,14 +275,21 @@
 
                 <p>
                     Cuando realices una compra,
-                    aparecerá aquí.
+                    podrás consultar aquí todos
+                    tus pedidos y su seguimiento.
                 </p>
 
                 <a href="{{ url_for('catalogo') }}">
-                    Ir al catálogo
+
+                    Explorar bicicletas
+
+                    <span>
+                        →
+                    </span>
+
                 </a>
 
-            </div>
+            </section>
 
         {% endif %}
 

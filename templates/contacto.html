@@ -12,52 +12,61 @@
 <body>
 
     <!-- HEADER -->
+
     <header>
+
         <nav>
 
             <div class="logo">
-                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo Superbike">
-                <span>Superbike</span>
+
+                <img
+                    src="{{ url_for('static', filename='img/logo.png') }}"
+                    alt="Logo Superbike">
+
+                <span>
+                    Superbike
+                </span>
+
             </div>
 
             <ul class="nav-links">
 
                 <li>
-                    <a href="{{ url_for('inicio') }}">Inicio</a>
+                    <a href="{{ url_for('inicio') }}">
+                        Inicio
+                    </a>
                 </li>
 
                 <li>
-                    <a href="{{ url_for('catalogo') }}">Catálogo</a>
+                    <a href="{{ url_for('catalogo') }}">
+                        Catálogo
+                    </a>
                 </li>
 
                 <li>
-                    <a href="{{ url_for('contacto') }}">Contáctanos</a>
+                    <a href="{{ url_for('contacto') }}">
+                        Contáctanos
+                    </a>
                 </li>
 
                 <li>
-                    <a href="{{ url_for('quienessomos') }}">Quiénes somos</a>
+                    <a href="{{ url_for('quienessomos') }}">
+                        Quiénes somos
+                    </a>
                 </li>
+
+                <!-- PERFIL -->
 
                 <li class="dropdown">
 
                     <a href="#" id="perfil-btn" class="user-toggle">
 
-                        <span>
-                            👤
-                        </span>
+                        <span>👤</span>
 
                         {% if session.get('logueado') %}
-
-                            <span>
-                                Hola, {{ session.get('user_name') }}
-                            </span>
-
+                            <span>{{ session.get('user_name') }}</span>
                         {% else %}
-
-                            <span>
-                                Perfil
-                            </span>
-
+                            <span>Perfil</span>
                         {% endif %}
 
                         <span class="arrow-down">
@@ -66,19 +75,53 @@
 
                     </a>
 
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" id="dropdownMenu">
 
-                        <li>
-                            <a href="{{ url_for('login') }}">
-                                Iniciar sesión
-                            </a>
-                        </li>
+                        {% if session.get('logueado') %}
 
-                        <li>
-                            <a href="{{ url_for('registro') }}">
-                                Registrarse
-                            </a>
-                        </li>
+                            <li>
+                                <div class="perfil-usuario">
+                                    {{ session.get('user_name') }}
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="{{ url_for('mis_pedidos') }}">
+                                    📦 Mis pedidos
+                                </a>
+                            </li>
+
+                            {% if session.get('rol') == 'admin' %}
+
+                                <li>
+                                    <a href="{{ url_for('reporte') }}">
+                                        📊 Reporte de usuarios
+                                    </a>
+                                </li>
+
+                            {% endif %}
+
+                            <li>
+                                <a href="{{ url_for('logout') }}">
+                                    Cerrar sesión
+                                </a>
+                            </li>
+
+                        {% else %}
+
+                            <li>
+                                <a href="{{ url_for('login') }}">
+                                    Iniciar sesión
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ url_for('registro') }}">
+                                    Registrarse
+                                </a>
+                            </li>
+
+                        {% endif %}
 
                     </ul>
 
@@ -87,15 +130,19 @@
             </ul>
 
         </nav>
+
     </header>
 
 
     <!-- HERO -->
+
     <section class="contacto-hero">
 
         <div class="overlay">
 
-            <h1>Contáctanos</h1>
+            <h1>
+                Contáctanos
+            </h1>
 
             <p>
                 Estamos listos para ayudarte a encontrar
@@ -108,12 +155,14 @@
 
 
     <!-- CONTACTO -->
+
     <section class="contacto-container">
 
-        <!-- INFORMACIÓN -->
         <div class="contacto-info">
 
-            <h2>Información</h2>
+            <h2>
+                Información
+            </h2>
 
             <p>
                 Puedes comunicarte con nosotros por cualquiera
@@ -122,7 +171,9 @@
 
             <div class="info-box">
 
-                <h3>📍 Dirección</h3>
+                <h3>
+                    📍 Dirección
+                </h3>
 
                 <p>
                     Calle 123 #45-67
@@ -132,7 +183,9 @@
 
             <div class="info-box">
 
-                <h3>📞 Teléfono</h3>
+                <h3>
+                    📞 Teléfono
+                </h3>
 
                 <p>
                     +57 300 123 4567
@@ -142,7 +195,9 @@
 
             <div class="info-box">
 
-                <h3>✉ Email</h3>
+                <h3>
+                    ✉ Email
+                </h3>
 
                 <p>
                     superbike@gmail.com
@@ -152,7 +207,9 @@
 
             <div class="info-box">
 
-                <h3>🕒 Horarios</h3>
+                <h3>
+                    🕒 Horarios
+                </h3>
 
                 <p>
                     Lunes a Sábado
@@ -167,45 +224,46 @@
         </div>
 
 
-        <!-- FORMULARIO -->
         <div class="contacto-formulario">
 
-            <h2>Envíanos un mensaje</h2>
+            <h2>
+                Envíanos un mensaje
+            </h2>
 
             <form action="{{ url_for('contacto') }}" method="POST">
 
-    <input
-        type="text"
-        name="nombre"
-        placeholder="Nombre Completo"
-        required
-    >
+                <input
+                    type="text"
+                    name="nombre"
+                    placeholder="Nombre Completo"
+                    required
+                >
 
-    <input
-        type="email"
-        name="correo"
-        placeholder="Correo Electrónico"
-        required
-    >
+                <input
+                    type="email"
+                    name="correo"
+                    placeholder="Correo Electrónico"
+                    required
+                >
 
-    <input
-        type="text"
-        name="asunto"
-        placeholder="Asunto"
-        required
-    >
+                <input
+                    type="text"
+                    name="asunto"
+                    placeholder="Asunto"
+                    required
+                >
 
-    <textarea
-        name="mensaje"
-        placeholder="Escribe tu mensaje..."
-        required
-    ></textarea>
+                <textarea
+                    name="mensaje"
+                    placeholder="Escribe tu mensaje..."
+                    required
+                ></textarea>
 
-    <button type="submit">
-        Enviar Mensaje
-    </button>
+                <button type="submit">
+                    Enviar Mensaje
+                </button>
 
-</form>
+            </form>
 
         </div>
 
@@ -213,28 +271,45 @@
 
 
     <!-- FOOTER -->
+
     <footer>
 
         <p>
-            &copy; 2026 Superbike | Todos los derechos reservados
+            &copy; 2026 Superbike |
+            Todos los derechos reservados
         </p>
 
     </footer>
 
 
-    <!-- DROPDOWN -->
+    <!-- PERFIL -->
+
     <script>
 
         const perfilBtn = document.getElementById("perfil-btn");
-        const menu = document.querySelector(".dropdown-menu");
+        const menu = document.getElementById("dropdownMenu");
 
-        perfilBtn.addEventListener("click", function (e) {
+        if (perfilBtn && menu) {
 
-            e.preventDefault();
+            perfilBtn.addEventListener("click", function (e) {
 
-            menu.classList.toggle("show");
+                e.preventDefault();
 
-        });
+                menu.classList.toggle("show");
+
+            });
+
+            document.addEventListener("click", function (e) {
+
+                const dropdown = document.querySelector(".dropdown");
+
+                if (dropdown && !dropdown.contains(e.target)) {
+                    menu.classList.remove("show");
+                }
+
+            });
+
+        }
 
     </script>
 
