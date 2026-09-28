@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ producto.nombre }} | Superbike</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/global.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/producto.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================== HEADER ==================== -->
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+
+                <img
+                    src="{{ url_for('static', filename='img/logo.png') }}"
+                    alt="Logo Superbike">
+
+                <span>
+                    Superbike
+                </span>
+
+            </div>
+
+
+            <ul class="nav-links">
+
+                <li>
+                    <a href="{{ url_for('inicio') }}">
+                        Inicio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('catalogo') }}">
+                        Catálogo
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('contacto') }}">
+                        Contáctanos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('quienessomos') }}">
+                        Quiénes somos
+                    </a>
+                </li>
+
+
+                <!-- PERFIL -->
+
+                <li class="dropdown">
+
+                    <a href="#"
+                       id="perfil-btn"
+                       class="user-toggle">
+
+                        <span>
+                            👤
+                        </span>
+
+                        {% if session.get('logueado') %}
+
+                            <span>
+                                Hola, {{ session.get('user_name') }}
+                            </span>
+
+                        {% else %}
+
+                            <span>
+                                Perfil
+                            </span>
+
+                        {% endif %}
+
+                        <span class="arrow-down">
+                            &#9660;
+                        </span>
+
+                    </a>
+
+
+                    <ul class="dropdown-menu"
+                        id="dropdownMenu">
+
+
+                        {% if session.get('logueado') %}
+
+                            <li>
+                                <a href="{{ url_for('mis_pedidos') }}">
+                                    📦 Mis pedidos
+                                </a>
+                            </li>
+
+
+                            {% if session.get('rol') == 'admin' %}
+
+                                <li>
+                                    <a href="{{ url_for('reporte') }}">
+                                        📊 Reporte de Usuarios
+                                    </a>
+                                </li>
+
+                            {% endif %}
+
+
+                            <li>
+                                <a href="{{ url_for('logout') }}">
+                                    Cerrar sesión
+                                </a>
+                            </li>
+
+
+                        {% else %}
+
+                            <li>
+                                <a href="{{ url_for('login') }}">
+                                    Iniciar sesión
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ url_for('registro') }}">
+                                    Registrarse
+                                </a>
+                            </li>
+
+                        {% endif %}
+
+
+                    </ul>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ==================== PRODUCTO ==================== -->
+
+    <main class="producto">
+
+        <div class="producto-contenedor">
+
+
+            <!-- ==================== IMAGEN ==================== -->
+
+            <section class="producto-imagen">
+
+                <div class="producto-imagen-principal">
+
+                    <img
+                        src="{{ url_for(
+                            'static',
+                            filename='img/' + producto.imagen
+                        ) }}"
+                        alt="{{ producto.nombre }}">
+
+                </div>
+
+
+                <div class="producto-etiqueta">
+
+                    <span>
+                        SUPERBIKE
+                    </span>
+
+                    <span>
+                        CALIDAD PREMIUM
+                    </span>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==================== INFORMACIÓN ==================== -->
+
+            <section class="producto-informacion">
+
+
+                <div class="producto-categoria">
+
+                    BICICLETAS / SUPERBIKE
+
+                </div>
+
+
+                <h1>
+                    {{ producto.nombre }}
+                </h1>
+
+
+                <p class="producto-descripcion">
+
+                    {{ producto.descripcion }}
+
+                </p>
+
+
+                <!-- PRECIO -->
+
+                <div class="producto-precio">
+
+                    <span class="precio-label">
+                        Precio
+                    </span>
+
+                    <strong>
+                        ${{ "{:,.0f}".format(
+                            producto.precio
+                        ).replace(",", ".") }}
+                    </strong>
+
+                </div>
+
+
+                <!-- DIVISOR -->
+
+                <div class="producto-separador"></div>
+
+
+
+                <!-- COLOR -->
+
+                <div class="producto-opcion">
+
+                    <div class="opcion-titulo">
+
+                        <strong>
+                            Color
+                        </strong>
+
+                        <span id="colorSeleccionado">
+                            Negro
+                        </span>
+
+                    </div>
+
+
+                    <div class="colores">
+
+
+                        <button
+                            type="button"
+                            class="color color-negro activo"
+                            data-color="Negro"
+                            aria-label="Negro">
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="color color-blanco"
+                            data-color="Blanco"
+                            aria-label="Blanco">
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="color color-rojo"
+                            data-color="Rojo"
+                            aria-label="Rojo">
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="color color-azul"
+                            data-color="Azul"
+                            aria-label="Azul">
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TALLA -->
+
+                <div class="producto-opcion">
+
+                    <div class="opcion-titulo">
+
+                        <strong>
+                            Talla
+                        </strong>
+
+                        <a href="#">
+                            Guía de tallas
+                        </a>
+
+                    </div>
+
+
+                    <div class="tallas">
+
+                        <button
+                            type="button"
+                            class="talla"
+                            data-talla="XS">
+                            XS
+                        </button>
+
+                        <button
+                            type="button"
+                            class="talla"
+                            data-talla="S">
+                            S
+                        </button>
+
+                        <button
+                            type="button"
+                            class="talla activo"
+                            data-talla="M">
+                            M
+                        </button>
+
+                        <button
+                            type="button"
+                            class="talla"
+                            data-talla="L">
+                            L
+                        </button>
+
+                        <button
+                            type="button"
+                            class="talla"
+                            data-talla="XL">
+                            XL
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CANTIDAD -->
+
+                <div class="producto-opcion">
+
+                    <div class="opcion-titulo">
+
+                        <strong>
+                            Cantidad
+                        </strong>
+
+                        <span>
+                            Disponible: {{ producto.stock }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="cantidad">
+
+                        <button
+                            type="button"
+                            id="menos">
+                            −
+                        </button>
+
+                        <span id="cantidad">
+                            1
+                        </span>
+
+                        <button
+                            type="button"
+                            id="mas">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BOTÓN -->
+
+                <form
+                    action="{{ url_for(
+                        'agregar_carrito',
+                        id=producto.id
+                    ) }}"
+                    method="POST"
+                    id="formProducto">
+
+
+                    <input
+                        type="hidden"
+                        name="color"
+                        id="inputColor"
+                        value="Negro">
+
+
+                    <input
+                        type="hidden"
+                        name="talla"
+                        id="inputTalla"
+                        value="M">
+
+
+                    <input
+                        type="hidden"
+                        name="cantidad"
+                        id="inputCantidad"
+                        value="1">
+
+
+                    <button
+                        type="submit"
+                        class="btn-agregar">
+
+                        <span>
+                            🛒
+                        </span>
+
+                        Agregar al carrito
+
+                    </button>
+
+                </form>
+
+
+
+                <!-- INFORMACIÓN EXTRA -->
+
+                <div class="producto-beneficios">
+
+                    <div>
+
+                        <span>
+                            🚚
+                        </span>
+
+                        <p>
+                            Envío seguro
+                            <small>
+                                Recibe tu bicicleta
+                                en perfectas condiciones.
+                            </small>
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            🛡️
+                        </span>
+
+                        <p>
+                            Compra protegida
+                            <small>
+                                Compra segura
+                                en SuperBike.
+                            </small>
+                        </p>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            ⚙️
+                        </span>
+
+                        <p>
+                            Calidad garantizada
+                            <small>
+                                Productos seleccionados
+                                para ciclistas.
+                            </small>
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ==================== FOOTER ==================== -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 Superbike |
+            Todos los derechos reservados
+        </p>
+
+    </footer>
+
+
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+
+    <script>
+
+        const perfilBtn =
+            document.getElementById("perfil-btn");
+
+        const menu =
+            document.getElementById("dropdownMenu");
+
+
+        if (perfilBtn && menu) {
+
+            perfilBtn.addEventListener(
+                "click",
+                function(e) {
+
+                    e.preventDefault();
+
+                    menu.classList.toggle("show");
+
+                }
+            );
+
+        }
+
+
+        /* ==================== COLORES ==================== */
+
+        const colores =
+            document.querySelectorAll(".color");
+
+        const colorSeleccionado =
+            document.getElementById(
+                "colorSeleccionado"
+            );
+
+        const inputColor =
+            document.getElementById(
+                "inputColor"
+            );
+
+
+        colores.forEach(function(color) {
+
+            color.addEventListener(
+                "click",
+                function() {
+
+                    colores.forEach(function(item) {
+
+                        item.classList.remove(
+                            "activo"
+                        );
+
+                    });
+
+
+                    color.classList.add(
+                        "activo"
+                    );
+
+
+                    const nombre =
+                        color.dataset.color;
+
+
+                    colorSeleccionado.textContent =
+                        nombre;
+
+
+                    inputColor.value =
+                        nombre;
+
+                }
+            );
+
+        });
+
+
+
+        /* ==================== TALLAS ==================== */
+
+        const tallas =
+            document.querySelectorAll(".talla");
+
+        const inputTalla =
+            document.getElementById(
+                "inputTalla"
+            );
+
+
+        tallas.forEach(function(talla) {
+
+            talla.addEventListener(
+                "click",
+                function() {
+
+                    tallas.forEach(function(item) {
+
+                        item.classList.remove(
+                            "activo"
+                        );
+
+                    });
+
+
+                    talla.classList.add(
+                        "activo"
+                    );
+
+
+                    inputTalla.value =
+                        talla.dataset.talla;
+
+                }
+            );
+
+        });
+
+
+
+        /* ==================== CANTIDAD ==================== */
+
+        const botonMenos =
+            document.getElementById("menos");
+
+        const botonMas =
+            document.getElementById("mas");
+
+        const cantidadTexto =
+            document.getElementById("cantidad");
+
+        const inputCantidad =
+            document.getElementById(
+                "inputCantidad"
+            );
+
+        let cantidad = 1;
+
+const stock = Number("{{ producto.stock }}");
+
+
+        botonMenos.addEventListener(
+            "click",
+            function() {
+
+                if (cantidad > 1) {
+
+                    cantidad--;
+
+                    cantidadTexto.textContent =
+                        cantidad;
+
+                    inputCantidad.value =
+                        cantidad;
+
+                }
+
+            }
+        );
+
+
+        botonMas.addEventListener(
+            "click",
+            function() {
+
+                if (cantidad < stock) {
+
+                    cantidad++;
+
+                    cantidadTexto.textContent =
+                        cantidad;
+
+                    inputCantidad.value =
+                        cantidad;
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

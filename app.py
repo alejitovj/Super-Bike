@@ -687,7 +687,7 @@ def registro():
                     telefono,
                     rol
                 )
-                VALUES (%s, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s)
                 """,
                 (
                     nombre_usuario,
@@ -1197,6 +1197,53 @@ def reporte_excel():
 
         return f"Error al generar el archivo Excel: {error}", 500
 
+@app.route("/producto/<int:id>")
+def producto(id):
+
+    proteccion = proteger_ruta()
+
+    if proteccion:
+        return proteccion
+
+    try:
+
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
+
+        cursor.execute(
+            """
+            SELECT
+                id,
+                nombre,
+                descripcion,
+                precio,
+                imagen,
+                stock
+            FROM productos
+            WHERE id = %s
+            """,
+            (id,)
+        )
+
+        producto = cursor.fetchone()
+
+        cursor.close()
+
+        if not producto:
+            return "Producto no encontrado", 404
+
+        return render_template(
+            "producto.html",
+            producto=producto
+        )
+
+    except Exception as error:
+
+        return (
+            f"Error al cargar el producto: {error}",
+            500
+        )
 
 # ============================================================
 # EJECUTAR APLICACIÓN

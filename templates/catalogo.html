@@ -191,15 +191,11 @@
                             ${{ "{:,.0f}".format(producto.precio).replace(",", ".") }}
                         </span>
 
-                        <form
-                            action="{{ url_for('agregar_carrito', id=producto.id) }}"
-                            method="POST">
-
-                            <button type="submit">
-                                Comprar
-                            </button>
-
-                        </form>
+                        <a
+    href="{{ url_for('producto_detalle', id=producto.id) }}"
+    class="btn-comprar">
+    Comprar
+</a>
 
                     </div>
 
