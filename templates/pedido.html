@@ -9,7 +9,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>Pedido | Superbike</title>
+    <title>Pedido #{{ pedido.id }} | Superbike</title>
 
     <link
         rel="stylesheet"
@@ -22,6 +22,8 @@
 </head>
 
 <body>
+
+    <!-- ==================== HEADER ==================== -->
 
     <header>
 
@@ -54,16 +56,16 @@
                 </li>
 
                 <li>
-    <a href="{{ url_for('carrito') }}">
-        🛒 Carrito
-    </a>
-</li>
+                    <a href="{{ url_for('carrito') }}">
+                        🛒 Carrito
+                    </a>
+                </li>
 
-<li>
-    <a href="{{ url_for('mis_pedidos') }}">
-        📦 Mis pedidos
-    </a>
-</li>
+                <li>
+                    <a href="{{ url_for('mis_pedidos') }}">
+                        📦 Mis pedidos
+                    </a>
+                </li>
 
             </ul>
 
@@ -72,9 +74,21 @@
     </header>
 
 
+    <!-- ==================== PEDIDO ==================== -->
+
     <main class="pedido">
 
-        <div class="pedido-header">
+        <!-- ENCABEZADO -->
+
+        <section class="pedido-header">
+
+            <div class="pedido-icono">
+                ✓
+            </div>
+
+            <span class="pedido-etiqueta">
+                COMPRA COMPLETADA
+            </span>
 
             <h1>
                 ¡Pedido realizado!
@@ -82,47 +96,266 @@
 
             <p>
                 Gracias por comprar en Superbike.
+                Tu pedido ha sido registrado correctamente.
             </p>
 
-        </div>
+        </section>
 
 
-        <div class="pedido-datos">
+        <!-- DATOS DEL PEDIDO -->
 
-            <h2>
-                Pedido #{{ pedido.id }}
-            </h2>
+        <section class="pedido-datos">
 
-            <p>
-                Fecha:
-                {{ pedido.fecha }}
-            </p>
+            <div>
 
-            <p>
-                Estado:
+                <span>
+                    NÚMERO DE PEDIDO
+                </span>
+
                 <strong>
+                    #{{ pedido.id }}
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    FECHA
+                </span>
+
+                <strong>
+                    {{ pedido.fecha }}
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    ESTADO ACTUAL
+                </span>
+
+                <strong class="estado">
                     {{ pedido.estado }}
                 </strong>
-            </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== SEGUIMIENTO ==================== -->
+
+        <section class="seguimiento">
+
+    <div class="seccion-titulo">
+
+        <span>
+            SEGUIMIENTO
+        </span>
+
+        <h2>
+            Estado de tu pedido
+        </h2>
+
+    </div>
+
+
+    {% set estados = [
+        "Pedido realizado",
+        "En preparación",
+        "Enviado",
+        "Entregado"
+    ] %}
+
+    {% set estado_actual = estados.index(pedido.estado) %}
+
+
+    <div class="seguimiento-linea">
+
+
+        <!-- PASO 1 -->
+
+        <div class="seguimiento-paso
+            {% if estado_actual >= 0 %}
+                activo
+            {% endif %}">
+
+            <div class="paso-circulo">
+                {% if estado_actual >= 0 %}
+                    ✓
+                {% else %}
+                    1
+                {% endif %}
+            </div>
+
+            <div class="paso-texto">
+
+                <strong>
+                    Pedido realizado
+                </strong>
+
+                <span>
+                    Tu compra fue registrada
+                </span>
+
+            </div>
 
         </div>
 
 
-        <div class="pedido-productos">
+        <div class="paso-linea
+            {% if estado_actual >= 1 %}
+                linea-activa
+            {% endif %}">
+        </div>
 
-            <h2>
-                Productos
-            </h2>
+
+        <!-- PASO 2 -->
+
+        <div class="seguimiento-paso
+            {% if estado_actual >= 1 %}
+                activo
+            {% endif %}">
+
+            <div class="paso-circulo">
+                {% if estado_actual >= 1 %}
+                    ✓
+                {% else %}
+                    2
+                {% endif %}
+            </div>
+
+            <div class="paso-texto">
+
+                <strong>
+                    En preparación
+                </strong>
+
+                <span>
+                    Prepararemos tu bicicleta
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="paso-linea
+            {% if estado_actual >= 2 %}
+                linea-activa
+            {% endif %}">
+        </div>
+
+
+        <!-- PASO 3 -->
+
+        <div class="seguimiento-paso
+            {% if estado_actual >= 2 %}
+                activo
+            {% endif %}">
+
+            <div class="paso-circulo">
+                {% if estado_actual >= 2 %}
+                    ✓
+                {% else %}
+                    3
+                {% endif %}
+            </div>
+
+            <div class="paso-texto">
+
+                <strong>
+                    Enviado
+                </strong>
+
+                <span>
+                    Tu pedido está en camino
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="paso-linea
+            {% if estado_actual >= 3 %}
+                linea-activa
+            {% endif %}">
+        </div>
+
+
+        <!-- PASO 4 -->
+
+        <div class="seguimiento-paso
+            {% if estado_actual >= 3 %}
+                activo
+            {% endif %}">
+
+            <div class="paso-circulo">
+                {% if estado_actual >= 3 %}
+                    ✓
+                {% else %}
+                    4
+                {% endif %}
+            </div>
+
+            <div class="paso-texto">
+
+                <strong>
+                    Entregado
+                </strong>
+
+                <span>
+                    Pedido recibido
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- ==================== PRODUCTOS ==================== -->
+
+        <section class="pedido-productos">
+
+            <div class="seccion-titulo">
+
+                <span>
+                    TU COMPRA
+                </span>
+
+                <h2>
+                    Productos
+                </h2>
+
+            </div>
+
 
             {% for producto in productos %}
 
                 <div class="pedido-producto">
 
-                    <img
-                        src="{{ url_for('static', filename='img/' + producto.imagen) }}"
-                        alt="{{ producto.nombre }}">
+                    <div class="producto-imagen">
 
-                    <div>
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='img/' + producto.imagen
+                            ) }}"
+                            alt="{{ producto.nombre }}">
+
+                    </div>
+
+
+                    <div class="producto-info">
 
                         <h3>
                             {{ producto.nombre }}
@@ -130,13 +363,20 @@
 
                         <p>
                             Cantidad:
-                            {{ producto.cantidad }}
+                            <strong>
+                                {{ producto.cantidad }}
+                            </strong>
                         </p>
 
-                        <p>
-                            Precio:
-                            ${{ "{:,.0f}".format(producto.precio).replace(",", ".") }}
-                        </p>
+                        <span>
+                            Precio unitario
+                        </span>
+
+                        <strong class="producto-precio">
+                            ${{ "{:,.0f}".format(
+                                producto.precio
+                            ).replace(",", ".") }}
+                        </strong>
 
                     </div>
 
@@ -144,29 +384,54 @@
 
             {% endfor %}
 
-        </div>
+        </section>
 
 
-        <div class="pedido-total">
+        <!-- ==================== TOTAL ==================== -->
 
-            <h2>
-                Total:
-                ${{ "{:,.0f}".format(pedido.total).replace(",", ".") }}
-            </h2>
+        <section class="pedido-total">
 
-        </div>
+            <span>
+                TOTAL DE LA COMPRA
+            </span>
+
+            <strong>
+                ${{ "{:,.0f}".format(
+                    pedido.total
+                ).replace(",", ".") }}
+            </strong>
+
+        </section>
 
 
-        <div class="pedido-acciones">
+        <!-- ==================== ACCIONES ==================== -->
 
-            <a href="{{ url_for('catalogo') }}">
+        <section class="pedido-acciones">
+
+            <a
+                href="{{ url_for('catalogo') }}"
+                class="btn-secundario">
+
                 Seguir comprando
+
             </a>
 
-        </div>
+
+            <a
+                href="{{ url_for('mis_pedidos') }}"
+                class="btn-principal">
+
+                Ver mis pedidos
+                <span>→</span>
+
+            </a>
+
+        </section>
 
     </main>
 
+
+    <!-- ==================== FOOTER ==================== -->
 
     <footer>
 

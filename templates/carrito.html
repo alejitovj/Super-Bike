@@ -9,172 +9,398 @@
 
     <title>Carrito | Superbike</title>
 
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css/global.css') }}">
-
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css/carrito.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carrito.css') }}">
 
 </head>
 
 <body>
 
-    <header>
+    <!-- ENCABEZADO -->
 
-        <nav>
+    <header class="carrito-header">
 
-            <div class="logo">
+        <div class="carrito-logo">
+
+            <a href="{{ url_for('inicio') }}">
 
                 <img
                     src="{{ url_for('static', filename='img/logo.png') }}"
-                    alt="Logo Superbike">
+                    alt="Superbike"
+                >
 
-                <span>
-                    Superbike
-                </span>
+            </a>
+
+        </div>
+
+        <nav class="carrito-nav">
+
+            <a href="{{ url_for('inicio') }}">
+                Inicio
+            </a>
+
+            <a href="{{ url_for('catalogo') }}">
+                Catálogo
+            </a>
+
+            <a href="{{ url_for('contacto') }}">
+                Contáctanos
+            </a>
+
+            <a href="{{ url_for('quienessomos') }}">
+                Quiénes somos
+            </a>
+
+            <div class="carrito-perfil">
+
+                <button
+                    type="button"
+                    class="carrito-perfil-btn"
+                    onclick="togglePerfil()"
+                >
+                    Perfil ▾
+                </button>
+
+                <div
+                    id="perfilMenu"
+                    class="carrito-perfil-menu"
+                >
+
+                    {% if session.get('logueado') %}
+
+                        <div class="perfil-usuario">
+                            {{ session.get('user_name') }}
+                        </div>
+
+                        <a href="{{ url_for('mis_pedidos') }}">
+                            Mis pedidos
+                        </a>
+
+                        {% if session.get('rol') == 'admin' %}
+
+                            <a href="{{ url_for('reporte') }}">
+                                Reporte de usuarios
+                            </a>
+
+                        {% endif %}
+
+                        <a href="{{ url_for('logout') }}">
+                            Cerrar sesión
+                        </a>
+
+                    {% else %}
+
+                        <a href="{{ url_for('login') }}">
+                            Iniciar sesión
+                        </a>
+
+                        <a href="{{ url_for('registro') }}">
+                            Registrarse
+                        </a>
+
+                    {% endif %}
+
+                </div>
 
             </div>
-
-            <ul class="nav-links">
-
-                <li>
-                    <a href="{{ url_for('inicio') }}">
-                        Inicio
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ url_for('catalogo') }}">
-                        Catálogo
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ url_for('contacto') }}">
-                        Contáctanos
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ url_for('quienessomos') }}">
-                        Quiénes somos
-                    </a>
-                </li>
-
-                <li>
-                    <a href="{{ url_for('carrito') }}">
-                        🛒 Carrito
-                    </a>
-                </li>
-
-            </ul>
 
         </nav>
 
     </header>
 
 
-    <main class="carrito">
+    <!-- CONTENIDO PRINCIPAL -->
 
-        <h1>
-            🛒 Mi carrito
-        </h1>
+    <main class="carrito-principal">
+
+        <section class="carrito-titulo">
+
+            <span class="carrito-etiqueta">
+                SUPERTBIKE STORE
+            </span>
+
+            <h1>
+                Tu carrito
+            </h1>
+
+            <p>
+                Revisa tus productos antes de finalizar tu compra.
+            </p>
+
+        </section>
 
 
         {% if productos %}
 
-            <div class="carrito-lista">
+            <div class="carrito-layout">
 
-                {% for producto in productos %}
 
-                    <div class="carrito-producto">
+                <!-- PRODUCTOS -->
 
-                        <img
-                            src="{{ url_for('static', filename='img/' + producto.imagen) }}"
-                            alt="{{ producto.nombre }}">
+                <section class="carrito-productos">
 
-                        <div class="carrito-info">
+                    <div class="carrito-productos-header">
 
-                            <h2>
-                                {{ producto.nombre }}
-                            </h2>
+                        <span>
+                            PRODUCTO
+                        </span>
+
+                        <span>
+                            PRECIO
+                        </span>
+
+                    </div>
+
+
+                    {% for producto in productos %}
+
+                        <article class="carrito-producto">
+
+
+                            <!-- IMAGEN -->
+
+                            <div class="carrito-imagen">
+
+                                <img
+                                    src="{{ url_for('static', filename='img/' + producto.imagen) }}"
+                                    alt="{{ producto.nombre }}"
+                                >
+
+                            </div>
+
+
+                            <!-- INFORMACIÓN -->
+
+                            <div class="carrito-info">
+
+                                <span class="carrito-categoria">
+                                    BICICLETA
+                                </span>
+
+                                <h2>
+                                    {{ producto.nombre }}
+                                </h2>
+
+                                <div class="carrito-detalles">
+
+                                    <span>
+                                        <strong>Color:</strong>
+                                        {{ producto.color }}
+                                    </span>
+
+                                    <span>
+                                        <strong>Talla:</strong>
+                                        {{ producto.talla }}
+                                    </span>
+
+                                    <span>
+                                        <strong>Cantidad:</strong>
+                                        {{ producto.cantidad }}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- PRECIO -->
+
+                            <div class="carrito-precio">
+
+                                <span class="precio-unitario">
+                                    ${{ "{:,.0f}".format(producto.precio).replace(",", ".") }}
+                                </span>
+
+                                <span class="precio-total-producto">
+                                    ${{ "{:,.0f}".format(producto.precio * producto.cantidad).replace(",", ".") }}
+                                </span>
+
+                            </div>
+
+                        </article>
+
+                    {% endfor %}
+
+                </section>
+
+
+                <!-- RESUMEN -->
+
+                <aside class="carrito-resumen">
+
+                    <div class="resumen-header">
+
+                        <span>
+                            RESUMEN
+                        </span>
+
+                        <h2>
+                            Tu compra
+                        </h2>
+
+                    </div>
+
+
+                    <div class="resumen-linea">
+
+                        <span>
+                            Productos
+                        </span>
+
+                        <span>
+                            {{ productos|length }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="resumen-linea">
+
+                        <span>
+                            Envío
+                        </span>
+
+                        <span class="envio-gratis">
+                            GRATIS
+                        </span>
+
+                    </div>
+
+
+                    <div class="resumen-separador"></div>
+
+
+                    <div class="resumen-total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong>
+                            ${{ "{:,.0f}".format(total).replace(",", ".") }}
+                        </strong>
+
+                    </div>
+
+
+                    <form action="{{ url_for('realizar_pedido') }}" method="POST">
+    <button type="submit" class="btn-finalizar">
+        Finalizar compra
+        <span>→</span>
+    </button>
+</form>
+
+
+                    <a
+                        href="{{ url_for('catalogo') }}"
+                        class="btn-seguir"
+                    >
+                        ← Seguir comprando
+                    </a>
+
+
+                    <div class="compra-segura">
+
+                        <span class="seguro-icono">
+                            ✓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Compra segura
+                            </strong>
 
                             <p>
-                                Precio:
-                                ${{ "{:,.0f}".format(producto.precio).replace(",", ".") }}
-                            </p>
-
-                            <p>
-                                Cantidad:
-                                {{ producto.cantidad }}
-                            </p>
-
-                            <p>
-                                Subtotal:
-                                ${{ "{:,.0f}".format(producto.precio * producto.cantidad).replace(",", ".") }}
+                                Tus datos están protegidos.
                             </p>
 
                         </div>
 
                     </div>
 
-                {% endfor %}
-
-            </div>
-
-
-            <div class="carrito-total">
-
-                <h2>
-                    Total:
-                    ${{ "{:,.0f}".format(total).replace(",", ".") }}
-                </h2>
-
-                <form
-    action="{{ url_for('realizar_pedido') }}"
-    method="POST">
-
-    <button type="submit">
-        Finalizar compra
-    </button>
-
-</form>
+                </aside>
 
             </div>
 
         {% else %}
 
-            <div class="carrito-vacio">
+
+            <!-- CARRITO VACÍO -->
+
+            <section class="carrito-vacio">
+
+                <div class="carrito-vacio-icono">
+                    🛒
+                </div>
+
+                <span>
+                    TU CARRITO
+                </span>
 
                 <h2>
                     Tu carrito está vacío
                 </h2>
 
                 <p>
-                    Agrega una bicicleta desde nuestro catálogo.
+                    Explora nuestro catálogo y encuentra la bicicleta perfecta para ti.
                 </p>
 
-                <a href="{{ url_for('catalogo') }}">
-                    Ir al catálogo
+                <a
+                    href="{{ url_for('catalogo') }}"
+                    class="btn-explorar"
+                >
+                    Explorar bicicletas
                 </a>
 
-            </div>
+            </section>
 
         {% endif %}
 
     </main>
 
 
-    <footer>
+    <!-- FOOTER -->
+
+    <footer class="carrito-footer">
 
         <p>
-            &copy; 2026 Superbike |
-            Todos los derechos reservados
+            © 2026 Superbike. Todos los derechos reservados.
         </p>
 
+        <span>
+            RIDE YOUR WAY.
+        </span>
+
     </footer>
+
+
+    <script>
+
+        function togglePerfil() {
+
+            const menu = document.getElementById("perfilMenu");
+
+            menu.classList.toggle("activo");
+
+        }
+
+
+        document.addEventListener("click", function(event) {
+
+            const perfil = document.querySelector(".carrito-perfil");
+
+            const menu = document.getElementById("perfilMenu");
+
+            if (!perfil.contains(event.target)) {
+
+                menu.classList.remove("activo");
+
+            }
+
+        });
+
+    </script>
 
 </body>
 

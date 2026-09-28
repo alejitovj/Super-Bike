@@ -1,0 +1,358 @@
+/* =========================================================
+   SUPERBIKE - ADMINISTRACIÓN DE PEDIDOS
+   ========================================================= */
+
+.admin-pedidos {
+    min-height: 100vh;
+    padding: 35px 6%;
+    background:
+        radial-gradient(
+            circle at 15% 0%,
+            rgba(0, 217, 255, 0.08),
+            transparent 30%
+        ),
+        #080a0c;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.admin-pedidos-header {
+    max-width: 1450px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+.admin-marca {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.admin-marca img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+
+.admin-marca span {
+    color: #00d9ff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+
+.admin-marca h1 {
+    margin: 4px 0 0;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+
+.btn-volver {
+    padding: 11px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    background: #101316;
+    color: #cbd0d3;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.btn-volver:hover {
+    color: #00d9ff;
+    border-color: rgba(0, 217, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.admin-intro {
+    max-width: 1450px;
+    margin: 50px auto 30px;
+}
+
+
+.admin-intro > span {
+    color: #00d9ff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+
+.admin-intro h2 {
+    margin: 8px 0;
+    color: #ffffff;
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+
+.admin-intro p {
+    margin: 0;
+    color: #788187;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   TABLA
+   ========================================================= */
+
+.pedidos-tabla-contenedor {
+    max-width: 1450px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 18px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18, 23, 26, 0.96),
+            rgba(10, 13, 15, 0.96)
+        );
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.3);
+}
+
+
+.tabla-scroll {
+    overflow-x: auto;
+}
+
+
+.pedidos-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1050px;
+}
+
+
+.pedidos-tabla th {
+    padding: 17px 15px;
+    text-align: left;
+    color: #697278;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.pedidos-tabla td {
+    padding: 18px 15px;
+    color: #b8c0c5;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    vertical-align: middle;
+}
+
+
+.pedidos-tabla tbody tr {
+    transition: background 0.2s ease;
+}
+
+
+.pedidos-tabla tbody tr:hover {
+    background: rgba(0, 217, 255, 0.025);
+}
+
+
+.pedido-id {
+    color: #00d9ff;
+    font-size: 14px;
+}
+
+
+.cliente {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+
+.correo {
+    color: #7c868c;
+}
+
+
+.precio {
+    color: #ffffff;
+}
+
+
+.fecha {
+    color: #7c868c;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+
+.estado-actual {
+    display: inline-flex;
+    padding: 7px 11px;
+    border-radius: 100px;
+    border: 1px solid rgba(0, 217, 255, 0.18);
+    background: rgba(0, 217, 255, 0.06);
+    color: #00d9ff;
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+
+.form-estado {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.form-estado select {
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 7px;
+    outline: none;
+    background: #0d1012;
+    color: #cbd0d3;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+
+.form-estado select:focus {
+    border-color: rgba(0, 217, 255, 0.5);
+}
+
+
+.form-estado button {
+    height: 38px;
+    padding: 0 13px;
+    border: none;
+    border-radius: 7px;
+    background: #00d9ff;
+    color: #031014;
+    font-size: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.form-estado button:hover {
+    background: #32e2ff;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   SIN PEDIDOS
+   ========================================================= */
+
+.sin-pedidos {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+
+.sin-pedidos > span {
+    font-size: 45px;
+}
+
+
+.sin-pedidos h2 {
+    margin: 15px 0 8px;
+    color: #ffffff;
+    font-size: 25px;
+}
+
+
+.sin-pedidos p {
+    margin: 0;
+    color: #737d83;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.admin-pedidos footer {
+    max-width: 1450px;
+    margin: 40px auto 0;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+}
+
+
+.admin-pedidos footer p {
+    margin: 0;
+    color: #50585d;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .admin-pedidos {
+        padding: 25px 18px;
+    }
+
+    .admin-pedidos-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .admin-intro {
+        margin-top: 35px;
+    }
+
+    .admin-intro h2 {
+        font-size: 30px;
+    }
+
+    .btn-volver {
+        width: 100%;
+        text-align: center;
+    }
+
+}

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Gestión de Pedidos | SuperBike</title>
+
+    <link
+        rel="icon"
+        href="{{ url_for('static', filename='img/logo.png') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/global.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/pedidos_admin.css') }}"
+    >
+
+</head>
+
+<body>
+
+    <main class="admin-pedidos">
+
+        <!-- ==================== ENCABEZADO ==================== -->
+
+        <header class="admin-pedidos-header">
+
+            <div class="admin-marca">
+
+                <img
+                    src="{{ url_for('static', filename='img/logo.png') }}"
+                    alt="Logo SuperBike"
+                >
+
+                <div>
+
+                    <span>
+                        SUPERBIKE
+                    </span>
+
+                    <h1>
+                        Gestión de pedidos
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('panel_inicio') }}"
+                class="btn-volver">
+
+                ← Volver al inicio
+
+            </a>
+
+        </header>
+
+
+        <!-- ==================== INFORMACIÓN ==================== -->
+
+        <section class="admin-intro">
+
+            <span>
+                PANEL ADMINISTRATIVO
+            </span>
+
+            <h2>
+                Pedidos de clientes
+            </h2>
+
+            <p>
+                Consulta y actualiza el estado de los pedidos
+                realizados en SuperBike.
+            </p>
+
+        </section>
+
+
+        <!-- ==================== TABLA ==================== -->
+
+        <section class="pedidos-tabla-contenedor">
+
+            {% if pedidos %}
+
+                <div class="tabla-scroll">
+
+                    <table class="pedidos-tabla">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Pedido
+                                </th>
+
+                                <th>
+                                    Cliente
+                                </th>
+
+                                <th>
+                                    Correo
+                                </th>
+
+                                <th>
+                                    Total
+                                </th>
+
+                                <th>
+                                    Fecha
+                                </th>
+
+                                <th>
+                                    Estado
+                                </th>
+
+                                <th>
+                                    Acción
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for pedido in pedidos %}
+
+                                <tr>
+
+                                    <td>
+
+                                        <strong class="pedido-id">
+                                            #{{ pedido.id }}
+                                        </strong>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span class="cliente">
+                                            {{ pedido.nombre_usuario }}
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span class="correo">
+                                            {{ pedido.correo }}
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <strong class="precio">
+                                            ${{ "{:,.0f}".format(
+                                                pedido.total
+                                            ).replace(",", ".") }}
+                                        </strong>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span class="fecha">
+                                            {{ pedido.fecha }}
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span class="estado estado-actual">
+                                            {{ pedido.estado }}
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <form
+                                            action="{{ url_for(
+                                                'actualizar_estado_pedido',
+                                                id=pedido.id
+                                            ) }}"
+                                            method="POST"
+                                            class="form-estado"
+                                        >
+
+                                            <select
+                                                name="estado"
+                                                required
+                                            >
+
+                                                <option
+                                                    value="Pedido realizado"
+                                                    {% if pedido.estado == "Pedido realizado" %}
+                                                        selected
+                                                    {% endif %}
+                                                >
+                                                    Pedido realizado
+                                                </option>
+
+                                                <option
+                                                    value="En preparación"
+                                                    {% if pedido.estado == "En preparación" %}
+                                                        selected
+                                                    {% endif %}
+                                                >
+                                                    En preparación
+                                                </option>
+
+                                                <option
+                                                    value="Enviado"
+                                                    {% if pedido.estado == "Enviado" %}
+                                                        selected
+                                                    {% endif %}
+                                                >
+                                                    Enviado
+                                                </option>
+
+                                                <option
+                                                    value="Entregado"
+                                                    {% if pedido.estado == "Entregado" %}
+                                                        selected
+                                                    {% endif %}
+                                                >
+                                                    Entregado
+                                                </option>
+
+                                            </select>
+
+
+                                            <button
+                                                type="submit"
+                                            >
+                                                Actualizar
+                                            </button>
+
+                                        </form>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            {% else %}
+
+                <div class="sin-pedidos">
+
+                    <span>
+                        📦
+                    </span>
+
+                    <h2>
+                        No hay pedidos
+                    </h2>
+
+                    <p>
+                        Todavía no se han realizado compras
+                        en SuperBike.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+
+        <!-- ==================== FOOTER ==================== -->
+
+        <footer>
+
+            <p>
+                SuperBike — Panel administrativo
+            </p>
+
+        </footer>
+
+    </main>
+
+</body>
+
+</html>

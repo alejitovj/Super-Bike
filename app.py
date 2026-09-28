@@ -138,16 +138,28 @@ def agregar_carrito(id):
 
     usuario_id = session.get("id_usuario")
 
+    color = request.form.get("color", "Negro")
+    talla = request.form.get("talla", "M")
+
+    try:
+        cantidad = int(request.form.get("cantidad", 1))
+    except ValueError:
+        cantidad = 1
+
+    if cantidad < 1:
+        cantidad = 1
+
     try:
 
         cursor = mysql.connection.cursor(
             MySQLdb.cursors.DictCursor
         )
 
-        # Comprobar que el producto existe
         cursor.execute(
             """
-            SELECT id, stock
+            SELECT
+                id,
+                stock
             FROM productos
             WHERE id = %s
             """,
@@ -160,22 +172,36 @@ def agregar_carrito(id):
             cursor.close()
             return "Producto no encontrado", 404
 
-        # Comprobar si ya está en el carrito
+        if cantidad > producto["stock"]:
+            cursor.close()
+            return "No hay suficiente stock", 400
+
         cursor.execute(
             """
-            SELECT id, cantidad
+            SELECT
+                id,
+                cantidad
             FROM carrito
             WHERE usuario_id = %s
             AND producto_id = %s
+            AND color = %s
+            AND talla = %s
             """,
-            (usuario_id, id)
+            (
+                usuario_id,
+                id,
+                color,
+                talla
+            )
         )
 
         producto_carrito = cursor.fetchone()
 
         if producto_carrito:
 
-            nueva_cantidad = producto_carrito["cantidad"] + 1
+            nueva_cantidad = (
+                producto_carrito["cantidad"] + cantidad
+            )
 
             if nueva_cantidad > producto["stock"]:
                 cursor.close()
@@ -201,25 +227,33 @@ def agregar_carrito(id):
                 (
                     usuario_id,
                     producto_id,
-                    cantidad
+                    cantidad,
+                    color,
+                    talla
                 )
-                VALUES (%s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s)
                 """,
                 (
                     usuario_id,
                     id,
-                    1
+                    cantidad,
+                    color,
+                    talla
                 )
             )
 
         mysql.connection.commit()
+
         cursor.close()
 
         return redirect(url_for("carrito"))
 
     except Exception as error:
 
-        return f"Error al agregar al carrito: {error}", 500
+        return (
+            f"Error al agregar al carrito: {error}",
+            500
+        )
 
 # ============================================================
 # CARRITO DE COMPRAS
@@ -246,6 +280,8 @@ def carrito():
             SELECT
                 carrito.id,
                 carrito.cantidad,
+                carrito.color,
+                carrito.talla,
                 productos.nombre,
                 productos.precio,
                 productos.imagen,
@@ -1242,6 +1278,114 @@ def producto(id):
 
         return (
             f"Error al cargar el producto: {error}",
+            500
+        )
+
+# ============================================================
+# PEDIDOS ADMIN
+# ============================================================
+
+
+@app.route("/pedidos_admin")
+def pedidos_admin():
+
+    proteccion = proteger_administrador()
+
+    if proteccion:
+        return proteccion
+
+    try:
+
+        cursor = mysql.connection.cursor(
+            MySQLdb.cursors.DictCursor
+        )
+
+        cursor.execute(
+            """
+            SELECT
+                pedidos.id,
+                pedidos.total,
+                pedidos.estado,
+                pedidos.fecha,
+                gestion_usuarios.nombre_usuario,
+                gestion_usuarios.correo
+            FROM pedidos
+            INNER JOIN gestion_usuarios
+                ON pedidos.usuario_id = gestion_usuarios.id
+            ORDER BY pedidos.id DESC
+            """
+        )
+
+        pedidos = cursor.fetchall()
+
+        cursor.close()
+
+        return render_template(
+            "pedidos_admin.html",
+            pedidos=pedidos
+        )
+
+    except Exception as error:
+
+        return (
+            f"Error al cargar pedidos: {error}",
+            500
+        )
+
+@app.route(
+    "/actualizar_estado_pedido/<int:id>",
+    methods=["POST"]
+)
+def actualizar_estado_pedido(id):
+
+    proteccion = proteger_administrador()
+
+    if proteccion:
+        return proteccion
+
+    estado = request.form.get("estado")
+
+    estados_validos = [
+        "Pedido realizado",
+        "En preparación",
+        "Enviado",
+        "Entregado"
+    ]
+
+    if estado not in estados_validos:
+
+        return "Estado no válido", 400
+
+    try:
+
+        cursor = mysql.connection.cursor()
+
+        cursor.execute(
+            """
+            UPDATE pedidos
+            SET estado = %s
+            WHERE id = %s
+            """,
+            (
+                estado,
+                id
+            )
+        )
+
+        mysql.connection.commit()
+
+        cursor.close()
+
+        return redirect(
+            url_for("pedidos_admin")
+        )
+
+    except Exception as error:
+
+        mysql.connection.rollback()
+
+        return (
+            f"Error al actualizar el pedido: {error}",
             500
         )
 
