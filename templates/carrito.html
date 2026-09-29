@@ -18,91 +18,120 @@
 
     <!-- ENCABEZADO -->
 
-    <header class="carrito-header">
+    <header>
 
-        <div class="carrito-logo">
+        <nav>
 
-            <a href="{{ url_for('inicio') }}">
+            <div class="logo">
 
                 <img
                     src="{{ url_for('static', filename='img/logo.png') }}"
-                    alt="Superbike"
-                >
+                    alt="Logo Superbike">
 
-            </a>
+                <span>
+                    Superbike
+                </span>
 
-        </div>
+            </div>
 
-        <nav class="carrito-nav">
+            <ul class="nav-links">
 
-            <a href="{{ url_for('inicio') }}">
-                Inicio
-            </a>
+                <li>
+                    <a href="{{ url_for('inicio') }}">
+                        Inicio
+                    </a>
+                </li>
 
-            <a href="{{ url_for('catalogo') }}">
-                Catálogo
-            </a>
+                <li>
+                    <a href="{{ url_for('catalogo') }}">
+                        Catálogo
+                    </a>
+                </li>
 
-            <a href="{{ url_for('contacto') }}">
-                Contáctanos
-            </a>
+                <li>
+                    <a href="{{ url_for('contacto') }}">
+                        Contáctanos
+                    </a>
+                </li>
 
-            <a href="{{ url_for('quienessomos') }}">
-                Quiénes somos
-            </a>
+                <li>
+                    <a href="{{ url_for('quienessomos') }}">
+                        Quiénes somos
+                    </a>
+                </li>
 
-            <div class="carrito-perfil">
+                <!-- PERFIL -->
 
-                <button
-                    type="button"
-                    class="carrito-perfil-btn"
-                    onclick="togglePerfil()"
-                >
-                    Perfil ▾
-                </button>
+                <li class="dropdown">
 
-                <div
-                    id="perfilMenu"
-                    class="carrito-perfil-menu"
-                >
+                    <a href="#" id="perfil-btn" class="user-toggle">
 
-                    {% if session.get('logueado') %}
 
-                        <div class="perfil-usuario">
-                            {{ session.get('user_name') }}
-                        </div>
+                        {% if session.get('logueado') %}
+                            <span>{{ session.get('user_name') }}</span>
+                        {% else %}
+                            <span>Perfil</span>
+                        {% endif %}
 
-                        <a href="{{ url_for('mis_pedidos') }}">
-                            Mis pedidos
-                        </a>
+                        <span class="arrow-down">
+                            &#9660;
+                        </span>
 
-                        {% if session.get('rol') == 'admin' %}
+                    </a>
 
-                            <a href="{{ url_for('reporte') }}">
-                                Reporte de usuarios
-                            </a>
+                    <ul class="dropdown-menu" id="dropdownMenu">
+
+                        {% if session.get('logueado') %}
+
+                            <li>
+                                <div class="perfil-usuario">
+                                    {{ session.get('user_name') }}
+                                </div>
+                            </li>
+
+                            <li>
+                                <a href="{{ url_for('mis_pedidos') }}">
+                                    📦 Mis pedidos
+                                </a>
+                            </li>
+
+                            {% if session.get('rol') == 'admin' %}
+
+                                <li>
+                                    <a href="{{ url_for('reporte') }}">
+                                        📊 Reporte de usuarios
+                                    </a>
+                                </li>
+
+                            {% endif %}
+
+                            <li>
+                                <a href="{{ url_for('logout') }}">
+                                    Cerrar sesión
+                                </a>
+                            </li>
+
+                        {% else %}
+
+                            <li>
+                                <a href="{{ url_for('login') }}">
+                                    Iniciar sesión
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ url_for('registro') }}">
+                                    Registrarse
+                                </a>
+                            </li>
 
                         {% endif %}
 
-                        <a href="{{ url_for('logout') }}">
-                            Cerrar sesión
-                        </a>
+                    </ul>
 
-                    {% else %}
+                </li>
 
-                        <a href="{{ url_for('login') }}">
-                            Iniciar sesión
-                        </a>
-
-                        <a href="{{ url_for('registro') }}">
-                            Registrarse
-                        </a>
-
-                    {% endif %}
-
-                </div>
-
-            </div>
+            </ul>
 
         </nav>
 
@@ -201,9 +230,6 @@
                                 </div>
 
                             </div>
-
-
-                            <!-- PRECIO -->
 
                             <!-- PRECIO -->
 

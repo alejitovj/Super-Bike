@@ -25,7 +25,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(0, 217, 255, 0.08);
+    border-bottom: 1px solid #ffffff14;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
@@ -67,9 +67,9 @@ nav {
 
 .nav-links > li:not(:last-child):not(.dropdown)::after {
     content: "";
-    width: 1px;
+    width: 2px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.18);
+    background: #ffffff4d;
     margin-left: 15px;
     margin-right: 5px;
 }
