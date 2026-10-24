@@ -20,10 +20,23 @@ app.secret_key = "SuperBike"
 # CONFIGURACIÓN DE MYSQL
 # ============================================================
 
-app.config["MYSQL_HOST"] = "localhost"
-app.config["MYSQL_USER"] = "root"
-app.config["MYSQL_PASSWORD"] = ""
-app.config["MYSQL_DB"] = "super_bike"
+import os
+
+# CONFIGURACIÓN DE MYSQL
+app.config["MYSQL_HOST"] = os.getenv("MYSQL_HOST", "localhost")
+app.config["MYSQL_USER"] = os.getenv("MYSQL_USER", "root")
+app.config["MYSQL_PASSWORD"] = os.getenv("MYSQL_PASSWORD", "")
+app.config["MYSQL_DB"] = os.getenv("MYSQL_DB", "super_bike")
+app.config["MYSQL_PORT"] = int(os.getenv("MYSQL_PORT", "3306"))
+
+if os.getenv("MYSQL_HOST"):
+    app.config["MYSQL_CUSTOM_OPTIONS"] = {
+        "ssl": {
+            "ca": os.path.join(
+                app.root_path, "certificados", "ca.pem"
+            )
+        }
+    }
 
 mysql = MySQL(app)
 
