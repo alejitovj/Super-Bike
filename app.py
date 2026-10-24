@@ -22,6 +22,7 @@ app.secret_key = "SuperBike"
 
 import os
 
+
 # CONFIGURACIÓN DE MYSQL
 app.config["MYSQL_HOST"] = os.getenv("MYSQL_HOST", "localhost")
 app.config["MYSQL_USER"] = os.getenv("MYSQL_USER", "root")
@@ -29,16 +30,27 @@ app.config["MYSQL_PASSWORD"] = os.getenv("MYSQL_PASSWORD", "")
 app.config["MYSQL_DB"] = os.getenv("MYSQL_DB", "super_bike")
 app.config["MYSQL_PORT"] = int(os.getenv("MYSQL_PORT", "3306"))
 
+# CERTIFICADO SSL PARA AIVEN
+certificado_render = "/etc/secrets/ca.pem"
+certificado_local = os.path.join(
+    app.root_path, "certificados", "ca.pem"
+)
+
 if os.getenv("MYSQL_HOST"):
+    certificado = (
+        certificado_render
+        if os.path.exists(certificado_render)
+        else certificado_local
+    )
+
     app.config["MYSQL_CUSTOM_OPTIONS"] = {
         "ssl": {
-            "ca": os.path.join(
-                app.root_path, "certificados", "ca.pem"
-            )
+            "ca": certificado
         }
     }
 
 mysql = MySQL(app)
+
 
 
 # ============================================================
