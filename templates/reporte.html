@@ -1,139 +1,133 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Reporte de Usuarios - SuperBike</title>
+    <title>Reporte de Usuarios | SuperBike</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/reporte.css') }}">
-
 </head>
 
 <body>
 
-    <div class="contenedor reporte-usuarios">
+    <main class="contenedor reporte-usuarios">
 
-        <div class="encabezado-reporte">
+        <header class="encabezado-reporte">
+            <div class="encabezado-texto">
+                <span class="etiqueta-reporte">PANEL DE ADMINISTRACIÓN</span>
+                <h1>Reporte de usuarios</h1>
+                <p>Consulta y administra la información de los usuarios registrados en SuperBike.</p>
+            </div>
 
-            <h1>
-                Reporte de Usuarios
-            </h1>
+            <div class="icono-reporte" aria-hidden="true">📊</div>
+        </header>
 
-            <p>
-                Consulta y exportación de usuarios registrados
-                en Super Bike
-            </p>
+        <section class="estadisticas">
 
-        </div>
+            <article class="tarjeta-estadistica">
+                <div class="estadistica-icono icono-rojo">👥</div>
+                <div>
+                    <p>Total de usuarios</p>
+                    <h2>{{ usuarios|length }}</h2>
+                    <span>Registros encontrados</span>
+                </div>
+            </article>
 
+            <article class="tarjeta-estadistica">
+                <div class="estadistica-icono icono-verde">✓</div>
+                <div>
+                    <p>Estado del reporte</p>
+                    <h2>Actualizado</h2>
+                    <span>Información de la base de datos</span>
+                </div>
+            </article>
 
-        <div class="filtros">
+        </section>
 
-            <a
-                href="{{ url_for('reporte') }}"
-                class="boton buscar"
-            >
-                🔎 Actualizar reporte
-            </a>
+        <section class="panel-reporte">
 
+            <div class="panel-encabezado">
+                <div>
+                    <h2>Usuarios registrados</h2>
+                    <p>Listado general de cuentas de SuperBike</p>
+                </div>
 
-            <a
-                href="{{ url_for('reporte_excel') }}"
-                class="boton excel"
-            >
-                📊 Exportar a Excel
-            </a>
+                <span class="contador-usuarios">
+                    {{ usuarios|length }} usuarios
+                </span>
+            </div>
 
-        </div>
+            <div class="acciones-reporte">
 
+                <a href="{{ url_for('reporte') }}" class="boton boton-actualizar">
+                    <span>↻</span> Actualizar reporte
+                </a>
 
-        <div class="tabla-contenedor">
+                <a href="{{ url_for('reporte_excel') }}" class="boton boton-excel">
+                    <span>↓</span> Exportar a Excel
+                </a>
 
-            <table>
+            </div>
 
-                <thead>
+            <div class="tabla-contenedor">
 
-                    <tr>
-
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Teléfono</th>
-                        <th>Usuario</th>
-                        <th>Rol</th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody>
-
-                    {% if usuarios %}
-
-                        {% for usuario in usuarios %}
-
+                <table>
+                    <thead>
                         <tr>
-
-                            <td>
-                                {{ usuario.id }}
-                            </td>
-
-                            <td>
-                                {{ usuario.nombre }}
-                            </td>
-
-                            <td>
-                                {{ usuario.correo }}
-                            </td>
-
-                            <td>
-                                {{ usuario.telefono }}
-                            </td>
-
-                            <td>
-                                {{ usuario.nombre_usuario }}
-                            </td>
-
-                            <td>
-                                {{ usuario.rol }}
-                            </td>
-
+                            <th>ID</th>
+                            <th>Nombre completo</th>
+                            <th>Correo electrónico</th>
+                            <th>Teléfono</th>
+                            <th>Nombre de usuario</th>
+                            <th>Rol</th>
                         </tr>
+                    </thead>
 
-                        {% endfor %}
+                    <tbody>
+                        {% if usuarios %}
 
-                    {% else %}
+                            {% for usuario in usuarios %}
+                            <tr>
+                                <td><span class="id-usuario">#{{ usuario.id }}</span></td>
+                                <td class="nombre-usuario">{{ usuario.nombre or 'No registrado' }}</td>
+                                <td class="correo-usuario">{{ usuario.correo }}</td>
+                                <td>{{ usuario.telefono or 'No registrado' }}</td>
+                                <td>{{ usuario.nombre_usuario }}</td>
+                                <td>
+                                    {% set rol_usuario = (usuario.rol or 'Cliente')|lower %}
+                                    <span class="etiqueta-rol {{ 'rol-admin' if rol_usuario in ['admin', 'administrador'] else 'rol-cliente' }}">
+                                        {{ usuario.rol or 'Cliente' }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
 
-                        <tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="6" class="sin-datos">
+                                    <span>📭</span>
+                                    <strong>No hay usuarios registrados</strong>
+                                    <p>Cuando existan usuarios, aparecerán en esta tabla.</p>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
 
-                            <td
-                                colspan="6"
-                                class="sin-datos"
-                            >
-                                No hay usuarios registrados.
-                            </td>
+            </div>
 
-                        </tr>
+            <footer class="pie-reporte">
+                <span>SuperBike · Gestión de usuarios</span>
+                <span>Reporte administrativo</span>
+            </footer>
 
-                    {% endif %}
+        </section>
 
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
+    </main>
 
 </body>
-
 </html>
