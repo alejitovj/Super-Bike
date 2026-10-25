@@ -64,12 +64,17 @@ def usuario_logueado():
     return session.get("logueado") is True
 
 
+
 def administrador():
     """
     Comprueba si el usuario actualmente conectado
     tiene rol de administrador.
     """
-    return session.get("rol") == "admin"
+    return session.get("rol", "").strip().lower() in (
+        "admin",
+        "administrador"
+    )
+
 
 
 def proteger_ruta():
